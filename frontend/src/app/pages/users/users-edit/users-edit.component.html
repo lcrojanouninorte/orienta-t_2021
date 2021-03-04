@@ -1,0 +1,174 @@
+<div *ngIf="form4">
+    <nb-card [nbSpinner]="loading" nbSpinnerStatus="danger" nbSpinnerSize="large" nbSpinnerMessage="">
+        <nb-card-body>
+            <nb-stepper #stepper orientation="horizontal" [linear]="true">
+                <nb-step label="Tipo" [stepControl]="form1">
+                    <div class="row align-items-stretch">
+                        <div *ngIf="hasAvatar()" class="col-sm-4 d-flex  justify-content-center align-self-center">
+                            <img [src]="profile.avatar" ngxGravatar size="200" borderColor="rgba(0, 0, 0, 0.2)">
+                        </div>
+                        <div [ngClass]="{'col-sm-8': hasAvatar(), 'col-sm-12': !hasAvatar() }" class="step-container mx-auto">
+                            <h3>1. Tipo de Usuario</h3>
+                            <p>Seleccione Tipo de Usuario</p>
+                            <form [formGroup]="form1" (ngSubmit)="on1Submit()">
+                                <nb-radio-group class="row justify-content-center" formControlName="base_role">
+                                    <nb-radio class="mx-auto " *ngFor="let base_role of base_roles" [disabled]="base_role.disabled" [value]="base_role.value">
+                                        {{ base_role.label }}
+                                    </nb-radio>
+                                </nb-radio-group>
+
+                                <p class="mt-4">Seleccione un rol para el usuario</p>
+                                <div class="row justify-content-center" [formGroup]="form1">
+                                    <nb-select multiple placeholder="Seleccionar" formControlName="roles_name" hero shape="round" status="primary">
+                                        <nb-option *ngFor="let role of roles" [value]="role.name">{{role.name}}</nb-option>
+                                    </nb-select>
+                                </div>
+                                <div class="step-options row mx-auto mt-4">
+                                    <button class="col-sm-6" nbButton nbStepperPrevious>prev</button>
+                                    <button class="col-sm-6" nbButton nbStepperNext type="submit">next</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </nb-step>
+                <nb-step label="Datos de Ingreso" [stepControl]="form2">
+                    <div class="row  align-items-stretch">
+                        <div *ngIf="hasAvatar()" class="col-sm-4 d-flex  justify-content-center align-self-center">
+                            <img [src]="profile.avatar" ngxGravatar size="200" borderColor="rgba(0, 0, 0, 0.2)">
+                        </div>
+                        <div [ngClass]="{'col-sm-8': hasAvatar(), 'col-sm-12': !hasAvatar()}" class="mx-auto">
+                            <h3>2. Credenciales</h3>
+                            <p class="lorem">
+                                Ingresa usuario y contraseña del usuario
+                            </p>
+                            <form [formGroup]="form2" (ngSubmit)="on2Submit()">
+                                <div class="row">
+                                    <nb-form-field class="mt-2 col-sm-12 ">
+                                        <nb-icon nbPrefix icon="person-add-outline" pack="eva"></nb-icon>
+                                        <input fullWidth nbInput type="text" formControlName="first_name" placeholder="Nombres" fieldSize="large" type="text">
+                                    </nb-form-field>
+
+                                    <nb-form-field class="mt-2 col-sm-12">
+                                        <input fullWidth nbInput type="text" formControlName="last_name" placeholder="Apellidos" fieldSize="large" type="text">
+                                    </nb-form-field>
+                                </div>
+                                <div class="row mt-2">
+                                    <div class="col-12">
+                                        <div class="form-group ">
+                                            <nb-form-field>
+                                                <nb-icon nbPrefix icon="at-outline" pack="eva"></nb-icon>
+                                                <input fullWidth nbInput type="text" formControlName="email" placeholder="E-mail" fieldSize="large" type="text">
+                                            </nb-form-field>
+                                        </div>
+                                        <div *ngIf="!user.id">
+                                            <div class="form-group ">
+                                                <nb-form-field>
+                                                    <nb-icon nbPrefix icon="lock-outline" pack="eva"></nb-icon>
+                                                    <input fullWidth nbInput type="text" formControlName="password" placeholder="Password" fieldSize="large" type="password">
+                                                </nb-form-field>
+                                            </div>
+                                            <div class="form-group ">
+                                                <nb-form-field>
+                                                    <nb-icon nbPrefix icon="lock-outline" pack="eva"></nb-icon>
+                                                    <input fullWidth nbInput type="text" formControlName="password_confirmation" placeholder="Confirmar Password" fieldSize="large" type="password">
+                                                </nb-form-field>
+                                            </div>
+                                        </div>
+                                        <p class="caption status-danger" *ngIf="form2.value.password != form2.value.password_confirmation">
+                                            No coninciden las contraseñas
+                                        </p>
+
+                                    </div>
+                                </div>
+
+                                <div class="step-options row mx-auto">
+                                    <button class="col-sm-6" nbButton nbStepperPrevious>prev</button>
+                                    <button class="col-sm-6" nbButton nbStepperNext type="submit">next</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </nb-step>
+                <nb-step label="Foto Perfil">
+                    <div class="step-container ">
+
+                        <h3>3. Foto de Perfil</h3>
+                        <div *ngIf="profile.avatar && files?.length == 0" class="row">
+                            <div class="col-12">
+                                <img [src]="profile.avatar" ngxGravatar size="80" borderColor="rgba(0, 0, 0, 0.2)"> </div>
+                        </div>
+                        <div *ngIf=" files?.length > 0">
+                            <ngx-dropzone-image-preview class="rounded-circle" ngProjectAs="ngx-dropzone-preview" *ngFor="let f of files" [file]="f" [removable]="true" (removed)="onRemove($event)">
+                                <ngx-dropzone-label></ngx-dropzone-label>
+                            </ngx-dropzone-image-preview>
+                        </div>
+                        <p *ngIf=" files.length == 0" class="lorem mt-4">
+                            Selecciona una de estas fotos
+                        </p>
+                        <div *ngIf=" files.length == 0" class="row">
+                            <div class="col-12">
+                                <img (click)="onAvatarClick($event)" *ngFor="let f of fallbacks" ngxGravatar [email]="form2.value.email" size="50" [fallback]="f" borderColor="rgba(0, 0, 0, 0.2)"> </div>
+                        </div>
+
+                        <p *ngIf=" files.length == 0" class="lorem mt-4">
+                            ò sube una imagen personalizada (max. 1 Mb).
+                        </p>
+                        <div *ngIf=" files.length == 0" class="row">
+                            <ngx-dropzone [multiple]="false" [accept]="'image/*'" [maxFileSize]="1000000" (change)="onSelect($event)">
+                                <ngx-dropzone-label>Arrastre su imagen aquí</ngx-dropzone-label>
+                            </ngx-dropzone>
+                        </div>
+                        <div class="step-options row mx-auto">
+                            <button class="col-sm-6" nbButton nbStepperPrevious>prev</button>
+                            <button class="col-sm-6" nbButton [disabled]="profile.avatar? null : true" nbStepperNext>next</button>
+                        </div>
+                    </div>
+                </nb-step>
+                <nb-step label="Opciones" [stepControl]="form4">
+                    <div class="row align-items-stretch">
+                        <div *ngIf="hasAvatar()" class="col-sm-4 d-flex  justify-content-center align-self-center">
+                            <img [src]="profile.avatar" ngxGravatar size="200" borderColor="rgba(0, 0, 0, 0.2)">
+                        </div>
+                        <div [ngClass]="{'col-sm-8': hasAvatar(), 'col-sm-12': !hasAvatar()}" class="step-container ">
+                            <h3>Opciones</h3>
+                            <p class="lorem ">
+                                Seleccione las siguientes opciones
+                            </p>
+
+                            <form class="justify-content-center mt-4" [formGroup]="form4">
+                                <div formGroupName="configs">
+
+                                    <div class="d-flex flex-md-row flex-sm-column justify-content-around p-2 ">
+                                        <nb-checkbox status="success " formControlName="send_mail">Enviar Correo con credenciales al Usuario?</nb-checkbox>
+                                    </div>
+                                </div>
+                                <div class="step-options row mx-auto  mt-4">
+                                    <button class="col-sm-6 " nbButton nbStepperPrevious>Anterior</button>
+                                    <button class="col-sm-6 " nbButton (click)="on4Submit()">Finalizar</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </nb-step>
+                <nb-step [hidden]="true " label="Completado">
+                    <div class="step-container ">
+                        <div *ngIf="null==user.id">
+
+                            <h3>Agregado éxitosamente!</h3>
+                            <button nbButton (click)="resetAll();stepper.reset()">Crear Otro Usuario</button>
+                        </div>
+                        <div *ngIf="user.id!=null">
+
+                            <h3>Actualizado éxitosamente</h3>
+
+                            <button nbButton (click)="stepper.reset() ">Crear Otro Usuario</button>
+                            <button [routerLink]="['/config/users']" nbButton>Volver a Listado de usuarios</button>
+
+                        </div>
+                    </div>
+                </nb-step>
+            </nb-stepper>
+        </nb-card-body>
+    </nb-card>
+</div>
+<!--<p>User</p> {{user | json}} profile {{profile | json}}-->

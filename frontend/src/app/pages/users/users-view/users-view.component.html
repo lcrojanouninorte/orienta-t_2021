@@ -1,0 +1,130 @@
+<div class="row">
+    <div class="card-col col-sm-12 col-md-6">
+        <nb-card accent="info" class="row-card" size="tiny">
+            <div class="icon-container">
+                <nb-icon class="icon status-success" icon="people-outline"></nb-icon>
+            </div>
+            <div class="details">
+                <div class="title h5">{{countObj(roles['General'])}}</div>
+                <div class="status paragraph-2">Usuarios Generales</div>
+            </div>
+            <nb-actions class="actions" size="small">
+                <nb-action (click)="openUserDialog()" nbTooltip="Añadir Usuario" nbTooltipStatus="primary" icon="plus-outline"></nb-action>
+            </nb-actions>
+        </nb-card>
+    </div>
+    <div class="card-col col-sm-12 col-md-6">
+        <nb-card accent="info" class="row-card" size="tiny">
+            <div class="icon-container">
+                <nb-icon class="icon status-info" icon="smiling-face-outline"></nb-icon>
+            </div>
+            <div class="details">
+                <div class="title h5">{{countObj(roles['Staff'])}}</div>
+                <div class="status paragraph-2">Staff </div>
+            </div>
+            <nb-actions *ngIf="_accessChecker.isGranted('Register Staff', 'all') | async" class="actions" size="small">
+                <nb-action (click)="openUserDialog()" nbTooltip="Añadir Usuario" nbTooltipStatus="primary" icon="plus-outline"></nb-action>
+            </nb-actions>
+        </nb-card>
+    </div>
+    <div class="card-col col-sm-12 col-md-6">
+        <nb-card accent="info" class="row-card" size="tiny">
+            <div class="icon-container">
+                <nb-icon class="icon status-danger" icon="cube-outline"></nb-icon>
+            </div>
+            <div class="details">
+                <div class="title h5">{{countObj(roles['Admin'])}}</div>
+                <div class="status paragraph-2">Admins</div>
+            </div>
+            <nb-actions *ngIf="_accessChecker.isGranted('Register Admin', 'all') | async" class="actions" size="small">
+                <nb-action (click)="openUserDialog()" nbTooltip="Añadir Usuario" nbTooltipStatus="primary" icon="plus-outline"></nb-action>
+            </nb-actions>
+        </nb-card>
+    </div>
+    <div class="card-col col-sm-12 col-md-6">
+        <nb-card accent="info" class="row-card" size="tiny">
+            <div class="icon-container">
+                <nb-icon class="icon status-warning" icon="people-outline"></nb-icon>
+            </div>
+            <div class="details">
+                <div class="title h5">{{countObj(roles['Others'])}}</div>
+                <div class="status paragraph-2">Otros</div>
+            </div>
+            <nb-actions *ngIf="_accessChecker.isGranted('Register General User', 'all') | async" class="actions" size="small">
+                <nb-action (click)="openUserDialog()" nbTooltip="Añadir Usuario" nbTooltipStatus="primary" icon="plus"></nb-action>
+            </nb-actions>
+        </nb-card>
+    </div>
+</div>
+
+<div class="card-row row">
+    <div class="card-col col-sm-12 col-md-4">
+        <nb-card accent="info" size="small">
+            <nb-card-header>Generales</nb-card-header>
+            <nb-list>
+                <nb-list-item matRipple class="contact" *ngFor="let user of roles['General']">
+
+                    <nb-user [picture]="user?.profile?.avatar" [name]="user?.email" [title]="user?.general?.first_name" size="medium"></nb-user>
+                    <div *ngIf="_accessChecker.isGranted('Register General User', 'all') | async" class="icon-container  d-flex justify-content-end align-items-stretch flex-fill">
+                        <a size="small" ghost nbButton [routerLink]="[user.id]">
+                            <nb-icon status="info" class="icon" icon="edit" pack="eva"></nb-icon>
+                        </a>
+                        <a size="small" ghost nbButton href="#" (click)="deleteUser(user.id)">
+                            <nb-icon status="danger" class="icon" icon="trash" pack="eva"></nb-icon>
+                        </a>
+                    </div>
+                </nb-list-item>
+            </nb-list>
+        </nb-card>
+    </div>
+    <div class="card-col col-sm-12 col-md-4">
+        <nb-card accent="info" size="small">
+            <nb-card-header>Staff</nb-card-header>
+            <nb-list>
+                <nb-list-item matRipple class="contact" *ngFor="let user of roles['Staff']">
+                    <nb-user [picture]="user?.profile?.avatar" [name]="user?.email" [title]="user?.general?.first_name" size="medium"></nb-user>
+                    <div *ngIf="_accessChecker.isGranted('Register Staff', 'all') | async" class="icon-container  d-flex justify-content-end align-items-stretch flex-fill">
+                        <a size="small" ghost nbButton [routerLink]="[user.id]">
+                            <nb-icon status="info" class="icon" icon="edit" pack="eva"></nb-icon>
+                        </a>
+                        <a size="small" ghost nbButton href="#" (click)="deleteUser(user.id)">
+                            <nb-icon status="danger" class="icon" icon="trash" pack="eva"></nb-icon>
+                        </a>
+                    </div>
+                </nb-list-item>
+            </nb-list>
+        </nb-card>
+    </div>
+    <div class="card-col col-sm-12 col-md-4">
+        <nb-card accent="info" size="small">
+            <nb-card-header>Admin y Otros</nb-card-header>
+            <nb-list>
+                <nb-list-item matRipple class="contact" *ngFor="let user of roles['Admin']">
+                    <nb-user [picture]="user?.profile?.avatar" [name]="user?.email" [title]="user?.general?.first_name" size="medium"></nb-user>
+                    <div *ngIf="_accessChecker.isGranted('Register Admin', 'all') | async" class="icon-container  d-flex justify-content-end align-items-stretch flex-fill">
+                        <a size="small" ghost nbButton [routerLink]="[user.id]">
+                            <nb-icon status="info" class="icon" icon="edit" pack="eva"></nb-icon>
+                        </a>
+                        <a size="small" ghost nbButton href="#" (click)="deleteUser(user.id)">
+                            <nb-icon status="danger" class="icon" icon="trash" pack="eva"></nb-icon>
+                        </a>
+                    </div>
+                </nb-list-item>
+            </nb-list>
+            <nb-list>
+                <nb-list-item matRipple class="contact" *ngFor="let user of roles['Others']">
+                    <nb-user [picture]="user?.profile?.avatar" [name]="user?.email" [title]="user?.general?.first_name" size="medium"></nb-user>
+                    <div *ngIf="_accessChecker.isGranted('Register All Users', 'all') | async" class="icon-container  d-flex justify-content-end align-items-stretch flex-fill">
+                        <a size="small" ghost nbButton [routerLink]="[user.id]">
+                            <nb-icon status="info" class="icon" icon="edit" pack="eva"></nb-icon>
+                        </a>
+                        <a size="small" ghost nbButton href="#" (click)="deleteUser(user.id)">
+                            <nb-icon status="danger" class="icon" icon="trash" pack="eva"></nb-icon>
+                        </a>
+                    </div>
+                </nb-list-item>
+            </nb-list>
+        </nb-card>
+    </div>
+
+</div>

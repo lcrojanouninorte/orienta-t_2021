@@ -1,0 +1,34 @@
+<!-- Define header and footer blocks before your content -->
+<header>
+    <div class="d-flex justify-content-between mb-5">
+        <img class=" d-flex mt-2 ml-5 align-self-strech" src="assets/img/logo.jpg" width="150" alt="OBS">
+        <img class="d-flex mt-1 mr-5 align-self-center" src="assets/img/LogoUninorte.png" width="150" alt="uninorte">
+    </div>
+</header>
+
+
+<main class="container mt-5">
+    <div class="d-flex flex-column justify-content-center">
+        <h2 class="text-center align-self-center mb-2"> Observatorio del Río Magdalena</h2>
+        <h4 class="text-center align-self-center mb-2"> Universidad del norte</h4>
+
+        <h6 class="text-center align-self-center mb-4">Fecha del reporte:
+            <?php echo date("Y-m-d, H:m:s A");?>
+        </h6>
+    </div>
+    <div class=" d-flex justify-content-center mb-5">
+        <div class=" d-flex justify-content-center  shadow-sm">
+            <div class=" align-self-center">
+                <img [src]="getMapImg()" width="200" alt="ubicación">
+            </div>
+
+
+        </div>
+    </div>
+
+
+</main>
+<footer>
+    Observatorio del Río Magdalena - Universidad del Norte Copyright &copy;
+    <p [innerHTML]="getDate()"></p>
+</footer>

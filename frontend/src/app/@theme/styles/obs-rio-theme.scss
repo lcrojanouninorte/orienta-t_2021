@@ -1,0 +1,7 @@
+// @nebular theming framework
+@import "~@nebular/theme/styles/theming";
+// @nebular out of the box themes
+@import "~@nebular/theme/styles/themes";
+// material themes
+@import "./material/material-light";
+$nb-themes: nb-register-theme( (), obsrio, material-light);

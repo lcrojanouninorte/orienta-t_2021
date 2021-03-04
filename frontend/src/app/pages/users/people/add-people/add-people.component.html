@@ -1,0 +1,56 @@
+<div class="row" id="people-form">
+
+    <div class="col-md-12">
+        <nb-card class="inline-form-card">
+            <nb-card-header>Agregar/Editar Usuario</nb-card-header>
+            <nb-card-body>
+                <form [formGroup]="form" class="form-inline d-flex flex-column">
+                    <input class="mt-3" formControlName="order" type="text" nbInput fullWidth placeholder="Orden">
+                    <input class="mt-3" formControlName="name" type="text" nbInput fullWidth placeholder="Nombre">
+                    <input class="mt-3" formControlName="title" type="text" nbInput fullWidth placeholder="titulo/Cargo">
+                    <input class="mt-3" formControlName="rg" type="text" nbInput fullWidth placeholder="Research Gate ó Link">
+
+                    <nb-select *ngIf="isColab" class="mt-3" formControlName="tag" placeholder="Tipo de Persona">
+                        <nb-option value="">Seleccione una opción</nb-option>
+                        <nb-option value="0">Colaborador</nb-option>
+
+                    </nb-select>
+                    <nb-select *ngIf="!isColab" class="mt-3" formControlName="tag" placeholder="Tipo de Persona">
+                        <nb-option value="">Seleccione una opción</nb-option>
+
+
+                        <nb-option value="1">Directivo</nb-option>
+                        <nb-option value="2">Rector</nb-option>
+                        <nb-option value="3">Decano</nb-option>
+                        <nb-option value="4">Director CC</nb-option>
+                        <nb-option value="5">Vice Rector Académico</nb-option>
+                        <nb-option value="6">Vice Rector Administrativo</nb-option>
+
+                    </nb-select>
+
+                    <p class="mt-3">Fotografía </p>
+                    <div class="mt-3" [nbSpinner]="loading" nbSpinnerStatus="danger" class="selected-option">
+                        <div>
+                            <nb-progress-bar *ngIf="progress>0" [value]="progress"></nb-progress-bar>
+
+                            <ngx-dropzone [multiple]="false" accept="image/*" (change)="onSelect($event)">
+                                <ngx-dropzone-label>
+                                    <nb-icon icon='cloud-upload'></nb-icon> Agrega una Imagen de la persona</ngx-dropzone-label>
+
+                                <ngx-dropzone-image-preview (removed)="onRemoveFile(f)" [removable]="true" class="mt-2" ngProjectAs="ngx-dropzone-preview" *ngFor="let f of files" [file]="f">
+                                    <ngx-dropzone-label>
+                                    </ngx-dropzone-label>
+                                </ngx-dropzone-image-preview>
+                            </ngx-dropzone>
+                        </div>
+
+
+                    </div>
+
+                    <button (click)="onSubmit()" nbButton status="primary">Guardar</button>
+                </form>
+            </nb-card-body>
+        </nb-card>
+    </div>
+
+</div>

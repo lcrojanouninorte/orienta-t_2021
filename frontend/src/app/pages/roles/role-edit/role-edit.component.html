@@ -1,0 +1,61 @@
+ <form [formGroup]="form" (ngSubmit)="save()">
+
+<div class="row">
+  <div class="col-md-12">
+    <nb-card class="inline-form-card">
+      <nb-card-header>Role</nb-card-header>
+      <nb-card-body>
+        <div class="form-inline">
+          <input  formControlName="name" type="text" nbInput fullWidth status="primary"  placeholder="Nombre">
+          <input  formControlName="description" type="text" nbInput fullWidth status="primary"  placeholder="Descripción">
+        </div>
+      </nb-card-body>
+    </nb-card>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-12">
+    <nb-card>
+      <nb-card-header>Permisos</nb-card-header>
+      <nb-card-body>
+          <div class="form-group row">
+            <label class="col-sm-3 label">Permisos disponibles</label>
+            <div class="row">
+                <div class="col-sm-3" formArrayName="permissions" 
+                    *ngFor="let permission of systemPermission; index as i ; trackBy: trackByMethod">
+                    <nb-toggle   
+                      class="col-sm-12 items-rows"
+                      [formControlName]="i"
+                      status="{{permission.active ? 'basic' : 'success'}}"
+                      [value]="permission.name"
+                      (change)="onCheckboxChange($event, i)"  
+                     >
+                      {{permission.name}}
+                    </nb-toggle>
+                </div>
+            </div>
+          </div>
+          <div class="form-group row">
+            <div class="offset-sm-5 col-sm-7">
+              <button  type="submit" hero nbButton status="primary"><nb-icon icon="save-outline"></nb-icon>Guardar</button>
+            </div>
+          </div>
+        
+      </nb-card-body>
+    </nb-card>
+</div>
+</div>
+</form>
+<!--
+<p>
+  Form Value: {{ form.value | json }}
+</p>
+<p>
+  systemPermission Value: {{ systemPermission | json }}
+</p>
+ 
+<p>
+  permissions Value: {{ role.permissions | json }}
+</p>
+ -->
+ 
