@@ -32,6 +32,7 @@
                                 "input": "node_modules/svg-country-flags/svg",
                                 "output": "assets/svg-country-flags/svg"
                             }
+
                         ],
                         "styles": [
                             "node_modules/bootstrap/dist/css/bootstrap.css",
@@ -76,14 +77,9 @@
                             "vendorChunk": false,
                             "buildOptimizer": true,
                             "fileReplacements": [{
-                                    "replace": "src/environments/environment.ts",
-                                    "with": "src/environments/environment.prod.ts"
-                                },
-                                {
-                                    "replace": "../backend/resources/views/index.blade.php",
-                                    "with": "src/index.html"
-                                }
-                            ]
+                                "replace": "src/environments/environment.ts",
+                                "with": "src/environments/environment.prod.ts"
+                            }]
                         }
                     }
                 },

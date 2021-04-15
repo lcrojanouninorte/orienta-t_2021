@@ -6,13 +6,13 @@
 export const environment = {
   production: true,
   baseUrl: {
-    frontend: 'https://obsriomagdalena.uninorte.edu.co/plataforma',
-    backend: 'https://obsriomagdalena.uninorte.edu.co/plataforma',
-    api: 'https://obsriomagdalena.uninorte.edu.co/plataforma/api/',
+    frontend: 'https://onu-mujeres.lcrojano.com',
+    backend:  'https://onu-mujeres.lcrojano.com',
+    api: 'https://onu-mujeres.lcrojano.com/api/',
   },
   oauth2: {
-    token: 'https://obsriomagdalena.uninorte.edu.co/plataforma/oauth/token',
-    base: 'https://obsriomagdalena.uninorte.edu.co/plataforma/api/oauth/',
+    token: 'https://onu-mujeres.lcrojano.com/oauth/token',
+    base: 'https://onu-mujeres.lcrojano.com/api/oauth/',
     whitelist: {
       urlContains: 'token/refresh',
     },

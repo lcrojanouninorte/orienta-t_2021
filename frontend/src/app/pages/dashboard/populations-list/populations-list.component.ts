@@ -4,6 +4,8 @@ import { User } from '@core/data/remote/schemas/users';
 import { AuthService } from '@core/data/remote/services/auth.service';
 import { SurveyService } from '@core/data/remote/services/survey.service';
 import { NbDialogService } from '@nebular/theme';
+import { environment } from 'environments/environment';
+
 import { PopulationAddComponent } from '../population-add/population-add.component';
 
 
@@ -16,6 +18,7 @@ export class PopulationsListComponent implements OnInit {
   public user:  User = null;
   populations: Population[];
   active_population: Population = null;
+  environment = environment;
   @Output() onActivate: EventEmitter<Population[]> = new EventEmitter<Population[]>();
   constructor(
     private _dialogService: NbDialogService,
