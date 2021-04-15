@@ -1,0 +1,71 @@
+<nb-card size="large">
+
+    <nb-card-body>
+
+        <h2>
+            Campañas
+        </h2>
+        <p>
+            Una Campaña corresponde a un periodo de ejecución de la encuesta.
+        </p>
+        <button status="info" size="small" class="col mt-2 text-right" nbButton (click)="addPopulation()"><nb-icon icon="plus-circle-outline"></nb-icon> Campaña</button>
+
+        <nb-list class="row mt-3">
+            <nb-list-item class="d-flex justify-content-between align-items-stretch" *ngFor="let pop of populations; let i = index;">
+
+                <nb-user [badgeText]="pop.active?'Activa':''" badgeStatus="success" badgePosition="bottom right" size="tiny" [name]="pop.name" [title]="pop.created_at">
+                </nb-user>
+
+
+                <nb-actions fullWidth size="small">
+
+                    <nb-action title="Borrar Campaña" [swal]="deleteSwal" icon="trash-outline" status="warning">
+                        <swal #deleteSwal title="Seguro que desea eliminar la campaña {{ pop.name }}?" text="Esto no se puede deshacer" icon="question" [showCancelButton]="true" [focusCancel]="true" (confirm)="deletePopulation(pop, i)">
+                        </swal>
+
+                    </nb-action>
+
+                    <nb-action title="Encuestados" class="d-flex justify-content-between">
+                        <a href="#/dashboard/audience/{{pop.id}}" target="_blank">
+                        {{pop.surveys.length}}
+                      </a> / <a href="#/dashboard/audience/{{pop.id}}" target="_blank">
+                        {{pop.surveyeds.length}}
+                      </a>
+
+                    </nb-action>
+
+                    <nb-action status="info" title="Link">
+                        <a href="#/encuesta/{{pop.id}}/{{user.id}}" target="_blank">
+                            <nb-icon icon="link-outline"></nb-icon>
+                        </a>
+                    </nb-action>
+                    <nb-action icon="download-outline" status="info" title="Descargar Reporte" href="http://localhost:8000/report/{{pop.id}}/{{user.id}}" target="_blank">
+
+                    </nb-action>
+
+                    <nb-action *ngIf="!pop.active;else pause" title="Activar" [swal]="activeSwal">
+                        <nb-icon icon="play-circle-outline" status="success"></nb-icon>
+
+                        <swal #activeSwal title="Seguro que desea Activar la campaña {{ pop.name }}?" text="Esto cambiara la campaña activa actual" icon="question" [showCancelButton]="true" [focusCancel]="true" (confirm)="activatePopulation(pop, i)">
+                        </swal>
+                    </nb-action>
+                    <ng-template #pause>
+
+                        <nb-action title="Desactivar">
+                            <nb-icon icon="stop-circle-outline" status="danger"></nb-icon>
+                        </nb-action>
+                    </ng-template>
+
+                </nb-actions>
+
+
+
+
+            </nb-list-item>
+        </nb-list>
+
+    </nb-card-body>
+    <nb-card-footer>
+
+    </nb-card-footer>
+</nb-card>

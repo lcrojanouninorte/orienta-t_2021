@@ -1,0 +1,65 @@
+<nb-card size="large">
+
+    <nb-card-body>
+
+        <h2>{{title}} </h2>
+        <p>
+            El siguiente es un listado de encuestas realizadas a traves de su enlace personal.
+        </p>
+        <div class="row mb-2">
+            <div class="col-md-6">
+                <label for="name"> Nombre</label>
+                <nb-form-field>
+                    <nb-icon nbPrefix icon="person-outline" pack="eva"></nb-icon>
+                    <input [(ngModel)]="filterName" fieldSize="small" placeholder="Buscar por Nombre" name="name" type="text" nbInput>
+                </nb-form-field>
+            </div>
+            <div class="col-md-6">
+                <label for="id"> Id</label>
+                <nb-form-field>
+                    <nb-icon nbPrefix icon="hash-outline" pack="eva"></nb-icon>
+                    <input [(ngModel)]="filterId" fieldSize="small" placeholder="Buscar por Id" name="id" type="text" nbInput>
+                </nb-form-field>
+            </div>
+        </div>
+
+        <nb-list class="row mt-2">
+            <nb-list-item class="d-flex justify-content-between align-items-stretch" *ngFor="let survey of (surveys | filter:filterName | filter:filterId) ; let i = index">
+
+                <nb-user size="medium" [name]="survey?.surveyed?.name" [title]="survey?.surveyed?.identification">
+                </nb-user>
+
+
+                <nb-actions fullWidth size="small" class="text-center">
+                    <nb-action title="Inicio" class="d-flex flex-column justify-content-center">
+                        <p class="label  p-0 m-0"><b>Desde:</b> </p>
+                        <p>{{survey?.created_at | date:'medium'}}</p>
+                    </nb-action>
+
+
+                    <nb-action title="Borrar Campaña" class="d-flex flex-column justify-content-center">
+
+                        <p class="label p-0 m-0"><b>Hasta:</b></p>
+                        <p>{{survey?.updated_at | date:'medium'}}</p>
+                    </nb-action>
+                    <nb-action tile="ver encuesta" class="text-center">
+                        <a href="#/encuesta/1/{{user.id}}/{{survey.uuid}}" target="_blank">
+                            <nb-icon icon="external-link-outline" status="info">
+
+                            </nb-icon>
+                        </a>
+                    </nb-action>
+
+                </nb-actions>
+
+
+
+
+            </nb-list-item>
+        </nb-list>
+
+    </nb-card-body>
+    <nb-card-footer>
+
+    </nb-card-footer>
+</nb-card>

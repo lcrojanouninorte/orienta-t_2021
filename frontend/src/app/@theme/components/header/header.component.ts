@@ -47,11 +47,11 @@ export class HeaderComponent implements OnInit, OnDestroy,  AfterViewInit {
     { title: 'Aviso Legal',  icon: 'shield-outline' },
     { title: 'Desarrolladores', icon: 'code-outline'},
     { title: 'Colaboladores', icon: 'bulb-outline' },
-    
+
     // { title: 'Equipo Directivo', icon: 'people-outline'},
     // { title: 'FAQs', icon: 'question-mark-circle-outline'},
   ];
-  
+
   public constructor(
     private sidebarService: NbSidebarService,
     private menuService: NbMenuService,
@@ -76,7 +76,7 @@ export class HeaderComponent implements OnInit, OnDestroy,  AfterViewInit {
         this.layoutService.changeLayoutSize();
         this.user = new User();
         this.userMenu = [
-          { title: 'Ingresar', icon:'log-in-outline'        }, 
+          { title: 'Ingresar', icon:'log-in-outline'        },
           { title: 'Registrarse', icon:'person-add-outline'   }];
          // this._router.navigate(['auth/login']);
       }
@@ -117,7 +117,7 @@ export class HeaderComponent implements OnInit, OnDestroy,  AfterViewInit {
           .subscribe(() => {
             this.loading = false;
             this.user = new User().deserialize(new User());
-          if ( this._router.navigate(['auth/register'])) {
+          if ( this._router.navigate(['auth/login'])) {
 
           }
 
@@ -165,7 +165,7 @@ export class HeaderComponent implements OnInit, OnDestroy,  AfterViewInit {
       haveAccess => {
         if (haveAccess) {
           if (!this.userPictureOnly ) {
-            this.compactSidebar();
+           // this.compactSidebar();
           }
         }
       },

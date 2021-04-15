@@ -1,0 +1,117 @@
+<div class="col-md-8 offset-md-2">
+    <nb-card accent="info" status="info">
+        <nb-card-header>
+            ENCUESTA ONU MUJERES
+
+        </nb-card-header>
+        <nb-card-body>
+            <div *ngIf="!start">
+                <h4 class="text-center">
+                    ENCUESTA DE VOCACIÓN PRODUCTIVA, COMERCIAL Y DE OPORTUNIDADES DE EMPLEO EN MUJERES MIGRANTES Y COMUNIDADES DE ACOGIDA (GRUPO BASE)
+                </h4>
+                <br />
+                <p>
+                    Buen día mi nombre es ___ y hago parte del grupo perteneciente al proyecto Acciones para la protección e inclusión para las mujeres en el contexto de los flujos migratorios mixtos procedentes de Venezuela en la costa caribe colombiana. Proyecto realizado
+                    por Onu mujeres y la Universidad del Norte, gracias al apoyo financiero de la Oficina para las poblaciones, refugiados y migrantes del departamento de estado norteamericano. Nuestra labor es buscar caminos que permitan o faciliten
+                    el encuentro de empleo o el fortalecimiento de negocios ya existentes en las mujeres migrantes y colombianas . Esta encuesta tiene como único objetivo recuperar información que nos permita ayudar o facilitar espacios para que usted
+                    pueda aumentar sus probabilidades de inclusión laboral. No somos entidad de control y el único fin de la recolección de los datos es entender sus habilidades y capacidades para el mercado laboral. Es importante su colaboración sincera
+                    y estamos muy agradecidos por este espacio.
+                </p>
+                <br />
+                <button nbButton *ngIf="!start" size="large" (click)="start= true">
+          EMPEZAR
+        </button>
+            </div>
+
+            <nb-stepper #stepper orientation="vertical" *ngIf="start">
+                <nb-step [label]="CONSENTIMIENTO">
+                    <ng-template #CONSENTIMIENTO>Consentimiento</ng-template>
+                    <ngx-seccion1></ngx-seccion1>
+
+                    Consentimiento informado firma *
+
+                    <nb-radio-group [(ngModel)]="consent" status="success">
+                        <nb-radio value="true"> Sí </nb-radio>
+                        <nb-radio value="false"> No </nb-radio>
+                    </nb-radio-group>
+
+                    <div class="text-center">
+                        <button nbButton (click)="scrollToTop()" nbStepperPrevious>Anterior</button>
+                        <button nbButton (click)="scrollToTop()" nbStepperNext [disabled]="!consent">
+              Siguiente
+            </button>
+                    </div>
+                </nb-step>
+                <nb-step label="Sección {{ section.code }}" *ngFor="let section of sections; let i= index; trackBy: trackByFn">
+                    <form [formGroup]="forms[i]">
+                        {{ forms[i].value | json }}
+                        <h4>
+                            <span>{{ section.code }}.</span> {{ section.text }}
+                        </h4>
+                        <p class="lorem">
+                            {{ section.desc }}
+                        </p>
+                        <br />
+                        <div *ngFor="let question of section.questions; let j= index; trackBy: trackByFn">
+                            <div class="question-text">
+                                <div class="flex flex-row">
+                                    <span class="text-danger" *ngIf="question.required">*</span>
+                                    <b><span> {{ question.label }} </span>   </b>
+                                    <nb-icon (click)="updateQuestion(question, i)" icon="save-outline"></nb-icon>
+                                    <input type="text" nbInput shape="round" fullWidth fieldSize="small" status="primary" [formControlName]="question.id" />
+                                </div>
+                            </div>
+
+                            <div [ngSwitch]="question.type">
+                                <div *ngSwitchCase="'U'">
+                                    <div class="flex flex-row">
+                                        <br>
+                                        <input type="text" placeholder="Agrega Nueva Opción" nbInput shape="round" fieldSize="small" status="primary" (change)="onChangeEvent($event, question)" />
+                                        <nb-icon (click)="addOption(question)" icon="checkmark-outline"></nb-icon>
+                                        <a nbButton size="small" (click)="toggleAddOption(question)"> cancelar </a>
+                                    </div>
+
+                                    <nb-radio-group [name]="question.label">
+
+                                        <nb-radio class="row" *ngFor="let option of question.options; let j= index; trackBy: trackByFn" value="{{ option.value }}">
+                                            <ng-template #elseBlock>
+                                                {{ option.text }}
+                                            </ng-template>
+
+                                            <input *ngIf="option.text === 'Otro' || option.text === 'Otra'; else elseBlock" type="text" fieldSize="small" shape="round" fullWidth status="primary" nbInput (click)="forms[i].get(question.label).setValue(option.value)" [placeholder]="option.text" />
+                                            <nb-icon *ngIf="(question.type === 'U' || question.type === 'M') " (click)="removeOption(option, question, j)" icon="close-outline"></nb-icon>{{question.addOption}}
+
+                                        </nb-radio>
+                                    </nb-radio-group>
+                                </div>
+                                <div *ngSwitchCase="'M'" class="col">
+                                    <div class="flex flex-row">
+                                        <br>
+                                        <input type="text" placeholder="Agrega Nueva Opción" nbInput shape="round" fieldSize="small" status="primary" (change)="onChangeEvent($event, question)" />
+                                        <nb-icon (click)="addOption(question)" icon="checkmark-outline"></nb-icon>
+                                        <a nbButton size="small" (click)="toggleAddOption(question)"> cancelar </a>
+                                    </div>
+                                    <nb-checkbox class="row" *ngFor="let option of question.options;
+                                  let j= index;
+                                  trackBy: trackByFn" value="option.value">{{ option.text }}</nb-checkbox>
+                                </div>
+                                <div *ngSwitchCase="'S'">
+                                    <nb-radio-group>
+                                        <nb-radio value="1"> Sí </nb-radio>
+                                        <nb-radio value="2"> No </nb-radio>
+                                    </nb-radio-group>
+                                </div>
+                            </div>
+                            <br />
+                        </div>
+                        <div class="text-center">
+                            <button nbButton (click)="scrollToTop()" nbStepperPrevious>Anterior</button>
+                            <button nbButton (click)="scrollToTop()" nbStepperNext>Siguiente</button>
+                        </div>
+                    </form>
+                </nb-step>
+            </nb-stepper>
+        </nb-card-body>
+        <nb-card-footer> </nb-card-footer>
+    </nb-card>
+</div>

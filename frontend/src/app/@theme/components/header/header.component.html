@@ -4,9 +4,12 @@
             <nb-icon [icon]="(materialTheme$ | async) ? 'menu-outline' : 'menu-2-outline'"></nb-icon>
         </a>
         <a class="logo" href="#" (click)="navigateHome()">
-            <span class=" d-none d-sm-block">
-              <img  style="border-radius: 3px;" width="90%" src="assets/img/logo.jpg"  alt="OBS">
+            <span class="logos-onu d-none d-sm-block">
+              <img  style="border-radius: 3px;" width="100%" src="assets/img/logo-prm.jpg"  alt="OBS">
+              <img class="ml-2"  style="border-radius: 3px;" width="100%" src="assets/img/logo.jpg"  alt="OBS">
+
           </span>
+
             <span class="d-sm-none logo-un-obs">
               <img  style="border-radius: 3px;"  width="40"src="assets/img/LogoOBS.jpg" alt="OBS">
               <img width="150" src="assets/img/LogoUninorte.png" alt="uninorte">
@@ -27,7 +30,7 @@
       matRipple
     >{{ theme.name }}</nb-option>
   </nb-select>
-  
+
 -->
 </div>
 
@@ -38,43 +41,20 @@
     <!--<nb-toggle class="sidebar-toggle" labelPosition="start" (click)="toggleTheme()" [(checked)]="isDark">Oscuro</nb-toggle>-->
 
     <nb-actions size="small">
-        <nb-action class="user-action" matRipple [matRippleUnbounded]="true" [matRippleCentered]="true">
-            <span (click)="showVideo();" nbTooltipPlacement="left" nbTooltip="Videos" nbTooltipStatus="info">
-            <button 
-              class="main-menu-item mr-2 shadow-sm" 
-              shape="round" 
-              outline 
-              nbButton status="info">
-              <nb-icon icon="video-outline"></nb-icon>
-            </button>
-          </span>
-
-            <span nbTooltipPlacement="left" nbTooltip="Contribuciones" nbTooltipStatus="info">
-          <button 
-            nbContextMenuTrigger="hover" 
-            nbContextMenuTag="contribMenu" 
-            class="main-menu-item mr-2 shadow-sm" 
-            [nbContextMenu]="contribMenu" 
-            shape="round" 
-            outline 
-            nbButton status="info">
-            <nb-icon 
-           icon="gift"></nb-icon>
-          </button>
-        </span>
+        <!--   <nb-action class="user-action" matRipple [matRippleUnbounded]="true" [matRippleCentered]="true">
             <span nbTooltipPlacement="left" nbTooltipStatus="info" nbTooltip="Información">
 
-          <button 
-           nbContextMenuTrigger="hover" 
-           nbContextMenuTag="infoMenu" 
-           class="main-menu-item mr-2 shadow-sm" 
-           [nbContextMenu]="infoMenu" 
+          <button
+           nbContextMenuTrigger="hover"
+           nbContextMenuTag="infoMenu"
+           class="main-menu-item mr-2 shadow-sm"
+           [nbContextMenu]="infoMenu"
            shape="round" outline nbButton status="info">
           <nb-icon icon="info"></nb-icon>
         </button>
           </span>
-        </nb-action>
-        <nb-action class="user-action" matRipple [matRippleUnbounded]="true" [matRippleCentered]="true">
+        </nb-action>-->
+        <nb-action *ngIf="user.id" class="user-action" matRipple [matRippleUnbounded]="true" [matRippleCentered]="true">
             <nb-user [nbContextMenu]="userMenu" nbContextMenuTag="user-context-menu" [onlyPicture]="true" [name]="user?.email" [picture]="user?.picture" color="#6dbbd3d4">
             </nb-user>
         </nb-action>

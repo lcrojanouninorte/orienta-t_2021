@@ -13,6 +13,12 @@ export const routes: Routes = [
       canActivate: [AuthGuardService] ,
   },
   {
+    path: 'encuesta',
+    loadChildren: () => import('./pages/onu-mujeres/onu-mujeres.module')
+      .then(m => m.OnuMujeresModule), data: { preload: true, delay: 1000 },
+     // canActivate: [AuthGuardService] ,
+  },
+  {
     path: 'config',
     loadChildren: () => import('./pages/pages.module')
       .then(m => m.PagesModule), data: { preload: false, delay: 7000 },

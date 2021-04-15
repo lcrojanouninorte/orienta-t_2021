@@ -2,7 +2,7 @@ import { NbMenuItem } from '@nebular/theme';
 
 export const MENU_ITEMS: NbMenuItem[] = [
   {
-    title: 'This APP',
+    title: 'ONU MUJERES',
     group: true,
   },
   {
@@ -11,20 +11,16 @@ export const MENU_ITEMS: NbMenuItem[] = [
     link: '/',
     home: true,
   },
-  {
-    title: 'Tools',
-    group: true,
-    data: {'permission': 'Manage Stations'}, // Update with all neded permissións
-  },
-  {
-    title: 'Admin',
-    group: true,
-    // data: {'permission': 'Administrar Plataforma'},
-  },
+  /*{
+    title: 'Campañas',
+    icon: 'paper-plane-outline',
+    link: '/campaigns',
+    home: true,
+  },*/
   {
     title: 'Configuración',
     icon: 'settings-outline',
-    data: {'permission': 'View All Standard'},
+    data: {'permission': 'Register Admin'},
     children: [
       {
         title: 'Control de Usuarios',

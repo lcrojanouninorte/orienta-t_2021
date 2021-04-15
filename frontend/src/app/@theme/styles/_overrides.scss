@@ -1,10 +1,21 @@
 @import './themes';
 @mixin nb-overrides() {
     //Estilo tamaño text menu
+    overflow-wrap: break-word;
+    margin-bottom: 32px;
+    font-size: 16px;
+    color: rgb(20, 21, 26);
+    font-weight: 400;
+    line-height: 1.45;
+    font-feature-settings: "ss02";
     nb-menu .menu-title {
         font-size: 1.2em !important;
         text-align: left !important;
     }
+    nav {
+        background-color: #6DB9D0;
+    }
+    /*
     nb-select.size-medium button {
         padding: 0.4375rem 2.2rem 0.4375rem 1.125rem !important;
         nb-icon {
@@ -21,8 +32,8 @@
     //Estilos para no sobrepasar tamaño de la ventana
     nb-window,
     nb-card {
-        max-height: 100vh;
-        max-width: 100%;
+        //max-height: 100vh;
+        // max-width: 100%;
     }
     // Stilos para los modals de todo el sistema
     nb-card-body.ng-star-inserted {
@@ -48,7 +59,7 @@
     // probar
     //Round borers
     nb-card-header {
-        border-radius: 8px 8px 0 0;
+        //  border-radius: 8px 8px 0 0;
     }
     video.block.mx-auto {
         border-radius: 8px;
@@ -60,11 +71,11 @@
         border-radius: 8px;
     }
     nb-card-body {
-        padding: 15px!important;
+        //padding: 15px!important;
     }
      ::ng-deep .mapboxgl-canvas-container {
         height: 100vh;
-    }
+    }*/
     /* modal animation */
     nb-dialog-container {
         animation-name: example;

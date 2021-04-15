@@ -1,81 +1,93 @@
 <nb-layout class="vignette">
     <nb-layout-column>
-        <!--[@moveBg]="state" (@moveBg.done)="onEnd($event)"-->
+        <div class="d-flex justify-content-center  " style="height: 100%;">
+            <div class="  col-md-8 align-self-center d-none  d-md-block">
+                <div class="d-flex justify-content-center ">
+                    <nb-card size="large" [@openClose]="!isOpen ? 'open' : 'closed'" class=" align-self-center d-none d-md-block hero-card  ">
 
-
- 
-        <div class="row d-flex align-items-center" style="transform: scale(0.9, 0.9);">
-
-
-            <nb-card size="large" [@openClose]="!isOpen ? 'open' : 'closed'" class="d-none d-md-block hero-card offset-md-1 col-md-6">
-                
-                <nb-card-header class=" d-flex justify-content-between ml-1">
-                    <a href="https://www.uninorte.edu.co/" target="_blank">
-                        <img width="150" src="assets/img/LogoUninorte.png" alt="logo-obs">
-                    </a>
-                    <div class="social">
-                        <a href="https://www.instagram.com/obsriomagdalena" target="_blank" nButton ghost>
-                            <i class="fab fa-instagram"></i>
-                        </a>
-                        <a href="https://www.youtube.com/channel/UCYIPAkNxbPptJPtAmG_WO7Q?view_as=subscriber" target="_blank" nButton ghost>
-                            <i class="fab fa-youtube"></i>
-                        </a>
-                        <a href="https://twitter.com/obsriomagdalena" target="_blank" nButton ghost>
-                            <i class="fab fa-twitter"></i>
-                        </a>
-
-                    </div>
-
-
-                </nb-card-header>
-
-                <nb-card-body class=" d-flex  justify-content-center align-middle">
-                    <div class="hero d-flex flex-column align-self-stretch align-items-center">
-                        <div class="hero-logo">
-                            <a href="#"><img src="assets/img/logo.jpg" alt="logo-obs"></a>
-                        </div>
-                        <h2>Bienvenido al Observatorio <br>del Río Magdalena</h2>
-                        <div *ngIf="router.isActive('/auth/register', true); else registerLink">
-                            <h6>Si ya se encuentra registrado, por favor <b>ingrese</b> con su usuario y contraseña.</h6>
-                            <a class="mt-4" routerLink="/auth/login" nbButton hero shape="round" status="primary">
-                                <nb-icon status="control" icon="person-outline"></nb-icon> INICIAR
+                        <nb-card-header class=" d-flex justify-content-between">
+                            <a href="https://www.uninorte.edu.co/" target="_blank">
+                                <img width="150" src="assets/img/LogoUninorte.png" alt="logo-obs">
                             </a>
-                        </div>
-                        <ng-template #registerLink>
-                            <h6>Para acceder a todas las funcionalidades, por favor <b>registrese</b> aquí.</h6>
-                            <a class="mt-4" routerLink="/auth/register" nbButton hero shape="round" status="primary">
-                                <nb-icon status="control" icon="person-outline"></nb-icon> REGISTRO
-                            </a>
-                        </ng-template>
-                    </div>
-      
-                </nb-card-body>
-                <nb-card-footer class="d-flex justify-content-start social">
-                    <p style="color: white;margin: 32px 0 0 0px;">© 2019-2020 Copyright</p>
-                    <a class="social-rotated" href="https://obsriomagdalena.uninorte.edu.co/" target="_blank" nButton ghost>
-                    OBSRIOMAGDALENA.UNINORTE.EDU.CO
-                </a>
-                </nb-card-footer>
-            </nb-card>
-            <nb-card size="giant" [ngClass]="{'half-opacity' : !isOpen}" class="routed-card col-sm-12  col-md-4">
-                <nb-card-header class="hero-login">
-                    <nav class="navigation">
-                        <a href="#" (click)="back()" class="link back-link" aria-label="Back">
-                            <nb-icon icon="arrow-back"></nb-icon>
-                        </a>
+                            <div class="social">
+                                <a href="https://www.instagram.com/unwomen/" target="_blank" nButton ghost>
+                                    <i class="fab fa-instagram"></i>
+                                </a>
+                                <a href="https://www.youtube.com/playlist?list=PLE60A581BA7D5B96A" target="_blank" nButton ghost>
+                                    <i class="fab fa-youtube"></i>
+                                </a>
+                                <a href="https://twitter.com/onumujeres" target="_blank" nButton ghost>
+                                    <i class="fab fa-twitter"></i>
+                                </a>
+                                <a href="https://www.facebook.com/onumujeres" target="_blank" nButton ghost>
+                                    <i class="fab fa-facebook"></i>
+                                </a>
+                                <a href="https://www.unwomen.org/es" target="_blank" nButton ghost>
+                                    <i class="fa fa-globe"></i>
+                                </a>
 
-                        <a (click)="toggle()" nButton ghost>
-                            <nb-icon *ngIf="isOpen" icon="eye-off-2-outline"></nb-icon>
-                            <nb-icon *ngIf="!isOpen" status="info" icon="eye-outline"></nb-icon>
-                        </a>
-                    </nav>
-                </nb-card-header>
+                            </div>
+
+
+                        </nb-card-header>
+
+                        <nb-card-body class=" d-flex  container align-items-stretch">
+                            <div class="hero d-flex flex-column  justify-content-between ">
+                                <ng-template #registerLink>
+                                    <div class="align-self-center">
+                                        <h5>Bienvenido</h5>
+                                        <h6>ACCESO AL MODULO ADMINISTRATIVO</h6>
+                                    </div>
+                                    <!-- <a class="mt-2" routerLink="/auth/register" nbButton hero shape="round" status="primary">
+                              <nb-icon status="control" icon="person-outline"></nb-icon> REGISTRO
+                          </a>-->
+                                </ng-template>
+                                <div *ngIf="router.isActive('/auth/register', true); else registerLink">
+                                    <h6>Si ya se encuentra registrado, por favor <b>ingrese</b> con su usuario y contraseña.</h6>
+                                    <a class="mt-2" routerLink="/auth/login" nbButton hero shape="round" status="primary">
+                                        <nb-icon status="control" icon="person-outline"></nb-icon> INICIAR
+                                    </a>
+                                </div>
+                                <div class="hero-logo d-flex justify-content-between align-self-end">
+                                    <a class="col" href="#"><img src="assets/img/logo-prm.jpg" width="100%" alt="logo-obs"></a>
+
+                                    <a class="col" href="#"><img src="assets/img/logo.jpg" width="100%" alt="logo-obs"></a>
+                                </div>
+
+                            </div>
+
+                        </nb-card-body>
+                        <nb-card-footer class="d-flex justify-content-start social">
+                            <p style="color: white;margin: 32px 0 0 0px;">© 2021 Copyright</p>
+                            <a class="social-rotated" href="https://uninorte.edu.co/" target="_blank" nButton ghost>
+                 UNINORTE.EDU.CO
+              </a>
+                        </nb-card-footer>
+                    </nb-card>
+                </div>
+
+
+            </div>
+
+            <nb-card [ngClass]="{'half-opacity' : !isOpen}" class="align-self-stretch routed-card col-sm-12  col-md-4">
+
                 <nb-card-body>
+                    <a href="#" (click)="back()" class="link back-link" aria-label="Back">
+                        <nb-icon icon="arrow-back"></nb-icon>
+                    </a>
+                    <nav class="navigation">
+
+                        <!-- <a (click)="toggle()" nButton ghost>
+                      <nb-icon *ngIf="isOpen" icon="eye-off-2-outline"></nb-icon>
+                      <nb-icon *ngIf="!isOpen" status="info" icon="eye-outline"></nb-icon>
+                  </a>-->
+                    </nav>
                     <auth-block>
                         <router-outlet></router-outlet>
                     </auth-block>
                 </nb-card-body>
             </nb-card>
+
         </div>
     </nb-layout-column>
 </nb-layout>

@@ -1,8 +1,80 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-5">
 
-<div class="row">
-  <nb-card>
-    <nb-card-body>Hello from ngx-admin sandbox project.</nb-card-body>
-  </nb-card>
+            <nb-card style="width: 100%">
+                <nb-card-body>
+                    <div>
+                        <h2>Hola {{ user.name }},</h2>
+                        <div class="text-center">
+                            <p>Bienvenido al modulo administrativo "Encuesta ONU MUJERES":</p>
+                            <div *ngIf="active_population; else elseBlock">
+                                <p>Comparta el siguiente enlace con sus encuestados:</p>
+                                <mark>
+            <b>
+              Enlace de Encuesta:
+              <a href="#/encuesta/{{ active_population?.id }}/{{
+                  user.id
+                }}" target="_blank">
+                <b class="text-info">{{ origin }}/#/encuesta/{{ active_population?.id }}/{{
+                  user.id
+                  }}</b></a>
+            </b></mark>
+
+                                <div class="mt-2">
+                                    <button nbButton size="small" status="info" (click)="copyToClipBoard()">
+              <nb-icon icon="copy-outline"></nb-icon> Copiar Enlace
+            </button>
+                                </div>
+                            </div>
+                        </div>
+                        <ng-template #elseBlock>
+                            <div class="dflex flex-column justify-content-center">
+                                <p>Actualmente no hay campañas activas.</p>
+                            </div>
+                        </ng-template>
+                    </div>
+                </nb-card-body>
+                <nb-card-footer class="text-right color-info">
+                    <b> Campaña Activa: {{ active_population?.name }} </b>
+                </nb-card-footer>
+            </nb-card>
+
+
+            <!--
+            <nb-card style="width: 100%">
+                <nb-card-body>
+                  <h2>Instrucciones</h2>
+
+
+
+
+
+                </nb-card-body>
+                <nb-card-footer class="text-right color-info">
+                    <b> Campaña Activa: {{ active_population?.name }} </b>
+                </nb-card-footer>
+            </nb-card>
+-->
+        </div>
+        <div class="col-md-7   ">
+            <ngx-surveys-table [title]="'Mis Encuestas'" [surveys]="surveys" [user]="user"> </ngx-surveys-table>
+        </div>
+    </div>
+
+
+    <div class="row" *ngIf="_accessChecker.isGranted('Register Admin', 'all') | async">
+        <div class="col-md-5" *ngIf="_accessChecker.isGranted('Register Admin', 'all') | async">
+            <ngx-populations-list (onActivate)="onActivate($event)"></ngx-populations-list>
+        </div>
+        <div class="col-sm-7">
+
+
+
+
+            <ngx-surveys-table [title]="'Todas las encuestas'" [surveys]="surveys_all" [user]="user"> </ngx-surveys-table>
+
+
+        </div>
+    </div>
 </div>
- {{user | json}}
- asdasdasdsad

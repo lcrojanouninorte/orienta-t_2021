@@ -1,0 +1,72 @@
+<div class=" col-md-8 offset-md-2 ">
+
+
+    <ngx-surveyed-add [population_id]="population?.id" (added)="onAdded($event)"></ngx-surveyed-add>
+
+    <div class="row">
+        <div class="col-md-12">
+            <nb-card class="list-card" size="large">
+                <nb-card-header class="d-flex justify-content-between">
+                    <div>
+                        Campaña: {{population?.name}}
+
+                        <div class="label text-left">
+                            Encuestados: {{population?.surveyeds.length }} / Encuestas: {{population?.surveys.length }}
+                        </div>
+                    </div>
+                    <div>
+                        <!--
+                        <span class="caption"> Archivo Excel:</span>
+                        <a *ngIf="population.file_path" [href]="population.file_path">
+                            <img  width="40" src="assets/img/icons/xls.png" alt="xls">
+
+                        </a>
+                        <a *ngIf="!population.file_path" [href]="population.file_path">
+                          <img  width="40" src="assets/img/icons/xls.png" alt="xls">
+
+                      </a>-->
+                    </div>
+                </nb-card-header>
+                <nb-list>
+                    <nb-list-item class="d-flex justify-content-between" *ngFor="let surveyed of  population?.surveyeds; let i = index" role="list">
+                        <nb-user [name]="surveyed.name" [title]="surveyed.identification">
+                        </nb-user>
+                        <nb-actions class="d-flex justify-content-between" size="small" fullWidth>
+                            <nb-action *ngIf="surveyed.survey">
+                                <span class="text-success" *ngIf="surveyed.survey.isFinished">Finalizada</span>
+                                <span class="text-info" *ngIf="!surveyed.survey.isFinished">En progreso</span>
+
+                            </nb-action>
+                            <nb-action *ngIf="surveyed.survey">
+
+
+
+
+                                <a href="#/encuesta/1/{{surveyed.survey.user_id}}/{{surveyed.survey.uuid}}" target="_blank">
+                                    <nb-icon icon="external-link-outline" status="info">
+
+                                    </nb-icon>
+                                </a>
+
+                            </nb-action>
+                            <nb-action href="#" [swal]="deleteSwal">
+                                <nb-icon class="action-icon" icon="trash-2-outline"></nb-icon>
+                                <span>Borrar</span>
+                                <swal #deleteSwal title="Seguro que desea eliminar al encuestado {{ surveyed.name }}?" text="Esto no se puede deshacer" icon="question" [showCancelButton]="true" [focusCancel]="true" (confirm)="deleteSurveyed(surveyed, i)">
+                                </swal>
+
+                            </nb-action>
+
+                        </nb-actions>
+
+
+
+                    </nb-list-item>
+                </nb-list>
+            </nb-card>
+        </div>
+
+    </div>
+
+
+</div>

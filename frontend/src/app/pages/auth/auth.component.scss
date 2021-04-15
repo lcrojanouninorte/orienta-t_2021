@@ -13,14 +13,16 @@
         }
     }
     nb-layout-column {
-        background: url(/assets/img/bgrio.jpg);
+        background-color: #0094D3;
+        padding: 0!important;
+        background: url(/assets/img/unwomen1.png);
         background-repeat: no-repeat;
         background-size: cover;
         background-position: center;
         ;
     }
     .vignette {
-        position: fixed;
+        // position: fixed;
         top: 0;
         left: 0;
         width: 100%;
@@ -50,7 +52,8 @@
         filter: opacity(0.5);
     }
     nb-card.routed-card {
-        left: -15px;
+        //   left: -15px;
+        height: 100%;
         box-shadow: -3px 3px 17px 0px #0000002c, 0 1px 1px 0 rgba(0, 0, 0, 0.14), 0 1px 3px 0 rgba(0, 0, 0, 0.12);
     }
     .hero-card nb-card-header {

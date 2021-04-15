@@ -5,7 +5,14 @@
  */
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { NgModule } from '@angular/core';
+import { LOCALE_ID, NgModule } from '@angular/core';
+import { registerLocaleData } from '@angular/common';
+import es from '@angular/common/locales/es';
+registerLocaleData(es);
+import { eo } from 'date-fns/locale';
+import { NbDateFnsDateModule } from "@nebular/date-fns"
+
+
 import { HttpClientModule } from '@angular/common/http';
 import { CoreModule } from './@core/core.module';
 import { ThemeModule } from './@theme/theme.module';
@@ -24,6 +31,7 @@ import {
 import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
 import { LottieModule } from 'ngx-lottie';
 import player from 'lottie-web';
+
 export function playerFactory() {
   return player;
 }
@@ -39,22 +47,34 @@ export function playerFactory() {
     NbSidebarModule.forRoot(),
     NbMenuModule.forRoot(),
     NbDatepickerModule.forRoot(),
+    NbDateFnsDateModule.forRoot({
+      parseOptions: { locale: eo },
+      formatOptions: { locale: eo },
+    }),
     NbDialogModule.forRoot(),
     NbWindowModule.forRoot(),
     NbToastrModule.forRoot(),
     SweetAlert2Module.forRoot(),
-    /*NbChatModule.forRoot({
+    NbDatepickerModule.forRoot(),
+
+     /*NbChatModule.forRoot({
       messageGoogleMapKey: 'AIzaSyA_wNuCzia92MAmdLRzmqitRGvCF7wCZPY',
     }),*/
-    NbThemeModule.forRoot({ name: 'obsrio' }),
+    NbThemeModule.forRoot({ name: 'default' }),
 
     CoreModule.forRoot(),
     LottieModule.forRoot({ player: playerFactory }),
 
   ],
-
+  providers: [
+    { provide: LOCALE_ID, useValue: 'es-CO' },
+    {
+      provide: 'origin',
+      useValue: window.location.origin
+      }
+  ],
   bootstrap: [AppComponent],
-  
+
 })
 export class AppModule {
 }

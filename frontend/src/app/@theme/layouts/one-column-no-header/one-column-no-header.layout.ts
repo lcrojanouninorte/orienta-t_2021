@@ -6,7 +6,7 @@ import { NbSidebarService } from '@nebular/theme';
   styleUrls: ['./one-column-no-header.layout.scss'],
   template: `
     <nb-layout windowMode>
-  
+
  <!--
       <nb-layout-header subheader>
     <nb-actions>
@@ -21,21 +21,21 @@ import { NbSidebarService } from '@nebular/theme';
       </nb-sidebar>
 
       <nb-layout-column>
-             
+
       <ngx-header></ngx-header>
         <ng-content select="router-outlet"></ng-content>
       </nb-layout-column>
-<!--
-      <nb-layout-footer fixed>
+
+      <nb-layout-footer status="success" fixed>
         <ngx-footer></ngx-footer>
       </nb-layout-footer>
     </nb-layout>
--->
+
   `,
 })
 
 export class OneColumnNoHeaderLayoutComponent {
   constructor() {
   }
-   
+
 }

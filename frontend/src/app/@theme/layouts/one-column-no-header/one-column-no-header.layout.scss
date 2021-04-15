@@ -5,35 +5,30 @@
     .menu-sidebar ::ng-deep .scrollable {
         padding-top: nb-theme(layout-padding-top);
     }
-     :host-context(.visor) {
-        nb-layout-column {
-            padding: 0!important;
-        }
+    nb-layout-column {
+        padding: 5em 3em 0em 3em!important;
     }
      ::ng-deep {
         //FIn
-        #layer-sidenav nb-card-body {
-            padding: 0!important;
-        }
-        .mapboxgl-ctrl-top-right {
-            top: 4.5em;
-        }
         a.logo {
-            width: 6em;
+            width: 4em;
             margin-top: .5em;
         }
         ngx-header {
             position: fixed;
             z-index: 2;
             right: 0;
-            padding: 0em 1em 0em 1em;
+            padding: 0em 3em 0em 2em;
             width: 0;
             display: flex;
             justify-content: flex-end;
-            top: 0.4em;
+            top: 0.5em;
+        }
+        nav {
+            background-color: #6DB9D0;
         }
         .logo {
-            width: 80%;
+            width: 70%;
         }
         .logo-container {
             position: fixed;
