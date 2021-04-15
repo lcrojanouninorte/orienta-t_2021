@@ -11,7 +11,7 @@ use Str;
 use App\General;
 use App\Admin;
 use App\Staff;
-use Mail;   
+use Mail;
 use Spatie\Permission\Models\Role;
 use Storage;
 use URL;
@@ -21,7 +21,7 @@ use Artisan;
 use Illuminate\Support\Facades\Http;
 class UserController extends Controller
 {
-    
+
     public function __construct()
     {
         /*$this->middleware('auth');
@@ -40,14 +40,14 @@ class UserController extends Controller
         return User::paginate(15);
 
     }
-    
+
         /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    
+
     public function store(Request $request)
     {
         $auth_user = Auth::user();
@@ -57,7 +57,7 @@ class UserController extends Controller
                 'roles'   => 'required',
                 'base_role'   => 'required',
                 'profile'   => 'required',
-   
+
             ]);
             $user = User::where("id", $request->id)->first();
         }else{
@@ -67,33 +67,33 @@ class UserController extends Controller
                 'roles'   => 'required',
                 'base_role'   => 'required',
                 'profile'   => 'required',
-                
+
                 ]);
             $user = new User();
             $user->password = bcrypt($request->password);
         }
-       
+
 
             DB::beginTransaction();
          try {
              $verificationCode = Str::random(40);
              //TODO: verify if user can edit this especific type of user
-            
+
              $user->email = trim(strtolower($request->email));
              $user->base_role = $request->base_role;
-            
+
              $user->email_verification_code = $verificationCode;
              $user->status = 'Active';
              $user->last_updated_by = $auth_user->id;
 
-             
+
              $user->save();
-           
+
              //User Profile / Avatar
              $type = 'App\\'.$user->base_role;
-  
+
            //TODO: if user change profile type, delete from the last
-            //TODO. if user change base_role    
+            //TODO. if user change base_role
             $profile = $user->profile;
             $profile->user_id = $user->id;
             $profileN = json_decode($request->profile);
@@ -101,9 +101,9 @@ class UserController extends Controller
             $profile->last_name = $profileN->last_name;
             $profile->avatar = $profileN->avatar;
             //$profile->gender = isset($profileN->gender)?$profileN->gender || '';
-            
 
-         
+
+
              // Update avatar
              if ($request->hasFile('file')) {
                 $fileConv = $request->file('file');
@@ -111,28 +111,28 @@ class UserController extends Controller
                 $path = $this->storeFile( $fileConv, $destinationPath, 'profiles');
                 $profile->avatar =   URL::to('/').'/api/uploads/profiles/'.$path->relative;
                 ImageOptimizer::optimize($path->full,$path->full);
-                Artisan::call('my_app:optimize_img 100x100 80 "'.$path->full.'"');                      
+                Artisan::call('my_app:optimize_img 100x100 80 "'.$path->full.'"');
             }else{
                 $profile->avatar = $profileN->avatar;
              }
 
              $profile->save();
              $user->profile = $profile;
-         
 
-            
+
+
              DB::commit();
-            
+
              //Asign user Roles
              if(!$user->isSuperAdmin()){
                     //add base role, to roles
-                $roles = explode(",", $request->roles); 
+                $roles = explode(",", $request->roles);
                 if(!array_search($user->base_role,$roles)){
                     $roles[] = $user->base_role;
-                } 
+                }
                  $user->syncRoles($roles);
              }
-             
+
              //Send Email
              if($profileN->configs->send_mail==true){
                  //TODO: create options array
@@ -169,8 +169,8 @@ class UserController extends Controller
          DB::rollback();
     }
 
- 
- 
+
+
     public function storeFile($file, $destinationPath, $disk){
         $fileCompleteName = $file->getClientOriginalName();
         $fileCompleteName = preg_replace('/\s/', '_', $fileCompleteName  );
@@ -178,13 +178,13 @@ class UserController extends Controller
          $fileName = pathinfo($fileCompleteName, PATHINFO_FILENAME);
          $extension = pathinfo($fileCompleteName, PATHINFO_EXTENSION);
 
-        
+
         $file_saved = Storage::disk($disk)->put(
             $destinationPath.$fileCompleteName,
             file_get_contents($file->getRealPath())
         );
         return (object) array(
-            "base"=>$destinationPath, 
+            "base"=>$destinationPath,
             "fileName" => $fileCompleteName,
             "relative" => $destinationPath.$fileCompleteName,
             "full" =>Storage::disk($disk)->path($destinationPath).$fileCompleteName);
@@ -210,9 +210,9 @@ class UserController extends Controller
      */
     public function show($id)
     {
-        //   
+        //
         $user = User::where("id",  $id)->first();
-        return response()->json($user  ,200);  
+        return response()->json($user  ,200);
     }
 
     /**
@@ -253,7 +253,7 @@ class UserController extends Controller
         $admins = $users->reject(function ($user, $key) {
             return ($user->hasRole('General') || $user->hasRole('Staff'));
         });
-        
+
         $staff = $users->reject(function ($user, $key) {
             return ($user->hasRole('Admin') || $user->hasRole('General'));
         });
@@ -267,7 +267,7 @@ class UserController extends Controller
         $roles = Role::with('users')->where('name', '!=' , 'Super Admin')
         ->get()->pluck("users","name");
 
-    
+
         return response()->json($roles,200);
         /*$response = [
             'Admin' => $admins,
@@ -275,7 +275,7 @@ class UserController extends Controller
             'General' => $general,
             'Others' => $others,
         ]*/
-    
+
     }
 
 

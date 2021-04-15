@@ -6,7 +6,7 @@ use App\Constants;
 use Illuminate\Support\Facades\DB;
 use Laravel\Passport\Passport;
 use \Laravel\Passport\Http\Controllers\AccessTokenController;
- 
+
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -21,22 +21,41 @@ Passport::routes(function ($router) {
     $router->forAuthorization();
     $router->forTransientTokens();
 },
- 
+
 );*/
 
 //Not Authenticated Users
 Route::group(['middleware' => ['api']], function ($api) {
-    //ORMA 2020
- 
+    //ONU MUJERES 2021
+    $api->resource('questions', 'QuestionsController');
+    $api->resource('surveys', 'SurveyController', ['except'=> ['index']]);
+    $api->post('surveys/gateway', 'SurveyController@create');
+    $api->get('surveys/uuid/{uuid}', 'SurveyController@byUuid');
+    $api->get('surveys', 'SurveyController@index');
+    $api->resource('surveyeds', 'SurveyedController');
+
+    $api->post('populations', 'PopulationController@store');
+    $api->get('populations', 'PopulationController@index');
+    $api->resource('populations', 'PopulationController');
+
+    $api->get('populations/{id}', 'PopulationController@show');
+    $api->post('populations/activate/{id}', 'PopulationController@activate');
+
+    $api->get('sections', 'SectionsController@index');
+    $api->get('sections/{id}/{uuid}', 'SectionsController@show');
+
+    $api->resource('options', 'OptionsController');
+
+
     $api->get('people/dirs', 'PeopleController@dirs');
     $api->get('people/colabs', 'PeopleController@colabs');
 
     //deben ir ien auth
     $api->get('/users/byrole', 'UserController@getUsersByRoles');
     $api->get('/users/{id}', 'UserController@show');
-    
 
- 
+
+
     $api->post('oauth/token/refresh', [
         'uses' => '\Laravel\Passport\Http\Controllers\AccessTokenController@issueToken',
         'as' => 'passport.refresh',
@@ -66,7 +85,7 @@ Route::group(['middleware' => ['auth:api']], function ($api) {
     //Get Auth User
     $api->get('/auth/user', 'Auth\AuthController@index');
 
-    
+
  });
 
 

@@ -17,7 +17,7 @@ use  App\General;
 use  App\Staff;
 class User extends Authenticatable
 {
-  
+
 
     use Notifiable, HasApiTokens, SoftDeletes, HasRoles;
 
@@ -43,7 +43,7 @@ class User extends Authenticatable
     ];
 
     protected $casts = ['is_super_admin' => 'boolean'];
-   
+
     function setStatus($status){
         $this->status = $status;
         $this->save();
@@ -124,6 +124,6 @@ class User extends Authenticatable
             return $this->email;
         }
         return Str::title($this->profile()->first_name." ". $this->profile()->last_name);
-        
+
     }
 }

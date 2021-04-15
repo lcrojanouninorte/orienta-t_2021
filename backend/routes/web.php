@@ -18,3 +18,4 @@ Route::get('/unsupported-browser', 'MiscController@unsupported');
 
 //Route::get('stations/htmlreport/{id}','StationController@station');
 //Route::get('/stations/report/{id}', 'StationController@getReport');
+Route::get('/report/{population_id}/{user_id}', 'AnswerController@download');
