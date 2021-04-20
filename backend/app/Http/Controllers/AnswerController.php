@@ -103,6 +103,7 @@ class AnswerController extends Controller
         foreach ($surveys as $key => $survey) {
             $answer_arr =  $header ;
             foreach ($survey->answers as $key => $answer) {
+
                 switch ($answer->question->type) {
                     case 'M':
                         $values = json_decode( $answer->value, true) ;
@@ -133,6 +134,9 @@ class AnswerController extends Controller
                 }
 
             }
+            $answer_arr["Fecha_Inicio"] =$survey->created_at;
+           // $answer_arr["Fecha_Actualización"] =$survey->updated_at;
+            $answer_arr["Encuestador"] =$survey->user->name;
            $surveys_arr[] = $answer_arr;
 
         }
@@ -148,6 +152,9 @@ class AnswerController extends Controller
 
     public function getheaders(){
         $answer_arr = array();
+        $answer_arr["Fecha_Inicio"] ="Fecha creación";
+       // $answer_arr["Fecha_Actualización"] ="Fecha Actualización";
+        $answer_arr["Encuestador"] ="Encuestador";
         $sections = Section::with("questions.options")->get();
         foreach ($sections as $key => $section) {
             foreach ($section->questions as $key => $question) {

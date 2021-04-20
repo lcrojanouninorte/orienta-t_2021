@@ -7,11 +7,7 @@ import { AnimationOptions } from 'ngx-lottie';
 })
 export class LottieService {
   assets = {
-    'printing': 'assets/lottie/printing.json',
-    'printing2': 'assets/lottie/creating-doc.json',
-    'loading-layers': 'assets/lottie/layers_placeholder.json',
-    'loading-station': 'assets/lottie/map-placeholder.json',
-    'layers-btn': 'assets/lottie/layers-btn.json',
+    'women': 'assets/lottie/women.json',
   };
 
   constructor(  private ngZone: NgZone) { }
@@ -19,7 +15,7 @@ export class LottieService {
   private animationItem: AnimationItem;
 
   public getOptions(assets_name: string, options: AnimationOptions = {}) {
-  
+
     options['path'] =  this.assets[assets_name];
 
     return options;

@@ -37,7 +37,7 @@ export const MENU_ITEMS: NbMenuItem[] = [
           },
         ],
       },
-      {
+    /*  {
         title: 'Control de Acceso',
         icon: 'shield-outline',
         data: {'permission': 'View All Standard'},
@@ -55,7 +55,7 @@ export const MENU_ITEMS: NbMenuItem[] = [
             link: '/config/roles/add',
           },
         ],
-      },
+      },*/
     ],
   },
 ];

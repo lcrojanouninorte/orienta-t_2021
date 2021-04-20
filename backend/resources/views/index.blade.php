@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="utf-8">
-    <title>Observatorio del Río Magdalena</title>
+    <title>Onu Mujeres - Encuesta</title>
 
     <base href="/">
 
@@ -18,31 +18,31 @@
     <style>
         @-webkit-keyframes spin {
             0% {
-                transform: rotate(0)
-            }
-            100% {
                 transform: rotate(360deg)
             }
+            100% {
+                transform: rotate(0)
+            }
         }
-        
+
         @-moz-keyframes spin {
             0% {
-                -moz-transform: rotate(0)
-            }
-            100% {
                 -moz-transform: rotate(360deg)
             }
+            100% {
+                -moz-transform: rotate(0)
+            }
         }
-        
+
         @keyframes spin {
             0% {
-                transform: rotate(0)
-            }
-            100% {
                 transform: rotate(360deg)
             }
+            100% {
+                transform: rotate(0)
+            }
         }
-        
+
         .spinner {
             position: fixed;
             top: 0;
@@ -51,10 +51,10 @@
             height: 100%;
             z-index: 1003;
             background: rgb(247, 252, 253);
-            background: linear-gradient(322deg, rgba(192, 235, 243, 1) 0%, rgba(247, 254, 255, 1) 37%, rgba(255, 255, 255, 1) 100%);
+            background: linear-gradient(322deg, rgb(254, 214, 255) 0%, rgb(255, 247, 253) 37%, rgba(255, 255, 255, 1) 100%);
             overflow: hidden
         }
-        
+
         .spinner div:first-child {
             display: block;
             position: relative;
@@ -68,14 +68,14 @@
             transform: translate3d(0, 0, 0);
             animation: spin 1s linear infinite
         }
-        
+
         .spinner div:first-child:after,
         .spinner div:first-child:before {
             content: '';
             position: absolute;
             border-radius: 50%
         }
-        
+
         .spinner div:first-child:before {
             top: 5px;
             left: 5px;
@@ -85,7 +85,7 @@
             -webkit-animation: spin 3s linear infinite;
             animation: spin 2s linear infinite
         }
-        
+
         .spinner div:first-child:after {
             top: 15px;
             left: 15px;
@@ -94,7 +94,7 @@
             box-shadow: 0 3px 3px 0 rgb(79, 190, 117);
             animation: spin 1.5s linear infinite
         }
-        
+
         .spinner div:first-child img {
             width: 50px;
             position: absolute;
@@ -105,7 +105,7 @@
     </style>
     <div id="nb-global-spinner" class="spinner">
         <div class="blob blob-0">
-            <img style="" src="./favicon.png" alt="Logo Observatorio">
+            <img style="" src="./favicon.png" alt="Logo Onu Mujeres">
         </div>
         <div class="blob blob-1"></div>
         <div class="blob blob-2"></div>
@@ -114,6 +114,6 @@
         <div class="blob blob-5"></div>
     </div>
 
-<script src="runtime.035cede0a785e8eae8e4.js" defer></script><script src="polyfills-es5.4aed76372f4fcfa37be6.js" nomodule defer></script><script src="polyfills.1adea9ade67fbccfafad.js" defer></script><script src="scripts.29721bd96f7a25cdd473.js" defer></script><script src="main.90ca339f00a279b64ced.js" defer></script></body>
+<script src="runtime.f669367afcc22fc6099d.js" defer></script><script src="polyfills-es5.4aed76372f4fcfa37be6.js" nomodule defer></script><script src="polyfills.1adea9ade67fbccfafad.js" defer></script><script src="scripts.29721bd96f7a25cdd473.js" defer></script><script src="main.94994beb0d279afc7be7.js" defer></script></body>
 
 </html>

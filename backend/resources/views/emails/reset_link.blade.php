@@ -3,7 +3,7 @@
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Welcome Email</title>
+  <title>Reset Email</title>
   <style type="text/css">
     /* Take care of image borders and formatting, client hacks */
     img { max-width: 600px; outline: none; text-decoration: none; -ms-interpolation-mode: bicubic;}
@@ -233,11 +233,7 @@
                     <td class="pull-left mobile-header-padding-left" style="vertical-align: middle;">
                       <a href=""><img width="137" height="47" src="http://s3.amazonaws.com/swu-filepicker/0zxBZVuORSxdc9ZCqotL_logo_03.gif" alt="logo"></a>
                     </td>
-                    <td class="pull-right mobile-header-padding-right" style="color: #4d4d4d;">
-                      <a href=""><img width="44" height="47" src="http://s3.amazonaws.com/swu-filepicker/k8D8A7SLRuetZspHxsJk_social_08.gif" alt="twitter" /></a>
-                      <a href=""><img width="38" height="47" src="http://s3.amazonaws.com/swu-filepicker/LMPMj7JSRoCWypAvzaN3_social_09.gif" alt="facebook" /></a>
-                      <a href=""><img width="40" height="47" src="http://s3.amazonaws.com/swu-filepicker/hR33ye5FQXuDDarXCGIW_social_10.gif" alt="rss" /></a>
-                    </td>
+
                   </tr>
                 </table>
               </center>
@@ -286,7 +282,7 @@
         <table cellspacing="0" cellpadding="0" width="600" class="w320">
           <tr>
             <td style="padding: 25px 0 25px">
-              <strong>OBS Rio Magdalena</strong><br />
+              <strong>Onu Mujeres</strong><br />
               Uninorte <br />
               Km5 <br /><br />
             </td>

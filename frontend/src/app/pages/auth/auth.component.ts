@@ -1,4 +1,4 @@
-import { Component, OnInit, AfterViewInit } from '@angular/core';
+import { Component, OnInit, AfterViewInit, NgZone } from '@angular/core';
 import { NbAuthComponent, NbAuthService } from '@nebular/auth';
 import {
   trigger,
@@ -11,42 +11,15 @@ import {
 } from '@angular/animations';
 import { Router } from '@angular/router';
 import { Location } from '@angular/common';
+import { AnimationItem } from 'lottie-web';
+import { LottieService } from '@core/data/vendors/services/lottie.service';
+import { AnimationOptions } from 'ngx-lottie';
 
 @Component({
   selector: 'ngx-auth',
   templateUrl: './auth.component.html',
   styleUrls: ['./auth.component.scss'],
   animations: [
-    trigger('moveBg', [
-      // ...
-      state('final', style({
-        'background-size': '100%',
-        'background-position': 'center',
-      })),
-      state('initial', style({
-        'background-size': '150%',
-        'background-position': 'center',
-
-      })),
-      transition('initial => final', animate('80s 1000ms linear', keyframes([
-        style({
-        'background-size': '150%',
-         offset: 0 }),
-        style({'background-size': '125%',
-          offset: 0.5 }),
-        style({ 'background-size': '100%',
-         offset: 1 }),
-      ]))),
-      transition('final => initial', animate('80s 1000ms linear', keyframes([
-        style({ 'background-size': '100%',
-         offset: 0 }),
-        style({'background-size': '125%',
-          offset: 0.5 }),
-        style({
-          'background-size': '150%',
-            offset: 1 }),
-      ]))),
-    ]),
     trigger('openClose', [
       // ...
       state('closed', style({
@@ -73,9 +46,13 @@ import { Location } from '@angular/common';
 })
 export class AuthComponent extends NbAuthComponent implements AfterViewInit {
   isOpen = false;
+
   constructor(
     auth: NbAuthService,
     location: Location,
+    public _lottieSrv: LottieService,
+    private ngZone: NgZone,
+
     public  router: Router) {
     super(auth, location);
   }
@@ -98,4 +75,28 @@ export class AuthComponent extends NbAuthComponent implements AfterViewInit {
       }, 3000);
     }
   }
+
+     /**
+   *
+   * Lottie
+   */
+
+      private animationItem: AnimationItem;
+      public options: AnimationOptions  =  this._lottieSrv.getOptions('women',{'loop':true, 'initialSegment':[0,90]} );
+      animationCreated(animationItem: AnimationItem, speed): void {
+        this.animationItem = animationItem;
+        this._lottieSrv.animationCreated(animationItem,{
+          'speed':speed
+        });
+      }
+      stop(): void {
+        this.ngZone.runOutsideAngular(() => this.animationItem.stop());
+      }
+      opened(): void {
+        this.ngZone.runOutsideAngular(() => this.animationItem.playSegments([0,120]));
+      }
+      closed(): void {
+        this.ngZone.runOutsideAngular(() => this.animationItem.playSegments([120,230]));
+      }
+     //END LOTTIE
 }

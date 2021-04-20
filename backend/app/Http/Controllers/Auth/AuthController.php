@@ -49,7 +49,7 @@ class AuthController extends Controller
     public function index()
     {
         $user = Auth::user();
-   
+
 
         $user_roles = $user->roles;
         $roles = [];
@@ -62,10 +62,10 @@ class AuthController extends Controller
             $acl->put($role->name , $permObj);
             $roles[] = $role->name;
         }
- 
+
         $user->roles_names = $roles;
         $user->acl = $acl;
-        
+
         if($user){
             return response()->json($user, 200);
         }
@@ -116,18 +116,18 @@ class AuthController extends Controller
     }
     public function register(Request $request)
     {
-       
+
        $this->validate($request, [
             'email'      => 'required|email|unique:users',
             'password'   => 'required|min:8|confirmed',
            // 'terms'   => 'required',
         ]);
-        
+
         DB::beginTransaction();
         try {
             $verificationCode = Str::random(40);
 
-          
+
             $user = new User();
             $user->email = trim(strtolower($request->email));
             $user->base_role = Constants::ROLES['GENERAL'];
@@ -135,13 +135,13 @@ class AuthController extends Controller
             $user->email_verification_code = $verificationCode;
             $user->save();
             DB::commit();
-            
+
             //asignar un rol por defecto para el nuevo usuario
             $user->assignRole(Constants::ROLES['GENERAL']);
             /* TODO: if we want user to log int afer register imediatly
             //Check Client App authorization
-            //TODO: create endpoint for apps to create client id            
-            $client = Client::where('password_client', 1)->first();        
+            //TODO: create endpoint for apps to create client id
+            $client = Client::where('password_client', 1)->first();
             $request->request->add([
                 'grant_type'    => 'password',
                 'client_id'     => $client->id,
@@ -154,7 +154,7 @@ class AuthController extends Controller
                 'oauth/token',
                 'POST'
             );
-             // Fire off the internal request. 
+             // Fire off the internal request.
             $token = Request::create(
                 'oauth/token',
                 'POST'
@@ -162,18 +162,18 @@ class AuthController extends Controller
             return \Route::dispatch($token);
           //  $response = Route::dispatch( $token);
             */
-        
+
             $data = array(
                 'verificationCode'=>$verificationCode,
                 'password'=> $request->password,
                 'email'=>$user->email
             );
 
-            //Enviar a endpoint 
+            //Enviar a endpoint
 
             // TODO: open server ports to avoid this.
             // http://orienta-t.lcrojano.com/api/emails/register
-            $response = Http::post('http://orienta-t.lcrojano.com/api/emails/register', [
+    /*        $response = Http::post('http://orienta-t.lcrojano.com/api/emails/register', [
                 'verificationCode'=>$verificationCode,
                 'password'=> $request->password,
                 'email'=>$user->email,
@@ -181,13 +181,13 @@ class AuthController extends Controller
             ]);
             $user->response=$response;
 
-/*
-            Mail::send('emails.userverification', $data, function ($m) use ($user) {
-                $m->from('obsriomagdalena@uninorte.edu.co', 'Observatorio del Río Magdalena ');
-                $m->to($user->email)->subject('Confirmación de Registro en Plataforma OBS');
-            });
 */
-            
+            Mail::send('emails.userverification', $data, function ($m) use ($user) {
+                $m->from('noreply@unwomen.org', 'Onu Mujeres ');
+                $m->to($user->email)->subject('Confirmación de Registro en Plataforma Onu Mujeres');
+            });
+
+
             return response()->json($user, 200);
         }catch (\Exception $e) {
             DB::rollback();
@@ -199,10 +199,10 @@ class AuthController extends Controller
             return response()->json($e->getErrors(),500);
         }
     }
-        
+
     //TODO: add logout from all devices api, with password/OTP confirmation
     //Logout
-    
+
 
     public function logout(Request $request)
     {
@@ -211,7 +211,7 @@ class AuthController extends Controller
         ->update([
             'revoked' => true
         ]);
-        
+
         return response()->json('Success logout '.$request->user()->id, 200);
     }
 
@@ -249,20 +249,20 @@ class AuthController extends Controller
         $token = $reset->token;
 
         // TODO: open server ports to avoid this.
-        $response = Http::post('http://orienta-t.lcrojano.com/api/emails/reset', [
+     /*   $response = Http::post('http://orienta-t.lcrojano.com/api/emails/reset', [
             'email' =>  $email,
             'token' => $token,
         ]);
         $res["json  "] =       $response->json();
-        $res["response"]=$response->ok();        
-/*  
+        $res["response"]=$response->ok();   */
+
         Mail::send('emails.reset_link', compact('email', 'token'), function ($mail) use ($email) {
             $mail->to($email)
-            ->from('noreply@example.com')
+            ->from('noreply@unwomen.org')
             ->subject('Password reset link');
-        });*/
+        });
 
-        return response()->json($res,200);
+        return response()->json("Se ha enviado un correo con los pasos a seguir",200);
     }
     public function reset(Request $request)
     {
@@ -273,7 +273,7 @@ class AuthController extends Controller
         ]);
 
         //get user from reset_password_token
-        $email = PasswordReset::whereToken($request->reset_password_token)->firstOrFail()->email;  
+        $email = PasswordReset::whereToken($request->reset_password_token)->firstOrFail()->email;
         $user = User::whereEmail($email)->firstOrFail();
         $user->password = bcrypt($request->password);
         $user->save();
@@ -283,5 +283,5 @@ class AuthController extends Controller
 
         return response()->json("COntraseñas Actualizadas Correctamente", 200);
     }
-    
+
 }

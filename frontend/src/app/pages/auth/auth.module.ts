@@ -25,6 +25,8 @@ import { AuthBlockComponent } from './auth-block/auth-block.component';
 import { AuthComponent } from './auth.component';
 import { ThemeModule } from 'app/@theme/theme.module';
 import { TermsComponent } from './terms/terms.component';
+import { LottieModule } from 'ngx-lottie';
+import { playerFactory } from 'app/app.module';
 
 @NgModule({
   declarations: [
@@ -49,6 +51,8 @@ import { TermsComponent } from './terms/terms.component';
     NbIconModule,
     NbLayoutModule,
     ThemeModule,
+    LottieModule.forRoot({ player: playerFactory }),
+
     ],
 })
 export class AuthModule { }

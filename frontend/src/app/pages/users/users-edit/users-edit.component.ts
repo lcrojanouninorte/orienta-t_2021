@@ -24,8 +24,8 @@ export class UsersEditComponent {
 
   public base_roles = [
     { value: 'Admin', label: 'Administrador', disabled: false },
-    { value: 'Staff', label: 'Apoyo', disabled: false },
-    { value: 'General', label: 'Visitante', disabled: false },
+    { value: 'Staff', label: 'Encuestador', disabled: false },
+    //{ value: 'General', label: 'Visitante', disabled: false },
   ];
   public roles: Array<Role> = new Array<Role>();
   public roles$: Observable<Role[]>;

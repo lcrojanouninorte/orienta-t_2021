@@ -38,7 +38,7 @@ export class PopulationViewComponent implements OnInit {
   deleteSurveyed(surveyed,i ){
     this._surveyService.deleteSurveyed(surveyed).subscribe({
       next: (surveyed: Surveyed) => {
-        this.population.surveyeds.slice(i,1);
+        this.population.surveyeds.splice(i,1);
         this._surveyService.showToast("rigth", "success", "Borrado Correctamente")
       }
     });

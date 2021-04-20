@@ -227,20 +227,7 @@
               <v:textbox inset="0,0,0,0">
             <![endif]-->
               <center>
-                <table cellpadding="0" cellspacing="0" width="600" class="w320">
-                  <tr>
-                    <td class="pull-left mobile-header-padding-left" style="vertical-align: middle;">
-                      <a href=""><img width="137" height="47" src="{{url('/img/LogoOBS.jpg')}}" alt="logo"></a>
-                    </td>
-                    <td class="pull-right mobile-header-padding-right" style="color: #4d4d4d;">
-                      <a href="https://twitter.com/obsriomagdalena"><img width="44" height="47" src="{{url('/img/twitter.png')}}" alt="twitter" /></a>
-                      <a href="https://www.instagram.com/obsriomagdalena/"><img width="38" height="47" src="{{url('/img/instagram.png')}}" alt="instagram" /></a>
-                      <a href="https://www.youtube.com/channel/UCYIPAkNxbPptJPtAmG_WO7Q?view_as=subscriber"><img width="40" height="47" src="{{url('/img/youtube.png')}}" alt="youtube" /></a>
-                      <a href="https://www.uninorte.edu.co/obsriomagdalena"><img width="40" height="47" src="{{url('/img/web.png')}}" alt="web" /></a>
 
-                    </td>
-                  </tr>
-                </table>
               </center>
               <!--[if gte mso 9]>
               </v:textbox>
@@ -258,17 +245,17 @@
         <table cellspacing="0" cellpadding="0" width="600" class="w320">
           <tr>
             <td class="header-lg">
-              Bienvenido al Observatorio del Río Magdalena!
+              Bienvenido a la plataforma -  Onu Mujeres!
             </td>
           </tr>
           <tr>
             <td class="free-text">
-              Gracias Por Registrarte, se te ha asignado una cuenta con la cual podrá revisar distintas capas.
+              Gracias Por Registrarte, se te ha asignado una cuenta:
               <br>
               <br>
              <b> Usuario: {{ $email }}</b>
               <br>
-             <b> Contraseña: {{ $password }}</b>
+             <b> Se ha asignado correctamente su contraseña</b>
             </td>
           </tr>
           <tr>
@@ -292,7 +279,7 @@
         <table cellspacing="0" cellpadding="0" width="600" class="w320">
           <tr>
             <td style="padding: 25px 0 25px">
-              <strong>OBS Rio Magdalena  </strong><br />
+              <strong>Onu Mujeres  </strong><br />
                 <br />
                 <br /><br />
             </td>

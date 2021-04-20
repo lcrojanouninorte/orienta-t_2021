@@ -20,7 +20,7 @@ export class AddPeopleComponent implements OnInit {
   constructor(private _fb: FormBuilder,
     private _peopleService: PeopleService,
     private _dialog: NbDialogRef<AddPeopleComponent>) {
-    
+
   }
 
   ngOnInit(): void {this.form = this._fb.group({
@@ -55,7 +55,7 @@ export class AddPeopleComponent implements OnInit {
         }
       }),
       error: (error => {
-        this._peopleService.showToast('top rigth', 'danger', error);
+        this._peopleService.showToast('top rigth', 'danger', error.message);
         this.loading = false;
         this.progress = 0;
       }),
