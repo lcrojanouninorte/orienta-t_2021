@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Survey;
 use App\Surveyed;
 use App\Population;
+use Auth;
 
 use App\Section;
 use App\Answer;
@@ -183,7 +184,7 @@ class SurveyController extends Controller
     public function store(Request $request)
     {
         //
-       // $user = Auth::user();
+       //
         $this->validate($request, [
             'pollster_id'     => 'required',
            // 'population_id'     => 'required',
@@ -303,20 +304,27 @@ class SurveyController extends Controller
         //$auth_user = Auth::user();
         //Get active population
         $population = Population::where("active", 1)->first();
-        if($id == "all"){
-            $surveys = Survey::with("surveyed")
-            ->where('population_id',$population->id)
-            ->get();
+        if($population){
+
+            if($id == "all"){
+                $surveys = Survey::with("surveyed")
+                ->where('population_id',$population->id)
+                ->get();
+
+            }else{
+                $surveys = Survey::with("surveyed")
+                ->where('user_id', $id)
+                ->where('population_id',$population->id)
+                ->get();
+            }
+            return response()->json($surveys,200);
 
         }else{
-            $surveys = Survey::with("surveyed")
-            ->where('user_id', $id)
-            ->where('population_id',$population->id)
-            ->get();
+            return response()->json([],200);
+
         }
 
 
-        return response()->json($surveys,200);
     }
 
 
@@ -365,8 +373,17 @@ class SurveyController extends Controller
      * @param  \App\Survey  $survey
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Survey $survey)
+    public function destroy( $id)
     {
         //
+         $auth_user = Auth::user();
+
+          //Limit delete of role if no one have it.
+          $survey = Survey::find($id);
+          if($survey->delete()){
+                  return response()->json("OK",200);
+              } else {
+                  return response()->json("No se pudo eliminar",500);
+              }
     }
 }

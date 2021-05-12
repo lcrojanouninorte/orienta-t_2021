@@ -49,6 +49,15 @@
                             </nb-icon>
                         </a>
                     </nb-action>
+                    <nb-action [swal]="deleteSwal" tile="borrar encuesta" class="text-center">
+
+                        <nb-icon icon="trash-outline" status="info">
+
+                        </nb-icon>
+
+                        <swal #deleteSwal title="Seguro que desea eliminar la encuesta de {{ survey.surveyed.name }}?" text="Esto no se puede deshacer" icon="question" [showCancelButton]="true" [focusCancel]="true" (confirm)="delete_survey(survey, i)">
+                        </swal>
+                    </nb-action>
 
                 </nb-actions>
 

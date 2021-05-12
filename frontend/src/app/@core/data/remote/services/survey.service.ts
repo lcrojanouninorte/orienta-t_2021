@@ -19,6 +19,7 @@ const routes = {
   sections: 'sections',
   section: (session: string,uuid: string ) => `sections/${session}/${uuid}`,
   surveys: 'surveys',
+  survey: (id: string) =>  `surveys/${id}`,
   survey_uuid: (id: string) => `surveys/uuid/${id}`,
   surveyeds: "surveyeds",
   surveyed: (id: string) =>  `surveyeds/${id}`,
@@ -35,6 +36,7 @@ const routes = {
   providedIn: 'root'
 })
 export class SurveyService extends  Commons {
+
 
 
 
@@ -192,11 +194,20 @@ export class SurveyService extends  Commons {
         );
       }
 
-      deleteSurveyed(surveyed: Surveyed) {
-      const url = routes.surveyed(surveyed.id+"");
+    deleteSurveyed(surveyed: Surveyed) {
+    const url = routes.surveyed(surveyed.id+"");
 
-      return this._http.delete<Population>(url).pipe(
-        tap(_ => this.log(`deleted Population id=${surveyed.id}`)),
+    return this._http.delete<Surveyed>(url).pipe(
+      tap(_ => this.log(`deleted Surveyed id=${surveyed.id}`)),
+      catchError(this.handleError<Surveyed>('deletePopulation')),
+    );
+    }
+
+    deleteSurvey(survey: Surveyed) {
+      const url = routes.survey(survey.id+"");
+
+      return this._http.delete<Survey>(url).pipe(
+        tap(_ => this.log(`deleted Survey id=${survey.id}`)),
         catchError(this.handleError<Population>('deletePopulation')),
       );
     }

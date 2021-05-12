@@ -172,10 +172,6 @@ export class FormularioComponent implements OnInit{
 
 
         this.scrollToTop();
-        // this.stepper.next();
-        // this.forms.push(this.form);
-
-        //TODO: fill default values
 
         if(section_id=="6"){
           let time = intervalToDuration({
@@ -183,11 +179,13 @@ export class FormularioComponent implements OnInit{
              end: this.dateService.today()
           })
           if( this.form.get("F_10")){
-            this.form.get("F_10").disable();
-            if(this.form.get("F_10").value! == ""){
+         //   this.form.get("F_10").disable();
+            if(this.form.get("F_10").value == ""){
               this.form.get("F_10")?.setValue(
                 formatDuration( time )
                  )
+            }else{
+
             }
           }
 
@@ -217,8 +215,13 @@ export class FormularioComponent implements OnInit{
         //set visibiliti to conditioned question
         form.get(condition.question.label).setValidators(null);
         form.get(condition.question.label).updateValueAndValidity();
-        form.get(condition.question.label).disable();
+      //  form.get(condition.question.label).disable();
+      if(questions.questions){
+        questions.questions[condition.question_index].show = false;
+      }else{
         questions[condition.question_index].show = false;
+
+      }
       } else {
         form.get(condition.question.label).setValidators(Validators.required);
         form.get(condition.question.label).updateValueAndValidity();

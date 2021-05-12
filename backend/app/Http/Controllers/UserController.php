@@ -138,7 +138,7 @@ class UserController extends Controller
                  //TODO: create options array
                  $data = array(
                      'verificationCode'=>$user->email_verification_code,
-                     'password'=> $user->password,
+                     'password'=>$request->password,
                      'email'=>$user->email
                  );
             // TODO: open server ports to avoid this.

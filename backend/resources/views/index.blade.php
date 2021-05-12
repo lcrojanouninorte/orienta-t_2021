@@ -10,6 +10,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="icon" type="image/png" href="favicon.png">
     <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <link rel="stylesheet" href="styles.f63f6e8432cc0aa914fe.css">
 <link rel="stylesheet" href="styles.f63f6e8432cc0aa914fe.css"></head>
 
 <body>
@@ -24,7 +25,7 @@
                 transform: rotate(0)
             }
         }
-
+        
         @-moz-keyframes spin {
             0% {
                 -moz-transform: rotate(360deg)
@@ -33,7 +34,7 @@
                 -moz-transform: rotate(0)
             }
         }
-
+        
         @keyframes spin {
             0% {
                 transform: rotate(360deg)
@@ -42,7 +43,7 @@
                 transform: rotate(0)
             }
         }
-
+        
         .spinner {
             position: fixed;
             top: 0;
@@ -54,7 +55,7 @@
             background: linear-gradient(322deg, rgb(254, 214, 255) 0%, rgb(255, 247, 253) 37%, rgba(255, 255, 255, 1) 100%);
             overflow: hidden
         }
-
+        
         .spinner div:first-child {
             display: block;
             position: relative;
@@ -68,14 +69,14 @@
             transform: translate3d(0, 0, 0);
             animation: spin 1s linear infinite
         }
-
+        
         .spinner div:first-child:after,
         .spinner div:first-child:before {
             content: '';
             position: absolute;
             border-radius: 50%
         }
-
+        
         .spinner div:first-child:before {
             top: 5px;
             left: 5px;
@@ -85,7 +86,7 @@
             -webkit-animation: spin 3s linear infinite;
             animation: spin 2s linear infinite
         }
-
+        
         .spinner div:first-child:after {
             top: 15px;
             left: 15px;
@@ -94,7 +95,7 @@
             box-shadow: 0 3px 3px 0 rgb(79, 190, 117);
             animation: spin 1.5s linear infinite
         }
-
+        
         .spinner div:first-child img {
             width: 50px;
             position: absolute;
@@ -114,6 +115,6 @@
         <div class="blob blob-5"></div>
     </div>
 
-<script src="runtime.f669367afcc22fc6099d.js" defer></script><script src="polyfills-es5.4aed76372f4fcfa37be6.js" nomodule defer></script><script src="polyfills.1adea9ade67fbccfafad.js" defer></script><script src="scripts.29721bd96f7a25cdd473.js" defer></script><script src="main.94994beb0d279afc7be7.js" defer></script></body>
+<script src="runtime.037ae8e4e392bb088d4b.js" defer></script><script src="polyfills-es5.4aed76372f4fcfa37be6.js" nomodule defer></script><script src="polyfills.1adea9ade67fbccfafad.js" defer></script><script src="scripts.29721bd96f7a25cdd473.js" defer></script><script src="main.94994beb0d279afc7be7.js" defer></script></body>
 
 </html>

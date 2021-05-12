@@ -36,7 +36,7 @@
                                 {{ section?.desc }}
                             </p>
                             <br />
-                            <div *ngFor="
+                            <ng-container *ngFor="
                       let question of section?.questions;
                       let j = index;
                       trackBy: trackByFn
@@ -175,10 +175,10 @@
                                         </nb-card>
                                     </div>
                                     <div *ngIf="
-                          form.get(question.label)?.invalid &&
-                          (form.get(question.label)?.dirty ||
-                            form.get(question.label)?.touched)
-                        " class="alert text-danger label">
+                                      form.get(question.label)?.invalid &&
+                                      (form.get(question.label)?.dirty ||
+                                        form.get(question.label)?.touched)
+                                    " class="alert text-danger label">
                                         <span class="glyphicon glyphicon-remove form-control-feedback fix-error-icon"></span>
 
                                         <div class="error-msg" *ngIf="form.get(question.label).errors.required">
@@ -188,12 +188,13 @@
                                             Debe ingresar un Mail Valido
                                         </div>
                                     </div>
+                                    <br />
                                 </div>
 
-                                <br />
 
 
-                            </div>
+
+                            </ng-container>
 
                             <div class="text-center">
                                 <!-- <button nbButton (click)="scrollToTop()" nbStepperPrevious>

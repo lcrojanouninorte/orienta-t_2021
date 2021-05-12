@@ -39,7 +39,13 @@ export class PopulationsListComponent implements OnInit {
       this._dialogService.open(PopulationAddComponent, {context:  user.id.toString()});
     } else {
       this._dialogService.open(PopulationAddComponent)
-      .onClose.subscribe(population => {this.populations = [population].concat( this.populations) })
+      .onClose.subscribe(population => {
+        if(population){
+
+          this.populations = [population].concat( this.populations) }
+        }
+
+        )
     }
       // .onClose.subscribe(name => name && this.names.push(name));
   }

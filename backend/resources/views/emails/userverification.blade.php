@@ -254,8 +254,15 @@
               <br>
               <br>
              <b> Usuario: {{ $email }}</b>
+             @if ($password)
+             <b> Contraseña: {{ $password }}</b>
+
+
+             @else
+               Si no recuerda su contraseña, puede recuperarla.
+             @endif
               <br>
-             <b> Se ha asignado correctamente su contraseña</b>
+
             </td>
           </tr>
           <tr>

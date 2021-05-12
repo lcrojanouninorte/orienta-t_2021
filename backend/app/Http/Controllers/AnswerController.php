@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Answer;
 use App\Survey;
 use App\Section;
-
 use Illuminate\Http\Request;
 use App\Exports\AnswersExport;
 use Excel;
@@ -108,9 +107,27 @@ class AnswerController extends Controller
                     case 'M':
                         $values = json_decode( $answer->value, true) ;
 
-                        foreach ($answer->question->options as $key => $option) {
-                            $answer_arr[$answer->question->label."_".$option->subcode] = isset($values[$option->subcode])? $values[$option->subcode] : 0;
+                        foreach ($values as $key => $value) {
+
+                            switch ($value) {
+                                case true:
+                                    $values[$key] = "1";
+                                    break;
+                                case false:
+                                    $values[$key] = "0";
+                                    break;
+                                default:
+
+                                $values[ $key] = $value;
+                                    break;
+                            }
                         }
+
+
+                        foreach ($answer->question->options as $key => $option) {
+                            $answer_arr[$answer->question->label."_".$option->subcode] = isset($values[$option->subcode])? $values[$option->subcode]  : 0;
+                        }
+
                         if(isset($values["otro"])){
                             $answer_arr[$answer->question->label."_OTRO"] = $values["otro"];
                         }

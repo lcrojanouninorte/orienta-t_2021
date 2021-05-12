@@ -9,26 +9,31 @@
                 <nb-card-body>
                     <div>
                         <h2>Hola {{ user.name }},</h2>
-                        <div class="text-center">
-                            <p>Bienvenido al modulo administrativo "Encuesta ONU MUJERES":</p>
-                            <div *ngIf="active_population; else elseBlock">
-                                <p>Comparta el siguiente enlace con sus encuestados:</p>
-                                <mark>
-            <b>
-              Enlace de Encuesta:
-              <a href="#/encuesta/{{ active_population?.id }}/{{
-                  user.id
-                }}" target="_blank">
-                <b class="text-info">{{ origin }}/#/encuesta/{{ active_population?.id }}/{{
-                  user.id
-                  }}</b></a>
-            </b></mark>
+                        <div>
+                            <p></p>
+                            <b>Instrucción*:</b>
+                            <p></p>
+                            <p> Utilice este link para realizar la encuesta. </p>
 
+                            <div *ngIf="active_population; else elseBlock">
+                                <mark>
+                                  <b>
+                                    Enlace de Encuesta:
+                                    <a href="#/encuesta/{{ active_population?.id }}/{{
+                                        user.id
+                                      }}" target="_blank">
+                                      <b class="text-info">{{ origin }}/#/encuesta/{{ active_population?.id }}/{{
+                                        user.id
+                                        }}</b></a>
+                              </b>
+                              </mark>
+                                <p></p>
                                 <div class="mt-2">
                                     <button nbButton size="small" status="info" (click)="copyToClipBoard()">
-              <nb-icon icon="copy-outline"></nb-icon> Copiar Enlace
-            </button>
+                                <nb-icon icon="copy-outline"></nb-icon> Copiar Enlace
+                              </button>
                                 </div>
+
                             </div>
                         </div>
                         <ng-template #elseBlock>

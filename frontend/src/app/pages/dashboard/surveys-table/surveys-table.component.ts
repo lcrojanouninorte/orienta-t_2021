@@ -35,4 +35,13 @@ export class SurveysTableComponent implements OnInit {
     this._router.navigate(["encuesta",  1,this.user.id,survey.uuid]);
 
   }
+
+  delete_survey(survey,i ){
+    this._surveyService.deleteSurvey(survey).subscribe({
+      next: (surveyed: Survey) => {
+        this.surveys.splice(i,1);
+        this._surveyService.showToast("rigth", "success", "Borrado Correctamente")
+      }
+    });
+  }
 }

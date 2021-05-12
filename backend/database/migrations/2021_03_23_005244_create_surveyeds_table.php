@@ -22,7 +22,7 @@ class CreateSurveyedsTable extends Migration
             $table->foreign('survey_id')
             ->references('id')
             ->on('surveys')
-            ->onDelete('cascade');
+            ->onDelete('set null');
             $table->unsignedBigInteger('population_id')->nullable();
             $table->foreign('population_id')
             ->references('id')
