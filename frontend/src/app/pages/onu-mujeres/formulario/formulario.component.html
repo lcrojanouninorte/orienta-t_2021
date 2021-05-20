@@ -1,6 +1,9 @@
 <div class="col-md-8 offset-md-2">
     <nb-card class="shadow" status="info" [nbSpinner]="loading" nbSpinnerStatus="info" nbSpinnerSize="large" nbSpinnerMessage="Actualizando">
-        <nb-card-header> ENCUESTA ONU MUJERES </nb-card-header>
+        <nb-card-header> ENCUESTA ONU MUJERES
+
+
+        </nb-card-header>
         <nb-card-body>
             <div class="p-3">
                 <div [label]="CONSENTIMIENTO" *ngIf="section_id == '1' && !start">
@@ -43,7 +46,7 @@
                     ">
 
 
-                                <div *ngIf="question.show">
+                                <div *ngIf="question?.show">
                                     <div *ngIf="question.pre_title">
                                         <br />
                                         <h6 class="text-info"><b>{{question.pre_title}}</b></h6>
@@ -220,3 +223,14 @@
         <nb-card-footer> </nb-card-footer>
     </nb-card>
 </div>
+
+
+<nb-card (click)="onSubmitUpdate(form)" id="fixedbutton">
+
+    <nb-badge text="?" status="danger" position="top left"></nb-badge>
+    <p nbTooltip="Si no has terminado y deseas guardar tu progreso, haz clic aquí" nbTooltipStatus="primary" nbButton href="#">
+
+        <nb-icon icon="save-outline">
+        </nb-icon>
+    </p>
+</nb-card>

@@ -142,7 +142,7 @@ export class FormularioComponent implements OnInit{
                   date = new Date(question.answer[question.label]);
 
                }else{
-                 date = this.dateService.today;
+                 date = new Date();
 
               }
               this.form.addControl(
@@ -226,7 +226,13 @@ export class FormularioComponent implements OnInit{
         form.get(condition.question.label).setValidators(Validators.required);
         form.get(condition.question.label).updateValueAndValidity();
         form.get(condition.question.label).enable();
-        questions[condition.question_index].show = true;
+    //    questions[condition.question_index].show = true;
+        if(questions.questions){
+          questions.questions[condition.question_index].show = true;
+        }else{
+          questions[condition.question_index].show = true;
+
+        }
       }
     });
   }
@@ -254,14 +260,17 @@ export class FormularioComponent implements OnInit{
 
             if (i == "6") {
               this._router.navigate(["encuesta/gracias"]);
-            } else {
-              this._router.navigate([
-                "encuesta",
-                parseInt(this.section_id) + 1,
-                this.pollster_id,
-                this.uuid,
-              ]);
+            }else{
+
+                this._router.navigate([
+                  "encuesta",
+                  parseInt(this.section_id) + 1,
+                  this.pollster_id,
+                  this.uuid,
+                ]);
+
             }
+
           }
         },
         error: (error) => {
@@ -281,6 +290,40 @@ export class FormularioComponent implements OnInit{
     }
   }
 
+  onSubmitUpdate(form: FormGroup) {
+
+      //submit session
+      const formData = this._surveyService.toFormData(form.value);
+      formData.append("pollster_id", this.pollster_id);
+      formData.append("population_id", this.population_id);
+      formData.append("section_id", this.section_id);
+      formData.append("uuid", this.uuid);
+
+      this.loading = true;
+      this._surveyService.addOrUpdateSurvey(formData).subscribe({
+        next: (event) => {
+          if (event.type === HttpEventType.Response) {
+            this._surveyService.showToast(
+              "top rigth",
+              "success",
+              "Sección Actualizada correctamente"
+            );
+            this.loading = false;
+            this.survey_id = event.body.id;
+
+
+
+          }
+        },
+        error: (error) => {
+          this._surveyService.showToast("top rigth", "danger", error);
+          this.loading = false;
+        },
+      });
+
+      //  this.stepper.next();
+
+  }
   validateAllFormFields(formGroup: FormGroup) {
     //{1}
     Object.keys(formGroup.controls).forEach((field) => {
