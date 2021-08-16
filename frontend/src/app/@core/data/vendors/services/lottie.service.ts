@@ -7,7 +7,12 @@ import { AnimationOptions } from 'ngx-lottie';
 })
 export class LottieService {
   assets = {
-    'women': 'assets/lottie/women.json',
+    'logo-orienta-t': 'assets/lottie/logo-orienta-t.json',
+    'landing-orienta-t': 'assets/lottie/landing-orienta-t.json',
+    'login-orienta-t': 'assets/lottie/login-orienta-t.json',
+    'start-orienta-t': 'assets/lottie/start-orienta-t.json',
+    'results-orienta-t': 'assets/lottie/results-orienta-t.json',
+
   };
 
   constructor(  private ngZone: NgZone) { }

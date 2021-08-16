@@ -16,6 +16,7 @@ import {
   NbToggleModule,
 
   NbTooltipModule,
+  NbIconLibraries,
 } from '@nebular/theme';
 import { NbEvaIconsModule } from '@nebular/eva-icons';
 import { NbSecurityModule } from '@nebular/security';
@@ -46,7 +47,7 @@ import { CORPORATE_THEME } from './styles/theme.corporate';
 import { DARK_THEME } from './styles/theme.dark';
 import { MATERIAL_LIGHT_THEME } from './styles/material/theme.material-light';
 import { MATERIAL_DARK_THEME } from './styles/material/theme.material-dark';
- 
+
 const NB_MODULES = [
   NbLayoutModule,
   NbMenuModule,
@@ -89,13 +90,28 @@ const PIPES = [
   declarations: [...COMPONENTS, ...PIPES],
 })
 export class ThemeModule {
+  constructor(private iconLibraries: NbIconLibraries){
+    this.iconLibraries.registerSvgPack('orienta-t-icons', {
+      'love-ol':'<img src="assets/Orienta-t/Escala de respuesta/SVG/Assets Oriéntate_ Me encanta activo.svg"">',
+      'like-ol': '<img src="assets/Orienta-t/Escala de respuesta/SVG/Assets Oriéntate_Me gusta activo.svg"">',
+      'not-sure-ol': '<img src="assets/Orienta-t/Escala de respuesta/SVG/Assets Oriéntate_No estoy seguro activo.svg"">',
+      'not-like-ol': '<img src="assets/Orienta-t/Escala de respuesta/SVG/Assets Oriéntate_No me gusta activo.svg"">',
+
+      'love': '<img src="assets/Orienta-t/Escala de respuesta/SVG/Assets Oriéntate_Me encanta.svg"">',
+      'like': '<img src="assets/Orienta-t/Escala de respuesta/SVG/Assets Oriéntate_Me gusta.svg"">',
+      'not-sure': '<img src="assets/Orienta-t/Escala de respuesta/SVG/Assets Oriéntate_No estoy seguro.svg"">',
+      'not-like': '<img src="assets/Orienta-t/Escala de respuesta/SVG/Assets Oriéntate_No me gusta.svg"">',
+
+      // ...
+});
+  }
   static forRoot(): ModuleWithProviders<ThemeModule> {
     return {
       ngModule: ThemeModule,
       providers: [
         ...NbThemeModule.forRoot(
           {
-            name: 'default',
+            name: 'material-light',
           },
           [ DEFAULT_THEME, COSMIC_THEME, CORPORATE_THEME, DARK_THEME, MATERIAL_LIGHT_THEME, MATERIAL_DARK_THEME ],
         ).providers,

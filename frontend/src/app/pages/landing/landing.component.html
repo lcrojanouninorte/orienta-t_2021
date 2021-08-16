@@ -1,0 +1,64 @@
+<nb-layout windowMode>
+    <nb-layout-header fixed>
+        <div class="container">
+            <ngx-header color="purple"></ngx-header>
+        </div>
+    </nb-layout-header>
+
+
+    <nb-sidebar state="collapsed" class="menu-sidebar " tag="menu-sidebar" responsive start>
+
+        <ng-content select="nb-menu"></ng-content>
+
+    </nb-sidebar>
+
+    <nb-layout-column>
+        <div class=" container-md h-100">
+            <div class="row  h-100">
+                <div class="col-12 order-1 order-md-2 col-md-7  ">
+                    <div class=" illustration  text-right   ">
+
+                        <ng-lottie class="mx-auto" [options]="options2" (animationCreated)="animationCreated($event,0.3)">
+                        </ng-lottie>
+
+
+                    </div>
+                </div>
+                <div class="col-12 order-2 order-md-1 col-md-5    ">
+
+                    <div class="row logo mt-6">
+                        <h1 style="display: none;">Orienta-t</h1>
+                        <div class="d-flex justify-content-center  ">
+                            <ng-lottie class="mx-auto" [options]="options" (animationCreated)="animationCreated($event,0.3)">
+                            </ng-lottie>
+                        </div>
+                    </div>
+                    <div class="row slogan mt-4">
+                        <h2>Inicia tu ruta ocupacional.</h2>
+                    </div>
+                    <div class="row cta mt-5 align-center">
+                        <button routerLink="/auth/register" nbButton shape="round" status="info"> REGÍSTRATE </button>
+                        <button routerLink="/auth/login" class="ml-4" nbButton shape="round" outline status="info"> INICIAR SESIÓN </button>
+
+                    </div>
+
+
+                    <div class=" row  disclaimer   ">
+                        <p>Los derechos de Autor del Test Preferencias Profesionales (PPS) les corresponden a Carlos Yuste, David Yuste y Jose Luis Galvez. Hace parte de su propiedad intelectual y se reservan sus derechos de autor. Se ha autorizado a la
+                            universidad del Norte, la Camará de Comercio de Barranquilla y a Promigas el uso del Test para fines educativos e investigativos sin ningún tipo de lucro.</p>
+                    </div>
+                </div>
+
+            </div>
+
+
+
+
+        </div>
+
+    </nb-layout-column>
+    <!--
+<nb-layout-footer fixed>
+  <ngx-footer></ngx-footer>
+</nb-layout-footer>-->
+</nb-layout>

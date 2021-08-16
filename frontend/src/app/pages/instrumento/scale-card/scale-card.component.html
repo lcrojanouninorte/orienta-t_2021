@@ -1,0 +1,27 @@
+<div class="mt-4">
+    <!--Pregunta General-->
+    <div class="question row">
+        <div class="question-text  col-sm-8">
+            <p class="ml-3"> <span class="num"> {{question.code}} </span> {{question.text}}</p>
+        </div>
+        <div class="instruction  col-sm-4 align-center">
+            <p class="text-blue-orientate caption text-center">Recuerda elegir las opciones en orden de preferencia</p>
+            <img width="200" class="scale-card   " src="assets/Orienta-t/Escala de respuesta/PNG/Oriéntate_Barra.png">
+        </div>
+    </div>
+
+    <!--Sub-pregunta-1-->
+    <div *ngFor="let option of question.options" class="sub-question row">
+        <div class="q-desc col-md-8 p-0">
+            <div class="col-md-10 m-0">
+
+                <p>{{option.text}}</p>
+                <!--<p>Seleccion: {{option?.value}}</p>-->
+            </div>
+        </div>
+        <div class="q-scale col-md-4">
+            <ngx-scale (onChange)="option.value = $event"></ngx-scale>
+        </div>
+    </div>
+
+</div>

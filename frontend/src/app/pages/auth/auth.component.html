@@ -1,15 +1,33 @@
-<nb-layout class="vignette">
+<nb-layout windowMode>
+    <nb-layout-header fixed>
+        <div class="container">
+            <ngx-header color="red"></ngx-header>
+        </div>
+    </nb-layout-header>
+
+
+    <nb-sidebar state="collapsed" class="menu-sidebar " tag="menu-sidebar" responsive start>
+
+        <ng-content select="nb-menu"></ng-content>
+
+    </nb-sidebar>
     <nb-layout-column>
-        <div class="d-flex justify-content-center  " style="height: 100%;">
+
+        <div class="d-flex justify-content-center h-100 ">
             <div class="  col-md-8 align-self-center d-none  d-md-block">
                 <div class="d-flex justify-content-center ">
-                    <nb-card size="large" [@openClose]="!isOpen ? 'open' : 'closed'" class=" align-self-center d-none d-md-block hero-card  ">
 
-                        <nb-card-header class=" d-flex justify-content-between">
-                            <a href="https://www.uninorte.edu.co/" target="_blank">
-                                <img width="150" src="assets/img/LogoUninorte.png" alt="logo-obs">
-                            </a>
-                            <div class="social">
+
+
+                    <div class="d-flex justify-content-center">
+                        <ng-lottie class="mx-auto" [options]="options" (animationCreated)="animationCreated($event,0.2)">
+                        </ng-lottie>
+
+                    </div>
+
+
+
+                    <!-- <div class="social">
                                 <a href="https://www.instagram.com/unwomen/" target="_blank" nButton ghost>
                                     <i class="fab fa-instagram"></i>
                                 </a>
@@ -26,72 +44,26 @@
                                     <i class="fa fa-globe"></i>
                                 </a>
 
-                            </div>
+                            </div>-->
 
-
-                        </nb-card-header>
-
-                        <nb-card-body class=" d-flex  container align-items-stretch">
-                            <div class="hero d-flex flex-column  justify-content-between ">
-                                <ng-template #registerLink>
-                                    <div class="align-self-center">
-                                        <h5>Bienvenido</h5>
-                                        <h6>ACCESO AL MODULO ADMINISTRATIVO</h6>
-                                    </div>
-                                    <div class="d-flex justify-content-center" style="height: 70%; margin:-12px">
-                                        <ng-lottie class="mx-auto" [options]="options" (animationCreated)="animationCreated($event,0.3)">
-                                        </ng-lottie>
-
-                                    </div>
-                                    <!-- <a class="mt-2" routerLink="/auth/register" nbButton hero shape="round" status="primary">
-                              <nb-icon status="control" icon="person-outline"></nb-icon> REGISTRO
-                          </a>-->
-                                </ng-template>
-                                <div *ngIf="router.isActive('/auth/register', true); else registerLink">
-                                    <h6>Si ya se encuentra registrado, por favor <b>ingrese</b> con su usuario y contraseña.</h6>
-                                    <a class="mt-2" routerLink="/auth/login" nbButton hero shape="round" status="primary">
-                                        <nb-icon status="control" icon="person-outline"></nb-icon> INICIAR
-                                    </a>
-                                </div>
-                                <div class="hero-logo d-flex justify-content-between align-self-end">
-                                    <a class="col" href="#"><img src="assets/img/logo-prm.jpg" width="100%" alt="logo-obs"></a>
-
-                                    <a class="col" href="#"><img src="assets/img/logo.jpg" width="100%" alt="logo-obs"></a>
-                                </div>
-
-                            </div>
-
-                        </nb-card-body>
-                        <nb-card-footer class="d-flex justify-content-start social">
-                            <p style="color: white;margin: 32px 0 0 0px;">© 2021 Copyright</p>
-                            <a class="social-rotated" href="https://uninorte.edu.co/" target="_blank" nButton ghost>
-                 UNINORTE.EDU.CO
-              </a>
-                        </nb-card-footer>
-                    </nb-card>
                 </div>
 
 
             </div>
 
-            <nb-card [ngClass]="{'half-opacity' : !isOpen}" class="align-self-stretch routed-card col-sm-12  col-md-4">
+            <nb-card class="auth-block  col-sm-12  col-md-4">
 
-                <nb-card-body>
-                    <a href="#" (click)="back()" class="link back-link" aria-label="Back">
-                        <nb-icon icon="arrow-back"></nb-icon>
-                    </a>
-                    <nav class="navigation">
+                <nb-card-body class="d-flex   align-items-center align-self-stretch">
 
-                        <!-- <a (click)="toggle()" nButton ghost>
-                      <nb-icon *ngIf="isOpen" icon="eye-off-2-outline"></nb-icon>
-                      <nb-icon *ngIf="!isOpen" status="info" icon="eye-outline"></nb-icon>
-                  </a>-->
-                    </nav>
                     <auth-block>
+                        <img class="logo" src="assets/Orienta-t/Logo/SVG/Assets Oriéntate_Rojo.svg" alt="Logo">
                         <router-outlet></router-outlet>
                     </auth-block>
+
                 </nb-card-body>
             </nb-card>
+
+
 
         </div>
     </nb-layout-column>

@@ -1,0 +1,47 @@
+@import '../../../@theme/styles/themes';
+@include nb-install-component() {
+    nb-card {
+        background-color: nb-theme(color-primary-500);
+        border: nb-theme(card-border-width) nb-theme(card-border-style) nb-theme(card-border-color);
+        border-radius: nb-theme(card-border-radius);
+        box-shadow: nb-theme(card-shadow);
+    }
+    .scale-card {
+        max-width: 250px;
+        max-height: 55px;
+        min-height: 55px;
+        min-width: 250px;
+    }
+    .question {
+        position: relative;
+    }
+    .instruction {
+        position: absolute;
+        right: 0;
+        top: -75px;
+        align-items: center;
+    }
+    .sub-question {
+        padding-top: 5px;
+        padding-bottom: 5px;
+        border-bottom: 1px solid nb-theme(color-primary-500);
+    }
+    .num {
+        border-radius: 50%;
+        font-weight: bold;
+        min-width: 36px;
+        min-height: 36px;
+        width: 36px;
+        height: 36px;
+        padding: 8px;
+        color: #fff;
+        text-align: center;
+        background: nb-theme(color-primary-500);
+        display: inline-block;
+        margin-right: 10px;
+    }
+    .question-text p {
+        font-size: 18px;
+        margin-left: 0!important;
+    }
+}

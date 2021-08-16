@@ -7,7 +7,7 @@
             </div>
             <div class="details">
                 <div class="title h5">{{countObj(roles['Staff'])}}</div>
-                <div class="status paragraph-2">Encuestador </div>
+                <div class="status paragraph-2">Estudiantes </div>
             </div>
             <nb-actions *ngIf="_accessChecker.isGranted('Register Staff', 'all') | async" class="actions" size="small">
                 <nb-action (click)="openUserDialog()" nbTooltip="Añadir Usuario" nbTooltipStatus="primary" icon="plus-outline"></nb-action>

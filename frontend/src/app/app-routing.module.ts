@@ -8,12 +8,24 @@ import { GuestGuardService } from './@core/guard/guest-guard.service';
 export const routes: Routes = [
   {
     path: '',
-    loadChildren: () => import('./pages/pages.module')
-      .then(m => m.PagesModule), data: { preload: true, delay: 1000 },
-      canActivate: [AuthGuardService] ,
+    loadChildren: () => import('./pages/landing/landing.module')
+      .then(m => m.LandingModule), data: { preload: true, delay: 1000 },
+    //  canActivate: [AuthGuardService] ,
   },
   {
     path: 'encuesta',
+    loadChildren: () => import('./pages/instrumento/instrumento.module')
+      .then(m => m.InstrumentoModule), data: { preload: true, delay: 1000 },
+     // canActivate: [AuthGuardService] ,
+  },
+  {
+    path: 'pages',
+    loadChildren: () => import('./pages/pages.module')
+      .then(m => m.PagesModule), data: { preload: true, delay: 1000 },
+     // canActivate: [AuthGuardService] ,
+  },
+  {
+    path: 'encuesta2',
     loadChildren: () => import('./pages/onu-mujeres/onu-mujeres.module')
       .then(m => m.OnuMujeresModule), data: { preload: true, delay: 1000 },
      // canActivate: [AuthGuardService] ,

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 25.2.1, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 500 500" style="enable-background:new 0 0 500 500;" xml:space="preserve">
+<style type="text/css">
+	.st0{fill:#3552FF;}
+	.st1{fill:#FFFFFF;}
+	.st2{fill:#FF4343;}
+	.st3{fill:#8E6BFE;}
+	.st4{fill:#FFFFFF;stroke:#FFFFFF;stroke-width:0.25;stroke-miterlimit:10;}
+	.st5{fill:#FFFFFF;fill-opacity:0;}
+	.st6{fill:#8E6BFE;fill-opacity:0;}
+	.st7{fill-rule:evenodd;clip-rule:evenodd;fill:#FFFFFF;stroke:#8E6BFE;stroke-width:1.4;stroke-miterlimit:10;}
+	.st8{fill:#FFFFFF;stroke:#FFFFFF;stroke-width:3;stroke-miterlimit:10;}
+	.st9{fill:#FFFFFF;stroke:#8E6BFE;stroke-miterlimit:10;}
+	.st10{fill:#FFFFFF;stroke:#8E6BFE;stroke-width:0.5;stroke-miterlimit:10;}
+	.st11{fill-rule:evenodd;clip-rule:evenodd;fill:#FFFFFF;}
+	.st12{fill:#FFFFFF;stroke:#FFFFFF;stroke-miterlimit:10;}
+</style>
+<circle class="st3" cx="250" cy="250" r="216.8"/>
+<path class="st1" d="M246,386c-2.9,0-5.3-2.4-5.3-5.3V317c0-2.9,2.4-5.3,5.3-5.3c2.9,0,5.3,2.4,5.3,5.3v63.7
+	C251.3,383.6,248.9,386,246,386z"/>
+<path class="st1" d="M293.7,386c-1,0-2-0.3-2.9-0.9L243,353.3c-2.4-1.6-3.1-4.9-1.5-7.4c1.6-2.4,4.9-3.1,7.4-1.5l47.7,31.8
+	c2.4,1.6,3.1,4.9,1.5,7.4C297.1,385.2,295.4,386,293.7,386z"/>
+<path class="st1" d="M198.2,386c-1.7,0-3.4-0.8-4.4-2.4c-1.6-2.4-1-5.7,1.5-7.4l47.7-31.8c2.4-1.6,5.7-1,7.4,1.5
+	c1.6,2.4,1,5.7-1.5,7.4l-47.7,31.8C200.3,385.7,199.3,386,198.2,386z"/>
+<path class="st1" d="M352.1,184.4H139.9c-11.7,0-21.2-9.5-21.2-21.2c0-11.7,9.5-21.2,21.2-21.2h212.2c11.7,0,21.2,9.5,21.2,21.2
+	S363.8,184.4,352.1,184.4z M139.9,152.6c-5.8,0-10.6,4.8-10.6,10.6s4.8,10.6,10.6,10.6h212.2c5.8,0,10.6-4.8,10.6-10.6
+	s-4.8-10.6-10.6-10.6H139.9z"/>
+<path class="st1" d="M336.2,322.3H155.8c-8.8,0-15.9-7.1-15.9-15.9V179.1c0-2.9,2.4-5.3,5.3-5.3h201.6c2.9,0,5.3,2.4,5.3,5.3v127.3
+	C352.1,315.2,344.9,322.3,336.2,322.3z M150.5,184.4v122c0,2.9,2.4,5.3,5.3,5.3h180.3c2.9,0,5.3-2.4,5.3-5.3v-122H150.5z"/>
+<path class="st1" d="M187.6,290.5c-1.4,0-2.7-0.5-3.8-1.5c-2.1-2.1-2.1-5.4,0-7.5l42.4-42.4c1.8-1.8,4.6-2.1,6.7-0.7l27.8,18.5
+	l39.4-49.2c1.8-2.3,5.2-2.7,7.5-0.8c2.3,1.8,2.7,5.2,0.8,7.5l-42.4,53c-1.7,2.1-4.8,2.6-7.1,1.1l-28.2-18.8L191.4,289
+	C190.4,290,189,290.5,187.6,290.5L187.6,290.5z"/>
+</svg>

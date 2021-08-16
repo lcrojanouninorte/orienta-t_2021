@@ -89,7 +89,7 @@ export const NB_CORE_PROVIDERS = [
         defaultMessages: ['Ingresando...'],
         authorize: {
           endpoint: 'authorize',
-          redirectUri: '',
+          redirectUri: '/encuesta',
           responseType: NbOAuth2ResponseType.CODE,
           scope: '*',
           params: {
@@ -169,6 +169,7 @@ export class CoreModule {
 
   constructor(@Optional() @SkipSelf() parentModule: CoreModule) {
     throwIfAlreadyLoaded(parentModule, 'CoreModule');
+
   }
 
   static forRoot(): ModuleWithProviders<CoreModule> {

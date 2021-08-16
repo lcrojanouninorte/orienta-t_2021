@@ -1,69 +1,50 @@
-<div class="header-container">
+<div class="header-container ">
+    <span (click)="back()" class="link back-link" aria-label="Back">
+        <nb-icon icon="arrow-back"></nb-icon>
+    </span>
     <div class="logo-container">
-        <a *nbIsGranted="['View Side Menu', 'all']" href="#" class="sidebar-toggle" matRipple [matRippleUnbounded]="true" [matRippleCentered]="true" (click)="toggleSidebar()">
-            <nb-icon [icon]="(materialTheme$ | async) ? 'menu-outline' : 'menu-2-outline'"></nb-icon>
-        </a>
-        <a class="logo" href="#" (click)="navigateHome()">
-            <span class="logos-onu d-none d-sm-block">
-              <img  style="border-radius: 3px;" width="100%" src="assets/img/logo-prm.jpg"  alt="OBS">
-              <img class="ml-2"  style="border-radius: 3px;" width="100%" src="assets/img/logo.jpg"  alt="OBS">
+        <a class="logo" href="/" (click)="navigateHome()">
 
-          </span>
 
-            <span class="d-sm-none logo-un-obs">
-              <img  style="border-radius: 3px;"  width="40"src="assets/img/LogoOBS.jpg" alt="OBS">
-              <img width="150" src="assets/img/LogoUninorte.png" alt="uninorte">
-          </span>
+            <img *ngIf="color == 'purple'" width="100%" src="assets/Orienta-t/Logo/SVG/Assets Oriéntate_Morado.svg" alt="Logo">
+            <img *ngIf="color == 'blue'" width="100%" src="assets/Orienta-t/Logo/SVG/Assets Oriéntate_Azul.svg" alt="Logo">
+            <img *ngIf="color == 'red'" width="100%" src="assets/Orienta-t/Logo/SVG/Assets Oriéntate_Rojo.svg" alt="Logo">
 
         </a>
 
     </div>
-    <!-- <nb-select
-    status="primary"
-    matRipple
-    [selected]="currentTheme"
-    (selectedChange)="changeTheme($event)"
-  >
-    <nb-option
-      *ngFor="let theme of themes"
-      [value]="theme.value"
-      matRipple
-    >{{ theme.name }}</nb-option>
-  </nb-select>
 
--->
+    <!--<nb-select status="primary" matRipple [selected]="currentTheme" (selectedChange)="changeTheme($event)">
+        <nb-option *ngFor="let theme of themes" [value]="theme.value" matRipple>{{ theme.name }}</nb-option>
+    </nb-select>-->
+
+
 </div>
 
 <div class="header-container ">
-
-
-
-    <!--<nb-toggle class="sidebar-toggle" labelPosition="start" (click)="toggleTheme()" [(checked)]="isDark">Oscuro</nb-toggle>-->
-
     <nb-actions size="small">
-        <!--   <nb-action class="user-action" matRipple [matRippleUnbounded]="true" [matRippleCentered]="true">
+        <nb-action class="user-action" matRipple [matRippleUnbounded]="true" [matRippleCentered]="true">
             <span nbTooltipPlacement="left" nbTooltipStatus="info" nbTooltip="Información">
 
-          <button
-           nbContextMenuTrigger="hover"
-           nbContextMenuTag="infoMenu"
-           class="main-menu-item mr-2 shadow-sm"
-           [nbContextMenu]="infoMenu"
-           shape="round" outline nbButton status="info">
-          <nb-icon icon="info"></nb-icon>
-        </button>
-          </span>
-        </nb-action>-->
+            <button
+             nbContextMenuTrigger="hover"
+             nbContextMenuTag="infoMenu"
+             class="main-menu-item mr-2 shadow-sm"
+             [nbContextMenu]="infoMenu"
+             shape="round" outline nbButton status="info">
+            <nb-icon icon="info"></nb-icon>
+          </button>
+            </span>
+        </nb-action>
         <nb-action *ngIf="user.id" class="user-action" matRipple [matRippleUnbounded]="true" [matRippleCentered]="true">
             <nb-user [nbContextMenu]="userMenu" nbContextMenuTag="user-context-menu" [onlyPicture]="true" [name]="user?.email" [picture]="user?.picture" color="#6dbbd3d4">
             </nb-user>
         </nb-action>
     </nb-actions>
     <div class="d-flex row">
-        <a class="logo-uninorte d-flex" href="#" (click)="navigateHome()">
-            <span class=" d-none d-sm-block ">
-            <img width="150" src="assets/img/LogoUninorte.png" alt="uninorte">
-          </span>
+        <a href="#" class="sidebar-toggle" matRipple [matRippleUnbounded]="true" [matRippleCentered]="true" (click)="toggleSidebar()">
+            <nb-icon [icon]="(materialTheme$ | async) ? 'menu-outline' : 'menu-2-outline'"></nb-icon>
         </a>
+
     </div>
 </div>

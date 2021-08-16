@@ -1,0 +1,46 @@
+<div class=" container-md h-100">
+    <div class="row  h-100">
+        <div class="col-12 order-1 order-md-2 col-md-7  ">
+            <div class=" illustration  text-right   ">
+
+                <ng-lottie class="mx-auto" [options]="options2" (animationCreated)="animationCreated($event,0.3)">
+                </ng-lottie>
+
+
+            </div>
+        </div>
+        <div class="col-12 order-2 order-md-1 col-md-5    ">
+
+            <div class="row logo mt-6">
+                <h1 style="display: none;">Orienta-t</h1>
+                <div class="d-flex justify-content-center  ">
+                    <img width="100%" src="assets/Orienta-t/Logo/SVG/Assets Oriéntate_Azul.svg" alt="Logo">
+
+                </div>
+            </div>
+            <div class="row slogan mt-4">
+                <h2>Hola! {{user?.name}}</h2>
+                <h3>Bienvenido al test de orientación académica Orienta-T</h3>
+                <p>Este test te ayudará a saber cuáles son tus preferencias y cómo se relacionan con ocupaciones en el mundo del trabajo.</p>
+                <p class="instructions text-info">
+                    Haz click en el botón continuar para ver las instrucciones y saber cómo responder el test.
+                </p>
+            </div>
+            <div class="row cta mt-5 align-center">
+                <button (click)="back()" nbButton shape="round" status="primary">
+                  <nb-icon icon="arrow-back-outline"></nb-icon> REGRESAR </button>
+                <button routerLink="/encuesta/ejemplo" class="ml-4" nbButton shape="round" outline status="primary">
+                  CONTINUAR  <nb-icon icon="arrow-forward-outline"></nb-icon> </button>
+
+            </div>
+
+
+
+        </div>
+
+    </div>
+
+
+
+
+</div>

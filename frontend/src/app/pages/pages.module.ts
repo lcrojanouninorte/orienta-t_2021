@@ -6,6 +6,7 @@ import { PagesComponent } from './pages.component';
 import { PagesRoutingModule } from './pages-routing.module';
 import { NotFoundComponent } from './misc/not-found/not-found.component';
 import { LightboxModule } from 'ngx-lightbox';
+import { LandingComponent } from './landing/landing.component';
 
 @NgModule({
   imports: [
@@ -15,7 +16,7 @@ import { LightboxModule } from 'ngx-lightbox';
     LightboxModule,
   ],
   declarations: [
-    PagesComponent,
+    PagesComponent
   ],
 })
 export class PagesModule {

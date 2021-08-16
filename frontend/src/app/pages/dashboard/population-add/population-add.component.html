@@ -1,21 +1,19 @@
 <nb-card size="large" [nbSpinner]="loading" nbSpinnerStatus="danger" nbSpinnerSize="large" nbSpinnerMessage="">
-    <nb-card-header>Añadir Campaña</nb-card-header>
+    <nb-card-header>Agregar/Editar Ocupación</nb-card-header>
     <nb-card-body>
         <div class="row">
 
-            <div class="col-md-5">
-                <b>Instrucciones*:</b>
-                <p></p>
-                <p> 1. Debe agregar un nombre a la campaña</p>
-                <p> 2. Debe crear un archivo excel. El formato del archivo excel debe ser de la siguiente forma: <b>Debe contener "id" y "nombre"</b> </p>
-                <div class="text-center">
-                    <img src="/assets/img/example.PNG" width="80%">
+
+            <div class="col-md-12">
+                <div class="form-group row">
+
+                    <label for="name" class="label col-sm-4 col-form-label">Codigo</label>
+                    <form [formGroup]="form" class="col-sm-12">
+                        <input formControlName="name" type="text" nbInput fullWidth id="name" placeholder="Nombre de Campaña">
+
+                    </form>
 
                 </div>
-                <p> 3. Dar clic en "Crear campaña":</p>
-
-            </div>
-            <div class="col-md-6">
                 <div class="form-group row">
 
                     <label for="name" class="label col-sm-4 col-form-label">Nombre</label>
@@ -26,15 +24,61 @@
 
                 </div>
                 <div class="form-group row">
-                    <label for="name" class="label col-sm-4 col-form-label">Audiencia</label>
-                    <ngx-dropzone style="width: 100%;" [multiple]="false" [accept]="'.csv, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel'" [maxFileSize]="'1000000'" (change)="onSelect($event)">
-                        <ngx-dropzone-label>Arrastre su Archivo aquí</ngx-dropzone-label>
-                        <ngx-dropzone-preview *ngFor="let f of files" [removable]="true" (removed)="onRemove(f)">
+
+                    <label for="name" class="label col-sm-4 col-form-label">Descripción</label>
+                    <form [formGroup]="form" class="col-sm-12">
+                        <textarea nbInput fullWidth placeholder="Descripción"></textarea>
+
+                    </form>
+
+                </div>
+
+                <div class="form-group row">
+                    <label for="name" class="label col-sm-4 col-form-label">Icono</label>
+                    <ngx-dropzone style="width: 100%;" [multiple]="false" [maxFileSize]="'1000000'" (change)="onSelect($event)">
+                        <ngx-dropzone-image-preview *ngFor="let f of files" [removable]="true" [file]="f" (removed)="onRemove(f)">
                             <ngx-dropzone-label>{{ f.name }} </ngx-dropzone-label>
-                        </ngx-dropzone-preview>
+                        </ngx-dropzone-image-preview>
                     </ngx-dropzone>
 
                 </div>
+                <div class="form-group col">
+                    <label for="name" class="label col-sm-4 col-form-label">Habilidades</label>
+                    <nb-list>
+
+                        <nb-list-item>
+
+                            Abogados
+                        </nb-list-item>
+                        <nb-list-item>
+
+                            Funcionarios de Programas Exclusivos de la Administración Pública
+                        </nb-list-item>
+                        <nb-list-item>
+
+                            Asistentes Legales y Afines
+                        </nb-list-item>
+                        <nb-list-item>
+
+                            Periodistas
+                        </nb-list-item>
+                        <nb-list-item>
+
+                            Ocupaciones Profesionales en Relaciones Públicas y Comunicaciones
+                        </nb-list-item>
+                        <nb-list-item>
+
+                            Otras Ocupaciones Técnicas en Cine, Televisión y Artes Escénicas n.c.a.
+                        </nb-list-item>
+                        <nb-list-item>
+                            Jueces
+                        </nb-list-item>
+                    </nb-list>
+
+                </div>
+
+
+
 
 
                 <nb-progress-bar *ngIf="progress>0" [value]="progress"></nb-progress-bar>
@@ -48,7 +92,7 @@
         <div class="form-group row ">
             <div class="col-sm-12 text-center">
 
-                <button status="info" class="text-center" nbButton (click)="onSubmit()">Crear Campaña</button>
+                <button status="info" class="text-center" nbButton (click)="onSubmit()">Crear</button>
             </div>
         </div>
     </nb-card-footer>

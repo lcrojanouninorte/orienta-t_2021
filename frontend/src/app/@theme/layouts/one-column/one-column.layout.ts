@@ -9,7 +9,7 @@ import { NbSidebarService } from '@nebular/theme';
         <nb-layout-header fixed>
           <ngx-header></ngx-header>
         </nb-layout-header>
- <!--
+<!--
       <nb-layout-header subheader>
     <nb-actions>
       <nb-action icon="home-outline"></nb-action>
@@ -28,14 +28,14 @@ import { NbSidebarService } from '@nebular/theme';
 <!--
       <nb-layout-footer fixed>
         <ngx-footer></ngx-footer>
-      </nb-layout-footer>
+      </nb-layout-footer>-->
     </nb-layout>
--->
+
   `,
 })
 
 export class OneColumnLayoutComponent {
   constructor() {
   }
-   
+
 }

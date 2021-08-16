@@ -1,11 +1,8 @@
 import { Component, OnInit, ChangeDetectorRef, Inject } from '@angular/core';
 import { NbLoginComponent, NbAuthService, NB_AUTH_OPTIONS } from '@nebular/auth';
 import { Router } from '@angular/router';
-import { User } from 'app/@core/data/remote/schemas/users';
 import { AuthService } from 'app/@core/data/remote/services/auth.service';
-import { tap } from 'rxjs/operators';
-import { Observable } from 'rxjs';
-import { GuestGuardService } from '../../../@core/guard/guest-guard.service';
+
 import {Location} from '@angular/common';
 
 @Component({
@@ -35,13 +32,13 @@ constructor( service: NbAuthService,
       .subscribe(authenticated => {
         if (authenticated) {
           this.location.back();
-          
+
           return false;
         } else {
           return true;
         }
       }
-         
+
       );
   }
 

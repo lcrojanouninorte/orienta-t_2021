@@ -16,6 +16,7 @@ import {
   NbCardBodyComponent,
   NbCardModule,
   NbIconModule,
+  NbSidebarModule,
 } from '@nebular/theme';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
@@ -51,6 +52,8 @@ import { playerFactory } from 'app/app.module';
     NbIconModule,
     NbLayoutModule,
     ThemeModule,
+    NbSidebarModule,
+
     LottieModule.forRoot({ player: playerFactory }),
 
     ],

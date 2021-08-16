@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit, AfterViewInit, TemplateRef } from '@angular/core';
+import { Component, OnDestroy, OnInit, AfterViewInit, Input } from '@angular/core';
 import { NbMediaBreakpointsService, NbMenuService, NbSidebarService, NbThemeService, NbDialogService } from '@nebular/theme';
 import { Router } from '@angular/router';
 import { User } from '../../../@core/data/remote/schemas/users';
@@ -8,8 +8,7 @@ import { Subject, Observable } from 'rxjs';
 import { RippleService } from '../../../@core/utils/ripple.service';
 import { AuthService } from '../../../@core/data/remote/services/auth.service';
 import { NbAccessChecker } from '@nebular/security';
-import { access } from 'fs';
-import { title } from 'process';
+import { Location } from '@angular/common';
 
 
 @Component({
@@ -18,6 +17,8 @@ import { title } from 'process';
   templateUrl: './header.component.html',
 })
 export class HeaderComponent implements OnInit, OnDestroy,  AfterViewInit {
+
+  @Input() color: string;
 
   private destroy$: Subject<void> = new Subject<void>();
   public readonly materialTheme$: Observable<boolean>;
@@ -64,6 +65,7 @@ export class HeaderComponent implements OnInit, OnDestroy,  AfterViewInit {
     private _router: Router,
     public _accessChecker: NbAccessChecker,
     private _dialogService: NbDialogService,
+    private location: Location,
   ) {
     this._authService.getCurrentUser()
     .subscribe((user: User) => {
@@ -229,7 +231,7 @@ export class HeaderComponent implements OnInit, OnDestroy,  AfterViewInit {
   }
 
   navigateHome() {
-    this.menuService.navigateHome();
+    this.nbMenuService.navigateHome();
     return false;
   }
 
@@ -240,6 +242,10 @@ export class HeaderComponent implements OnInit, OnDestroy,  AfterViewInit {
       this.changeTheme('obsrio');
 
     }
+  }
+  back(){
+    this.location.back();
+
   }
 
 }

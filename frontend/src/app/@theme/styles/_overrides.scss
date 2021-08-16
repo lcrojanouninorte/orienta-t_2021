@@ -3,123 +3,37 @@
     //Estilo tamaño text menu
     overflow-wrap: break-word;
     margin-bottom: 32px;
-    font-size: 16px;
-    color: rgb(20, 21, 26);
-    font-weight: 400;
+    font-size: 26px;
+    // color: rgb(20, 21, 26);
+    font-weight: 600;
     line-height: 1.45;
     font-feature-settings: "ss02";
     nb-menu .menu-title {
         font-size: 1.2em !important;
         text-align: left !important;
     }
-    nav {
-        background-color: #6DB9D0;
-    }
-    /*
-    nb-select.size-medium button {
-        padding: 0.4375rem 2.2rem 0.4375rem 1.125rem !important;
-        nb-icon {
-            right: 0.41rem !important;
-        }
-    }
-    nb-card nb-list {
-        //  @include nb-scrollbars( nb-theme(card-scrollbar-color), nb-theme(card-scrollbar-background-color), nb-theme(card-scrollbar-width));
-        @include nb-scrollbars( nb-theme(color-info-500), nb-theme(card-scrollbar-background-color), nb-theme(card-scrollbar-width));
-    }
-    .table {
-        color: nb-theme(text-basic-color) !important;
-    }
-    //Estilos para no sobrepasar tamaño de la ventana
-    nb-window,
-    nb-card {
-        //max-height: 100vh;
-        // max-width: 100%;
-    }
-    // Stilos para los modals de todo el sistema
-    nb-card-body.ng-star-inserted {
-        //  padding: 0!important;
-    }
-    nb-card-body {
-        //padding: 0;
-    }
-    nb-dialog-container {
-        width: 100%;
-        height: 100%;
-        max-width: 100%;
-        max-height: 100%;
-    }
-    nb-window.full-screen.ng-star-inserted nb-card-header {
-        //background-color: nb-theme(color-primary-300)!important;
-        // color: nb-theme(color-primary-100)!important;
-    }
-    nb-reveal-card {
-        margin-bottom: 0;
-    }
-    @include media-breakpoint-down(sm) {}
-    // probar
-    //Round borers
-    nb-card-header {
-        //  border-radius: 8px 8px 0 0;
-    }
-    video.block.mx-auto {
-        border-radius: 8px;
-    }
-    nb-popover,
-    .joyride-step__container,
-    nb-card,
-    nb-card-body {
-        border-radius: 8px;
-    }
-    nb-card-body {
-        //padding: 15px!important;
-    }
-     ::ng-deep .mapboxgl-canvas-container {
-        height: 100vh;
-    }*/
     /* modal animation */
     nb-dialog-container {
         animation-name: example;
         animation-duration: 0.3s;
     }
-    @keyframes example {
-        0% {
-            transform: scale(0.5)
-        }
-        75% {
-            transform: scale(1.05)
-        }
-        100% {
-            transform: scale(1)
-        }
+    .slogan h2 {
+        font-size: 46px;
+        font-weight: 600;
     }
-    .slideInUp {
-        -webkit-animation-name: slideInUp;
-        animation-name: slideInUp;
-        -webkit-animation-duration: 1s;
-        animation-duration: 1s;
-        -webkit-animation-fill-mode: both;
-        animation-fill-mode: both;
+    .slogan h3 {
+        font-size: 26px;
+        font-weight: 400;
     }
-    @-webkit-keyframes slideInUp {
-        0% {
-            -webkit-transform: translateY(100%);
-            transform: translateY(100%);
-            visibility: visible;
-        }
-        100% {
-            -webkit-transform: translateY(0);
-            transform: translateY(0);
-        }
+    .text-blue-orientate {
+        color: nb-theme(color-primary-500);
     }
-    @keyframes slideInUp {
-        0% {
-            -webkit-transform: translateY(100%);
-            transform: translateY(100%);
-            visibility: visible;
-        }
-        100% {
-            -webkit-transform: translateY(0);
-            transform: translateY(0);
+    .cta {
+        button {
+            width: 250px;
+            font-size: 26px;
+            height: 50px;
+            font-weight: 700;
         }
     }
 }
