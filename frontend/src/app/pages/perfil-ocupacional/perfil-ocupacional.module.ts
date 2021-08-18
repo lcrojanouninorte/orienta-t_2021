@@ -12,7 +12,6 @@ import { LottieModule } from 'ngx-lottie';
 import { NbActionsModule, NbButtonModule, NbCardModule, NbIconModule, NbLayoutModule, NbMenuModule, NbSidebarModule } from '@nebular/theme';
 import { ThemeModule } from 'app/@theme/theme.module';
 import { playerFactory } from 'app/app.module';
-import { SwiperModule } from "swiper/angular";
 
 
 @NgModule({
@@ -35,7 +34,6 @@ import { SwiperModule } from "swiper/angular";
     NbButtonModule,
     NbIconModule,
     NbActionsModule,
-    SwiperModule,
     LottieModule.forRoot({ player: playerFactory }),
   ]
 })

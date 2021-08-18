@@ -44,7 +44,6 @@
                             "node_modules/nebular-icons/scss/nebular-icons.scss",
                             "node_modules/pace-js/templates/pace-theme-flash.tmpl.css",
                             "src/app/@theme/styles/styles.scss",
-                            "node_modules/jsoneditor/dist/jsoneditor.min.css",
                             "./node_modules/ngx-lightbox/lightbox.css",
                             "node_modules/material-design-icons/iconfont/material-icons.css",
                             "node_modules/sweetalert2/src/sweetalert2.scss"
@@ -142,7 +141,6 @@
                             "node_modules/nebular-icons/scss/nebular-icons.scss",
                             "node_modules/pace-js/templates/pace-theme-flash.tmpl.css",
                             "src/app/@theme/styles/styles.scss",
-                            "node_modules/jsoneditor/dist/jsoneditor.min.css",
                             "node_modules/material-design-icons/iconfont/material-icons.css",
                             "node_modules/sweetalert2/src/sweetalert2.scss"
 

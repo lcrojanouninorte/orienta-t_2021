@@ -25,7 +25,7 @@
                 </div>
             </div>
             <div class="q-scale col-md-4 align-items-center">
-                <ngx-scale [value]="form.controls[question.label + '_' + option.subcode].value" (onChange)="setOptionValue(option,$event)"></ngx-scale>
+                <ngx-scale [value]="form?.controls[question.label + '_' + option.subcode].value" (onChange)="setOptionValue(option,$event)"></ngx-scale>
             </div>
         </div>
     </div>
