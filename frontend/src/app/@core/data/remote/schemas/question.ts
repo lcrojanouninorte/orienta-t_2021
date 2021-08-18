@@ -24,7 +24,7 @@ export class Question implements Deserializable {
   value: any;
   answers:  Array<Answer>;
   answer:  Array<any>;
-
+  checked: boolean;
   deserialize?(input: any): this {
     //Set Validators
     input.validators = new Array<ValidatorFn>();
@@ -47,7 +47,7 @@ export class Question implements Deserializable {
     });
     }*/
     this.options ? input.options.map(option => new Option().deserialize(option)) : [];
-
+    this.checked = input.checked=="1" ? true: false;
 
     return this;
   }

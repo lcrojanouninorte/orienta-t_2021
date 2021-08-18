@@ -18,6 +18,7 @@ export class User implements Deserializable {
   name?: string;
   picture?: string;
   base_role?: string;
+  survey_uuid?:string;
 
   deserialize?(input: any): this {
     Object.assign(this, input);

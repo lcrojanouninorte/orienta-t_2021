@@ -1,5 +1,5 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
-import { Option } from '@core/data/remote/schemas/option';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Answer } from '@core/data/remote/schemas/Answer';
 
 @Component({
   selector: 'ngx-scale',
@@ -8,8 +8,10 @@ import { Option } from '@core/data/remote/schemas/option';
 })
 export class ScaleComponent implements OnInit {
 
-  value:string;
+
   @Output() onChange = new EventEmitter<string>();
+  @Input() value:string;
+
   options = [
     { state:false, value: '1', label: 'love' },
     { state:false, value: '2', label: 'like' },
@@ -19,6 +21,7 @@ export class ScaleComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+
   }
 
   setValue(selected_value){

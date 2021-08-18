@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { FormGroup, Validators } from '@angular/forms';
 import { Commons } from '@core/utils/commons';
 import { NbToastrService } from '@nebular/theme';
 import { Observable } from 'rxjs';
@@ -212,7 +213,46 @@ export class SurveyService extends  Commons {
       );
     }
 
+//HELPERS
+eval_conditions(section, form: FormGroup, value, questions) {
 
+  section.questions.map((question: Question) => {
+
+    if( question.conditions.length>0){
+      let result = true;
+      question.conditions.forEach((condition) => {
+        let values = condition.value.split(",");
+        if (values.includes(value + "")) {
+          //set visibility to conditioned question
+          form.get(condition.question.label).setValidators(null);
+          form.get(condition.question.label).updateValueAndValidity();
+
+          //FIX question estructure.
+          if(questions.questions){
+            questions.questions[condition.question_index].show = false;
+          }else{
+            questions[condition.question_index].show = false;
+
+          }
+
+        } else {
+          form.get(condition.question.label).setValidators(Validators.required);
+          form.get(condition.question.label).updateValueAndValidity();
+          form.get(condition.question.label).enable();
+           //FIX question estructure.
+            if(questions.questions){
+              questions.questions[condition.question_index].show = true;
+            }else{
+              questions[condition.question_index].show = true;
+
+            }
+        }
+      });
+    }
+
+  });
+
+}
 
 
 }

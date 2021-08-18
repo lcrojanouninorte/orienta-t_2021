@@ -7,10 +7,9 @@
         box-shadow: nb-theme(card-shadow);
     }
     .scale-card {
-        max-width: 250px;
-        max-height: 55px;
-        min-height: 55px;
+        max-width: 350px;
         min-width: 250px;
+        width: 100%;
     }
     .question {
         position: relative;
@@ -29,19 +28,26 @@
     .num {
         border-radius: 50%;
         font-weight: bold;
-        min-width: 36px;
-        min-height: 36px;
-        width: 36px;
-        height: 36px;
-        padding: 8px;
+        min-width: 40px;
+        min-height: 40px;
+        width: 40px;
+        height: 40px;
+        padding: 10px;
         color: #fff;
         text-align: center;
         background: nb-theme(color-primary-500);
         display: inline-block;
         margin-right: 10px;
+        font-size: 14px;
     }
     .question-text p {
-        font-size: 18px;
+        font-size: 16px;
         margin-left: 0!important;
+    }
+    .sub-question-text {
+        margin: 0;
+    }
+    .sub-question {
+        min-height: 70px;
     }
 }
