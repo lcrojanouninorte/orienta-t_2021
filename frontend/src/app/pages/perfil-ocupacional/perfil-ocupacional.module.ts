@@ -13,6 +13,7 @@ import { NbActionsModule, NbButtonModule, NbCardModule, NbIconModule, NbLayoutMo
 import { ThemeModule } from 'app/@theme/theme.module';
 import { playerFactory } from 'app/app.module';
 
+import { SwiperModule } from "swiper/angular";
 
 @NgModule({
   declarations: [
@@ -34,6 +35,7 @@ import { playerFactory } from 'app/app.module';
     NbButtonModule,
     NbIconModule,
     NbActionsModule,
+    SwiperModule,
     LottieModule.forRoot({ player: playerFactory }),
   ]
 })
