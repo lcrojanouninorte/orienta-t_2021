@@ -183,8 +183,8 @@ class AuthController extends Controller
 
 */
             Mail::send('emails.userverification', $data, function ($m) use ($user) {
-                $m->from('noreply@unwomen.org', 'Onu Mujeres ');
-                $m->to($user->email)->subject('Confirmación de Registro en Plataforma Onu Mujeres');
+                $m->from('noreply@orienta-t.co', 'Orienta-t ');
+                $m->to($user->email)->subject('Confirmación de Registro en Plataforma Orienta-t');
             });
 
 
@@ -258,7 +258,7 @@ class AuthController extends Controller
 
         Mail::send('emails.reset_link', compact('email', 'token'), function ($mail) use ($email) {
             $mail->to($email)
-            ->from('noreply@unwomen.org')
+            ->from('noreply@orienta-t.co')
             ->subject('Password reset link');
         });
 
@@ -281,7 +281,7 @@ class AuthController extends Controller
         //delete pending resets
         PasswordReset::whereEmail( $email)->delete();
 
-        return response()->json("COntraseñas Actualizadas Correctamente", 200);
+        return response()->json("Contraseñas Actualizadas Correctamente", 200);
     }
 
 }

@@ -1,35 +1,31 @@
-{{form.value|json}}
 <div class="col-md-8 offset-md-2">
-    <nb-card class="sticky-top progress">
+    <nb-card class="sticky-top progress m-0 container-fluid">
         <nb-card-body>
             <nb-progress-bar [value]="progress" status="primary" [displayValue]="true" status="primary"> </nb-progress-bar>
         </nb-card-body>
     </nb-card>
-    <nb-card class="shadow" status="primary" [nbSpinner]="loading" nbSpinnerStatus="info" nbSpinnerSize="large" nbSpinnerMessage="Actualizando">
-        <nb-card-header> ENCUESTA ONU MUJERES
+    <div status="primary" [nbSpinner]="loading" nbSpinnerStatus="info" nbSpinnerSize="large" nbSpinnerMessage="Actualizando">
 
-
-        </nb-card-header>
-        <nb-card-body>
+        <div>
             <div class="p-3">
-
                 <div *ngIf="start || (section_id != '1' && !start)" #stepper>
 
                     <div label="Sección {{ section?.code }}">
                         <form [formGroup]="form" async>
-
-                            <h4>
-                                <span>{{ section?.code }}.</span> {{ section?.text }}
-                            </h4>
-                            <p class="lorem">
-                                {{ section?.desc }}
-                            </p>
+                            <div *ngIf="section?.visible">
+                                <h4 class="text-blue-orientate">
+                                    <span>{{ section?.code }}.</span> {{ section?.text }}
+                                </h4>
+                                <p class="lorem">
+                                    {{ section?.desc }}
+                                </p>
+                            </div>
                             <br />
                             <ng-container *ngFor="
-                    let question of section?.questions;
-                    let j = index;
-                    trackBy: trackByFn
-                  ">
+                      let question of section?.questions;
+                      let j = index;
+                      trackBy: trackByFn
+                    ">
 
 
                                 <div *ngIf="question?.show">
@@ -40,11 +36,11 @@
                                     </div>
                                     <!-- <div class="question-text row">
 
-                                        <span class="text-danger" *ngIf="question.required">*</span>
-                                        <div *ngIf="question.type !== 'INS'">
-                                            <b><span> {{ question.label }} </span> {{ question.text }}</b>
-                                        </div>
-                                    </div>-->
+                                          <span class="text-danger" *ngIf="question.required">*</span>
+                                          <div *ngIf="question.type !== 'INS'">
+                                              <b><span> {{ question.label }} </span> {{ question.text }}</b>
+                                          </div>
+                                      </div>-->
                                     <div>
                                         <span *ngIf="question.type!=='INS'" class="caption"> {{ question.desc }} </span>
                                     </div>
@@ -62,34 +58,34 @@
                                         <div class="pt-2" *ngSwitchCase="'U'">
                                             <nb-radio-group status="danger" [name]="question.label" [formControl]="form.controls[question.label]">
                                                 <nb-radio (click)="
-                              eval_conditions(
-                                form,
-                                question,
-                                option.value,
-                                section.questions
-                              )
-                            " *ngFor="
-                              let option of question.options;
-                              let j = index;
-                              trackBy: trackByFn
-                            " value="{{ option.value }}">
+                                eval_conditions(
+                                  form,
+                                  question,
+                                  option.value,
+                                  section.questions
+                                )
+                              " *ngFor="
+                                let option of question.options;
+                                let j = index;
+                                trackBy: trackByFn
+                              " value="{{ option.value }}">
                                                     <ng-template #elseBlock>
                                                         {{ option.text }}
                                                     </ng-template>
 
                                                     <input *ngIf="option.isOther; else elseBlock" type="text" fieldSize="small" shape="round" fullWidth status="danger" nbInput (click)="
-                                form.get(question.label).setValue(option.value)
-                              " [placeholder]="option.text" [formControl]="form.controls[question.label + '_OTRO']" />
+                                  form.get(question.label).setValue(option.value)
+                                " [placeholder]="option.text" [formControl]="form.controls[question.label + '_OTRO']" />
                                                 </nb-radio>
                                             </nb-radio-group>
                                             <div *ngIf="
-                            form.get(question.label + '_OTRO')?.invalid &&
-                            (form.get(question.label + '_OTRO')?.dirty ||
-                              form.get(question.label + '_OTRO')?.touched)
-                          " class="alert text-danger label">
+                              form.get(question.label + '_OTRO')?.invalid &&
+                              (form.get(question.label + '_OTRO')?.dirty ||
+                                form.get(question.label + '_OTRO')?.touched)
+                            " class="alert text-danger label">
                                                 <div *ngIf="
-                              form.get(question.label + '_OTRO').errors.required
-                            ">
+                                form.get(question.label + '_OTRO').errors.required
+                              ">
                                                     La Opción OTRO es Obligatoria para la pregunta
                                                     <b>{{ question.label }}</b>.
                                                 </div>
@@ -98,39 +94,39 @@
                                         <div class="pt-2" *ngSwitchCase="'S'">
                                             <nb-radio-group status="danger" [name]="question.label" [formControl]="form.controls[question.label]">
                                                 <nb-radio (click)="
-                              eval_conditions(
-                                form,
-                                question,
-                                1,
-                                section.questions
-                              )
-                            " value="1">
+                                eval_conditions(
+                                  form,
+                                  question,
+                                  1,
+                                  section.questions
+                                )
+                              " value="1">
                                                     Sí
                                                 </nb-radio>
                                                 <nb-radio (click)="
-                              eval_conditions(
-                                form,
-                                question,
-                                2,
-                                section.questions
-                              )
-                            " value="2">
+                                eval_conditions(
+                                  form,
+                                  question,
+                                  2,
+                                  section.questions
+                                )
+                              " value="2">
                                                     No
                                                 </nb-radio>
                                             </nb-radio-group>
                                         </div>
                                         <div class="pt-2" *ngSwitchCase="'M'">
                                             <nb-checkbox status="danger" [name]="question.label + '_' + option.value" class="m-2 row" [formControl]="form.controls[question.label + '_' + option.subcode]" *ngFor="
-                            let option of question.options;
-                            let j = index;
-                            trackBy: trackByFn
-                          " value="option.value">
+                              let option of question.options;
+                              let j = index;
+                              trackBy: trackByFn
+                            " value="option.value">
                                                 <ng-template #elseBlock2>
                                                     {{ option.text }}
                                                 </ng-template>
                                                 <input *ngIf="option.isOther; else elseBlock2" type="text" fieldSize="small" shape="round" fullWidth status="danger" nbInput (click)="
-                                form.get(question.label).setValue(option.value)
-                              " [placeholder]="option.text" [formControl]="form.controls[question.label + '_OTRO']" />
+                                  form.get(question.label).setValue(option.value)
+                                " [placeholder]="option.text" [formControl]="form.controls[question.label + '_OTRO']" />
                                             </nb-checkbox>
 
                                         </div>
@@ -169,10 +165,10 @@
                                         </nb-card>
                                     </div>
                                     <div *ngIf="
-                                    form.get(question.label)?.invalid &&
-                                    (form.get(question.label)?.dirty ||
-                                      form.get(question.label)?.touched)
-                                  " class="alert text-danger label">
+                                      form.get(question.label)?.invalid &&
+                                      (form.get(question.label)?.dirty ||
+                                        form.get(question.label)?.touched)
+                                    " class="alert text-danger label">
                                         <span class="glyphicon glyphicon-remove form-control-feedback fix-error-icon"></span>
 
                                         <div class="error-msg" *ngIf="form.get(question.label).errors.required">
@@ -192,15 +188,18 @@
 
                             <div class="text-center">
                                 <!-- <button nbButton (click)="scrollToTop()" nbStepperPrevious>
-                    Anterior
-                  </button>-->
+                                  Anterior
+                                </button>-->
                                 <button status="primary" *ngIf="section_id != '2';else finish" type="submit" nbButton (click)="onSubmit(form, 1)">
-                Siguiente
-              </button>
-                                <ng-template #finish>
-                                    <button status="success" type="submit" nbButton (click)="onSubmit(form, 2)">
-                  Finalizar
+                  Siguiente
                 </button>
+                                <ng-template #finish>
+                                    <div class="cta">
+
+                                        <button size="large" shape="round" status="info" type="submit" nbButton (click)="onSubmit(form, 2)">
+                    Finalizar
+                  </button>
+                                    </div>
                                 </ng-template>
 
 
@@ -210,13 +209,15 @@
                 </div>
             </div>
 
-        </nb-card-body>
-        <nb-card-footer> </nb-card-footer>
-    </nb-card>
+        </div>
+
+    </div>
 </div>
 
 
-<nb-card (click)="onSubmitUpdate(form)" id="fixedbutton">
+
+
+<!--<nb-card (click)="onSubmitUpdate(form)" id="fixedbutton">
 
     <nb-badge text="?" status="danger" position="top left"></nb-badge>
     <button nbTooltip="Si no has terminado y deseas guardar tu progreso, haz clic aquí" nbTooltipStatus="primary" nbButton>
@@ -225,3 +226,4 @@
       </nb-icon>
   </button>
 </nb-card>
+-->

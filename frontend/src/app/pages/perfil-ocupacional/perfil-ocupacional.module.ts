@@ -6,14 +6,18 @@ import { PerfilOcupacionalComponent } from './perfil-ocupacional.component';
 import { AreaCardComponent } from './area-card/area-card.component';
 import { AreasChartComponent } from './areas-chart/areas-chart.component';
 import { AreasComponent } from './areas/areas.component';
-import { CarrerasComponent } from './carreras/carreras.component';
-import { ProfesionComponent } from './profesion/profesion.component';
+
 import { LottieModule } from 'ngx-lottie';
-import { NbActionsModule, NbButtonModule, NbCardModule, NbIconModule, NbLayoutModule, NbMenuModule, NbSidebarModule } from '@nebular/theme';
+import { NbActionsModule, NbButtonModule, NbCardModule, NbIconModule, NbLayoutModule, NbListModule, NbMenuModule, NbPopoverModule, NbSidebarModule, NbUserModule } from '@nebular/theme';
 import { ThemeModule } from 'app/@theme/theme.module';
 import { playerFactory } from 'app/app.module';
-
 import { SwiperModule } from "swiper/angular";
+import { ChartModule } from 'angular2-chartjs';
+import { OcupacionesComponent } from './ocupaciones/ocupaciones.component';
+import { OcupacionComponent } from './ocupacion/ocupacion.component';
+import { LevelListingComponent } from './level-listing/level-listing.component';
+import { OcupationInfoCardComponent } from './ocupation-info-card/ocupation-info-card.component';
+
 
 @NgModule({
   declarations: [
@@ -21,8 +25,10 @@ import { SwiperModule } from "swiper/angular";
     AreaCardComponent,
     AreasChartComponent,
     AreasComponent,
-    CarrerasComponent,
-    ProfesionComponent
+     OcupacionesComponent,
+    OcupacionComponent,
+    LevelListingComponent,
+    OcupationInfoCardComponent
   ],
   imports: [
     CommonModule,
@@ -35,7 +41,10 @@ import { SwiperModule } from "swiper/angular";
     NbButtonModule,
     NbIconModule,
     NbActionsModule,
+    ChartModule,
     SwiperModule,
+    NbUserModule,
+    NbPopoverModule,NbListModule,
     LottieModule.forRoot({ player: playerFactory }),
   ]
 })

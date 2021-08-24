@@ -1,6 +1,6 @@
 <div class="header-container ">
     <span (click)="back()" class="link back-link" aria-label="Back">
-        <nb-icon icon="arrow-back"></nb-icon>
+        <nb-icon status="info" icon="arrow-back"></nb-icon>
     </span>
     <div class="logo-container">
         <a class="logo" href="/" (click)="navigateHome()">
@@ -23,6 +23,7 @@
 
 <div class="header-container ">
     <nb-actions size="small">
+        <!--
         <nb-action class="user-action" matRipple [matRippleUnbounded]="true" [matRippleCentered]="true">
             <span nbTooltipPlacement="left" nbTooltipStatus="info" nbTooltip="Información">
 
@@ -35,13 +36,13 @@
             <nb-icon icon="info"></nb-icon>
           </button>
             </span>
-        </nb-action>
+        </nb-action>-->
         <nb-action *ngIf="user.id" class="user-action" matRipple [matRippleUnbounded]="true" [matRippleCentered]="true">
             <nb-user [nbContextMenu]="userMenu" nbContextMenuTag="user-context-menu" [onlyPicture]="true" [name]="user?.email" [picture]="user?.picture" color="#6dbbd3d4">
             </nb-user>
         </nb-action>
     </nb-actions>
-    <div class="d-flex row">
+    <div *ngIf="!without_sidebar_btn" class="d-flex row">
         <a href="#" class="sidebar-toggle" matRipple [matRippleUnbounded]="true" [matRippleCentered]="true" (click)="toggleSidebar()">
             <nb-icon [icon]="(materialTheme$ | async) ? 'menu-outline' : 'menu-2-outline'"></nb-icon>
         </a>

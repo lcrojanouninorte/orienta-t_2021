@@ -64,7 +64,7 @@ class SectionsController extends Controller
         ->with("questions.options")->with("questions.conditions.question")->with(['questions' => function ($q)  {
             $q->orderBy('position', "ASC");
         }])->first();
-        if(!$auth_user){
+        /*if(!$auth_user){
             //Show specific columns
             foreach ($sections->questions as $key => $question) {
                 if($question->isStaff){
@@ -72,13 +72,15 @@ class SectionsController extends Controller
                 }
             }
         }
+*/
 
 
         //transform answers by type:
 
             $sections =   $this->formatAnswers($sections);
-            $sections->survey =  $survey;
 
+
+            $sections->survey =  $survey;
 
         return response()->json($sections, 200);
     }
@@ -124,6 +126,12 @@ class SectionsController extends Controller
                 $answer  = isset($question->answers[0])? $question->answers[0]:array();
 
                 switch ($question->type) {
+                    case 'SC':
+                        foreach ($question->options as $key => $option) {
+                            $values = isset( $answer->value)? json_decode( $answer->value,  true) : array($option->subcode=>null);
+                            $answer_arr[$question->label."_".$option->subcode] = $values[$question->label."_".$option->subcode] ;
+                        }
+                        break;
                     case 'M':
 
                         foreach ($question->options as $key => $option) {

@@ -13,6 +13,8 @@ class CreatePopulationsTable extends Migration
      */
     public function up()
     {
+        if (Schema::hasTable('populations')) { return; }
+
         Schema::create('populations', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('name');

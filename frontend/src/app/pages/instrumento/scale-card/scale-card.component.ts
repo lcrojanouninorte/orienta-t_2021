@@ -23,16 +23,19 @@ export class ScaleCardComponent implements OnInit {
 
   setOptionValue(option,$event){
     //Update Parent formcontrol.
-    this.form.controls[this.question.label + "_" + option.subcode].setValue($event) ;
-    this.question.answer[this.question.label+"_"+option.subcode] = $event;
-    //Eval if this questions have all options answered.
-    this.checkIfQuestionIsdone();
-    if(this.done == 4 && this.question.answers[0]?.checked != true){
-      this.question.checked = true;
-      this.question.answers[0].checked = true;
-      this.isDone.emit(true);
+    if(this.form?.controls){
+
+      this.form.controls[this.question.label + "_" + option.subcode].setValue($event) ;
+      this.question.answer[this.question.label+"_"+option.subcode] = $event;
+      //Eval if this questions have all options answered.
+      this.checkIfQuestionIsdone();
+      if(this.done == 4 && this.question.answers[0]?.checked != true){
+        this.question.checked = true;
+        this.question.answers[0].checked = true;
+        this.isDone.emit(true);
+      }
+      this.onChange.emit(true);
     }
-    this.onChange.emit(true);
 
   }
 

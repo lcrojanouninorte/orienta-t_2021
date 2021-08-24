@@ -5,8 +5,10 @@ import { NbToastrService } from '@nebular/theme';
 import { Observable } from 'rxjs';
 import { catchError, map, tap } from 'rxjs/operators';
 import { ApiService } from '../api.service';
+import { Occupation } from '../schemas/occupation';
 import { Option } from '../schemas/option';
 import { Population } from '../schemas/population';
+import { PpsRank } from '../schemas/pps_rank';
 import { Question } from '../schemas/question';
 import { Section } from '../schemas/section';
 import { Survey } from '../schemas/survey';
@@ -32,11 +34,16 @@ const routes = {
   user_surveys:  (id: string) => `surveys/${id}`,
   gateway: 'surveys/gateway',
   user: (id: number) => `users/${id}`,
+
+  pps_uuid: (uuid: string) =>  `pps/${uuid}`,
+  occupations: (pps_code: string,onet_title: string, ) =>  `occupations/${pps_code}/${onet_title}`,
+  occupation:(title: string) =>  `occupation/${title}`,
 };
 @Injectable({
   providedIn: 'root'
 })
 export class SurveyService extends  Commons {
+
 
 
 
@@ -141,11 +148,35 @@ export class SurveyService extends  Commons {
       );
     }
 
+    getPpsRank(uuid: string) : Observable<PpsRank[]> {
+      return  this._http.get<PpsRank[]>(routes.pps_uuid(uuid)).pipe(
+        tap(_ => this.log('Fetched Pps')),
+        catchError(this.handleError<PpsRank[]>('getAll', [])),
+        map(ppsRanking => ppsRanking.map(ppsRank => new PpsRank().deserialize(ppsRank))) ,
+      );
+    }
+
+    getOccupationByTitle(title: string) {
+      return  this._http.get<PpsRank[]>(routes.occupation(title)).pipe(
+        tap(_ => this.log('Fetched getOccupations')),
+        catchError(this.handleError<Occupation[]>('getAll', [])),
+        map(occupation => new Occupation().deserialize(occupation)) ,
+      );    }
+
+
+    getOccupationsBylevel(pps_code: string,onet_title: string){
+      return  this._http.get<PpsRank[]>(routes.occupations(pps_code,onet_title)).pipe(
+        tap(_ => this.log('Fetched getOccupations')),
+        catchError(this.handleError<Occupation[]>('getAll', [])),
+        map(ocupattions => ocupattions.map(occupation => new Occupation().deserialize(occupation))) ,
+      );
+    }
+
 
     getPopulations(): Observable<Population[]> {
       return  this._http.get<Population[]>(routes.populations).pipe(
        tap(_ => this.log('Fetched Population')),
-       catchError(this.handleError<Question[]>('Population', [])),
+       catchError(this.handleError<Population[]>('Population', [])),
        map(populations => populations.map(population => new Population().deserialize(population))),
      );
     }

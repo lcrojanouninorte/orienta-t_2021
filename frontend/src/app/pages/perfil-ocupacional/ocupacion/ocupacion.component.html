@@ -1,0 +1,51 @@
+<div class=" occupation">
+    <div class="row">
+
+        <div class="col-12 col-md-10 offset-md-1  order-2 order-md-1 ">
+
+
+
+            <swiper class="mySwiper" [config]="config" (swiper)="onSwiper($event)" (slideChange)="onSlideChange()">
+                <ng-template swiperSlide>
+                    <ngx-ocupation-info-card title="Personalidad" [data]="occupation"></ngx-ocupation-info-card>
+                </ng-template>
+                <ng-template swiperSlide>
+                    <ngx-ocupation-info-card title="Salida Ocupacional" [data]="occupation?.onet"></ngx-ocupation-info-card>
+                </ng-template>
+                <ng-template *ngIf="occupation?.skills.length>0" swiperSlide>
+                    <ngx-ocupation-info-card title="Habilidades" [data]="occupation?.skills"></ngx-ocupation-info-card>
+                </ng-template>
+                <ng-template *ngIf="occupation?.knowledges.length>0" swiperSlide>
+                    <ngx-ocupation-info-card title="Conocimientos" [data]="occupation?.knowledges"></ngx-ocupation-info-card>
+                </ng-template>
+                <ng-template *ngIf="occupation?.onet?.outputs.length>0" swiperSlide>
+                    <ngx-ocupation-info-card title="Oferta Académica" [data]="occupation?.onet?.outputs"></ngx-ocupation-info-card>
+
+                </ng-template>
+
+
+            </swiper>
+
+
+        </div>
+        <!--
+        <div class="col-12 col-md-10 offset-md-1  cta mt-5 align-center order-3 order-md-2">
+            <div class="cta">
+
+                <button routerLink="/auth/register" nbButton shape="round" status="info"> IMPRIMIR </button>
+                <button routerLink="/auth/login" class="ml-4" nbButton shape="round" status="info"> PDF </button>
+            </div>
+
+
+            <div class="cta mt-3">
+                <button routerLink="/auth/login" nbButton shape="round" outline status="info"> ENVIAR CORREO </button>
+
+            </div>
+        </div>-->
+        <div class=" ill order-md-3 order-1">
+            <ng-lottie [options]="options" (animationCreated)="animationCreated($event,0.2)">
+            </ng-lottie>
+
+        </div>
+    </div>
+</div>

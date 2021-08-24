@@ -1,3 +1,10 @@
-.click {
-    cursor: pointer;
+@import '../../../@theme/styles/themes';
+@import '~@nebular/theme/styles/global/breakpoints';
+@include nb-install-component() {
+    .click {
+        cursor: pointer;
+    }
+    nb-action {
+        border: 0px solid black;
+    }
 }

@@ -1,21 +1,28 @@
-<div class="section">
-    <div class="row">
-        <h2 class="text-center ">Según tus respuestas, hemos detectado que las siguientes áreas son más afines a tu perfil.</h2>
-    </div>
-
-</div>
-<div class="section">
-    <div class="row text-center align-items-between">
-        <ngx-area-card class="col-md-12"></ngx-area-card>
-
-
+<div class="container">
+    <div class="section">
+        <div class="d-flex justify-content-center">
+            <h2 class="text-center text-purple-orientate h4">Según tus respuestas, hemos detectado que las siguientes áreas son más afines a tu perfil.</h2>
+        </div>
 
     </div>
+    <div class="section">
+        <div class="row text-center align-items-between">
 
-</div>
-<div class="section">
-    <div class="row text-center">
-        <ngx-areas-chart></ngx-areas-chart>
+            <ngx-area-card [ppsRanking]="ppsRanking" class="col-md-12"></ngx-area-card>
+
+
+
+        </div>
+
+    </div>
+    <div class="section">
+        <h2 class="text-center text-purple-orientate h4">Este es el puntaje que obtuviste en las demás áreas del conocimiento.</h2>
+        <div class="row text-center">
+            <div class="col-sm-12 col-md-10 offset-md-1">
+                <ngx-areas-chart></ngx-areas-chart>
+            </div>
+        </div>
+
     </div>
 
 </div>

@@ -13,21 +13,23 @@ class CreateQuestionsTable extends Migration
      */
     public function up()
     {
-        Schema::create('questions', function (Blueprint $table) {
-            $table->bigIncrements('id');
-            $table->unsignedBigInteger('section_id');
-            $table->string('code');
-            $table->string('text');
-            $table->string('desc')->nullable();
-            $table->string('type');
-            $table->boolean('required');
-            $table->softDeletes();
-            $table->timestamps();
-            $table->foreign('section_id')
-                ->references('id')
-                ->on('sections')
-                ->onDelete('cascade');
-        });
+        if (!Schema::hasTable('questions')) {
+            Schema::create('questions', function (Blueprint $table) {
+                $table->bigIncrements('id');
+                $table->unsignedBigInteger('section_id');
+                $table->string('code');
+                $table->string('text');
+                $table->string('desc')->nullable();
+                $table->string('type');
+                $table->boolean('required');
+                $table->softDeletes();
+                $table->timestamps();
+                $table->foreign('section_id')
+                    ->references('id')
+                    ->on('sections')
+                    ->onDelete('cascade');
+            });
+        }
     }
 
     /**

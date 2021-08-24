@@ -26,11 +26,19 @@ Passport::routes(function ($router) {
 
 //Not Authenticated Users
 Route::group(['middleware' => ['api']], function ($api) {
-    //ONU MUJERES 2021
+    //Orientate 2021
+    $api->get('pps/{id}', 'CnoOcupationalFieldRankingController@show');
+    $api->get('pps/{code}/{onet}', 'CnoOccupationController@show');
+    $api->get('occupations/{pps_code}/{onet_title}', 'CnoOccupationController@showBy');
+    $api->get('occupation/{occupation_title}', 'CnoOccupationController@show');
+
+    //survey 2021
     $api->resource('questions', 'QuestionsController');
     $api->resource('surveys', 'SurveyController', ['except'=> ['index']]);
+
     $api->post('surveys/gateway', 'SurveyController@create');
     $api->get('surveys/uuid/{uuid}', 'SurveyController@byUuid');
+    $api->get('surveys/rank/{uuid}', 'SurveyController@rank');
     $api->get('surveys', 'SurveyController@index');
     $api->resource('surveyeds', 'SurveyedController');
 

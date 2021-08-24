@@ -1,0 +1,37 @@
+@import '../../../@theme/styles/themes';
+@import '~@nebular/theme/styles/global/breakpoints';
+@include nb-install-component() {
+    .num {
+        border-radius: 50%;
+        font-weight: bold;
+        min-width: 36px;
+        min-height: 36px;
+        width: 36px;
+        height: 36px;
+        padding: 8px;
+        color: #fff;
+        text-align: center;
+        background: nb-theme(color-info-500);
+        display: inline-block;
+        margin-right: 10px;
+        font-size: 16px;
+    }
+    .level-card {
+        nb-card-header {
+            border: 0px solid black;
+        }
+        nb-list-item:hover {
+            border-bottom: 1px solid nb-theme(color-info-300);
+        }
+        nb-list-item {
+            cursor: pointer;
+            border: 0;
+            border-bottom: 1px solid nb-theme(color-info-500);
+            padding: 5px 0px;
+            margin: 0;
+            p {
+                margin: 0;
+            }
+        }
+    }
+}

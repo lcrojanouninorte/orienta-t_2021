@@ -13,6 +13,7 @@ class CreateConditionsTable extends Migration
      */
     public function up()
     {
+        if (Schema::hasTable('conditions')) { return; }
         Schema::create('conditions', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->unsignedBigInteger('question_id');

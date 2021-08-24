@@ -83,43 +83,10 @@ class SurveyController extends Controller
         //3: encuesta pendiente.
         //4: nueva encuesta
 
-         // $user = Auth::user();
-         $this->validate($request, [
-            'pollster_id'     => 'required',
-            'population_id'     => 'required',
-            'complete_name'     => 'required',
-            'doc'     => 'required'
-        ]);
-        //Check if surveyed exist in databese
-        $surveyed = Surveyed::with("survey")
-        ->where("identification", $request->input("doc"))
-        ->where("population_id", $request->input("population_id"))
-        ->first();
-
-        if(!$surveyed){
-            return response()->json(
-                [
-                    "type"=> 0,
-                    "msg"=>"Usted no se encuentra registrado en nuestra base de datos. Por favor revisé su información e intente nuevamente."
-                ]
-                ,200);
-
-        }
-        //check if name is correct
-        $perc = 0;
-        $sim = similar_text($surveyed->full_name, $request->input("complete_name"), $perc);
-        if($perc < 53){
-             return response()->json(
-                [
-                    "type"=> 1,
-                    "msg"=>"Su nombre no coincide con nuestros registros, por favor revisé e intente nuevaente"
-                ]
-                ,200);
-        }
-
-        //check if user has survey
-        if($surveyed->survey){
-            if($surveyed->survey->isFinished){
+        $user = Auth::user();
+        //Create Surveyed Profile:
+        if($user->survey){
+            if($user->survey->isFinished){
                 return response()->json(
                     [
                         "type"=> 2,
@@ -132,20 +99,22 @@ class SurveyController extends Controller
                     [
                         "type"=> 3,
                         "msg"=> "Encuesta pendiente por terminar",
-                        "survey" => $surveyed->survey
+                        "survey" => $user->survey
                     ]
                     ,200);
             }
+            return response()->json($user->survey,500);
         }
 
+        //User do not have survey
+        $surveyed =  $user->surveyedProfile();
         DB::beginTransaction();
         try {
             $survey = new Survey();
             $survey->isFinished = false;
             $survey->uuid = Str::orderedUuid();
-            $survey->user_id = $request->input("pollster_id");
-            $survey->population_id = $request->input("population_id");
-            $survey->surveyed_id =  $surveyed->id;
+            $survey->user_id = $user->id;
+            $survey->population_id = 1; //TODO;
             DB::commit();
             if($survey->save()){
                 $surveyed->survey_id = $survey->id;
@@ -186,34 +155,28 @@ class SurveyController extends Controller
         //
        //
         $this->validate($request, [
-            'pollster_id'     => 'required',
-           // 'population_id'     => 'required',
             'section_id'     => 'required',
-
         ]);
-
-
+        $user = Auth::user();
         DB::beginTransaction();
         try {
             $survey = new Survey();
-            //Get all question of given section
-
+            //Get all question of a survey if exist, if not, create one
             if($request->has('uuid') && $request->input('uuid') != "null"  && $request->input('uuid') != ""){
                 $survey  = Survey::where("uuid", $request->input('uuid'))->first();
-                if($request->input('section_id') == 6){
-                    $survey->isFinished = true;
-                }
             }else{
-                $survey->population_id = $request->input("population_id");
-                $survey->user_id = $request->input("pollster_id");
+                $survey->population_id = 1;
+                $survey->user_id = $user->id;
             }
             DB::commit();
            if($survey->save()){
                 $section = Section::where("id", $request->input('section_id'))->get();
                 $questions = $section[0]->questions;
+                $finished = 0;
                 foreach ( $questions  as $key =>$question) {
                     $label = $question->label;
                     if (strpos($label, ".") !== false) {
+                        //Fix if label has dot.
                         $label = str_replace('.', '_', $label);
                     }
                     $value = strval($request->input($label));
@@ -238,14 +201,43 @@ class SurveyController extends Controller
                                 ['value' =>   json_encode($json_value)]
                             );
                         break;
+                        case 'SC':
+                            //TODO: only store last change, not whole survey
+                            $json_value = array();
+                            $done = 0;
+
+                            $checked = 0;
+                            foreach ($question->options as $key => $option) {
+                                if( $request->input($label."_".$option->subcode) !=   null  ){
+                                    $done++;
+                                    $json_value[$label."_".$option->subcode] = $request->input($label."_".$option->subcode);
+                                }else{
+                                    $json_value[$label."_".$option->subcode] = "";
+                                }
+
+                            }
+                            $checked =  $done == 4 ? true : false;
+                            $finished = $done == 4 ? $finished+1 : $finished;
+
+                            $done = 0;
+                            Answer::updateOrCreate(
+                                ['survey_id' => $survey->id, 'question_id' =>  $question->id],
+                                [   'checked' =>      $checked ,
+                                    'value' =>  json_encode($json_value)
+                                     ]);
+
+                            //if finished, store sum for each ocupational field.
+
+
+                            break;
                         case 'M':
                             $json_value = array();
                             foreach ($question->options as $key => $option) {
 
-                                if( $request->input($label."_".$option->subcode) =="true"){
-                                    $json_value[$option->subcode] = true;
+                                if( $request->input($label."_".$option->subcode) != null){
+                                    $json_value[$label."_".$option->subcode] = $request->input($label."_".$option->subcode);
                                 }else{
-                                    $json_value[$option->subcode] = false;
+                                    $json_value[$label."_".$option->subcode] = "";
                                 }
 
                             }
@@ -268,12 +260,12 @@ class SurveyController extends Controller
 
                             break;
                     }
+                }
+                //Check if survey has finalized
+                if( $finished >= 52) {
+                    $survey->isFinished = true;
 
-
-
-
-                        //TODO: otro
-
+                    $survey->save();
                 }
                return response()->json($survey,200);
            }
@@ -289,6 +281,48 @@ class SurveyController extends Controller
             throw $e;
             return response()->json($e->getErrors(),500);
         }
+
+    }
+    /**
+     * Calculate ranking based on answers,
+     * data has been stored as json "label": "value"
+     * where label contains the ID of the area ocupacional.
+     * @param  \App\Survey  $survey
+     * @return \Illuminate\Http\Response
+     */
+    public function rank($uuid)
+    {
+        // calculate total for specific survey
+        $survey  = Survey::where("uuid", $uuid)->first();
+        $areas_count = array();
+        foreach ($survey->answers as $key => $answer) {
+           $options_values = json_decode($answer->value);
+           foreach ($options_values as $label => $value) {
+               # split label to get ocupational area id, format: 1_2_1 Section_QNumber_id:
+                $label = explode("_", $label);
+                $area_ocupational_id = end($label);
+
+                if( isset($areas_count["".$area_ocupational_id])  ){
+                    $areas_count["".$area_ocupational_id] =  $areas_count["".$area_ocupational_id] +  (int) $value;
+                }else{
+                    $areas_count["".$area_ocupational_id] = 0;
+                }
+           }
+
+
+        }
+        return response()->json($areas_count,500);
+
+        // Store totals for specific survey in database
+        foreach ($areas_count as $area_id => $area_total) {
+            $AreaRank =  CnoOcupationalFieldRanking::where("survey_id", $survey->id);
+            $user = CnoOcupationalFieldRanking::updateOrCreate(
+                ['survey_id' =>   $survey->id,'ocupational_area_id' =>   $area_id],
+                ['total' =>   $area_total]
+            );
+
+        }
+
 
     }
 

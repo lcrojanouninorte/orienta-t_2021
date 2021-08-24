@@ -15,6 +15,9 @@ use Illuminate\Support\Facades\Hash;
 use  App\Admin;
 use  App\General;
 use  App\Staff;
+use  App\Surveyed;
+use  App\Survey;
+
 class User extends Authenticatable
 {
 
@@ -88,6 +91,14 @@ class User extends Authenticatable
         return $this->hasOne('App\Admin');
     }
 
+    public function surveyed(){
+        return $this->hasOne('App\Surveyed');
+    }
+    public function survey(){
+        return $this->hasOne('App\Survey');
+    }
+
+
     public function updater(){
         return $this->belongsTo('App\User', 'last_updated_by', 'id');
     }
@@ -104,6 +115,13 @@ class User extends Authenticatable
                 return null;
         }
     }
+    public function surveyedProfile(){
+
+
+                return $this->surveyed?$this->surveyed:new Surveyed();
+
+    }
+
 
     public function getProfileAttribute()
     {

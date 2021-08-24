@@ -194,14 +194,14 @@ export class TestComponent implements OnInit {
           if (event.type === HttpEventType.Response) {
             this._surveyService.showToast(
               "top rigth",
-              "success",
-              "Sección Actualizada correctamente"
+              "info",
+              "Información guardada correctamente"
             );
             this.loading = false;
             this.survey_id = event.body.id;
 
             if (i == 2) {
-              this._router.navigate(["/perfil/areas"]);
+              this._router.navigate(["/perfil/areas/",this.uuid]);
             }else{
 
                 this._router.navigate([
@@ -244,8 +244,8 @@ export class TestComponent implements OnInit {
           if (event.type === HttpEventType.Response) {
             this._surveyService.showToast(
               "top rigth",
-              "success",
-              "Sección Actualizada correctamente"
+              "info",
+              "Pregunta guardada correctamente"
             );
             this.loading = false;
             this.survey_id = event.body.id;
@@ -294,8 +294,13 @@ export class TestComponent implements OnInit {
 
   updateProgress(total_questions_answered){
 
-    this.total_questions_answered = total_questions_answered;
-    this.progress = Math.ceil((this.total_questions_answered / this.total_questions)*100);
+    if(this.total_questions > 0){
+
+      this.total_questions_answered = total_questions_answered;
+      this.progress = Math.ceil((this.total_questions_answered / this.total_questions)*100);
+    }else{
+      this.progress =  0;
+    }
   }
 
   //HELPERS

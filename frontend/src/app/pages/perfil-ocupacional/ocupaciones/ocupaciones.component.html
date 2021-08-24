@@ -1,0 +1,26 @@
+<div class="container-md">
+    <div class="row px-4">
+        <div class="col-sm-12 col-md-8 offset-md-2 ">
+            <h1 class="h6"><b class=" text-purple-orientate">Carreras que coinciden con tus intereses y nivel de preparación:</b></h1>
+        </div>
+        <div class=" col-sm-12 col-md-8 offset-md-2 ">
+            <p class="text-purple-orientate">Haz click en cada carrera para obtener más detalles.</p>
+        </div>
+
+    </div>
+
+    <div class="row" *ngFor="let level of levels">
+        <ngx-level-listing *ngIf="level.occupations.length>0" [level]="level">
+        </ngx-level-listing>
+    </div>
+
+
+    <!--
+    <div class="row" *ngFor="let level of levels">
+        <div *ngIf="level.occupations.length==0" [level]="level">
+            No se encontrarón resultados para el nivel: {{level.desc}}
+        </div>
+
+    </div>
+-->
+</div>

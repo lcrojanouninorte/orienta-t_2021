@@ -60,7 +60,7 @@ export function playerFactory() {
      /*NbChatModule.forRoot({
       messageGoogleMapKey: 'AIzaSyA_wNuCzia92MAmdLRzmqitRGvCF7wCZPY',
     }),*/
-    NbThemeModule.forRoot({ name: 'obsrio' }),
+    //NbThemeModule.forRoot({ name: 'dark' }),
 
     CoreModule.forRoot(),
     LottieModule.forRoot({ player: playerFactory }),

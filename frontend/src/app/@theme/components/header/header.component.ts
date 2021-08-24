@@ -19,6 +19,7 @@ import { Location } from '@angular/common';
 export class HeaderComponent implements OnInit, OnDestroy,  AfterViewInit {
 
   @Input() color: string;
+  @Input() without_sidebar_btn: boolean;
 
   private destroy$: Subject<void> = new Subject<void>();
   public readonly materialTheme$: Observable<boolean>;

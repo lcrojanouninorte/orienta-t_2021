@@ -13,11 +13,23 @@ class CreateSurveyedsTable extends Migration
      */
     public function up()
     {
+        if (Schema::hasTable('surveyeds')) { return; }
+
         Schema::create('surveyeds', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('identification');
-            $table->string('first_name');
-            $table->string('last_name');
+            $table->unsignedBigInteger('user_id')->nullable();
+            $table->string('nombre')->nullable();
+            $table->string('apellido')->nullable();
+            $table->string('estrato')->nullable();
+            $table->string('dpto')->nullable();
+            $table->string('municipio')->nullable();
+            $table->string('institucion')->nullable();
+            $table->string('sector')->nullable();
+            $table->string('telefono')->nullable();
+            $table->string('edad')->nullable();
+            $table->string('grado')->nullable();
+            $table->string('direccion')->nullable();
+
             $table->unsignedBigInteger('survey_id')->nullable();
             $table->foreign('survey_id')
             ->references('id')
@@ -28,6 +40,10 @@ class CreateSurveyedsTable extends Migration
             ->references('id')
             ->on('populations')
             ->onDelete('cascade');
+            $table->foreign('user_id')
+                ->references('id')
+                ->on('users')
+                ->onDelete('cascade');
             $table->timestamps();
 
         });

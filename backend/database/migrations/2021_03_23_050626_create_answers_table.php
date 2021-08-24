@@ -13,6 +13,8 @@ class CreateAnswersTable extends Migration
      */
     public function up()
     {
+        if (Schema::hasTable('answers')) { return; }
+
         Schema::create('answers', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->unsignedBigInteger('question_id');

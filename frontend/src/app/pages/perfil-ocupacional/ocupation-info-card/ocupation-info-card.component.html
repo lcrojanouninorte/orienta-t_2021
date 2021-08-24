@@ -1,0 +1,29 @@
+<nb-card class="occupation-info-card">
+    <nb-card-header class="px-5 py-2">
+        <img width="86" src="assets/Orienta-t/Resultados/SVG/{{title}}.svg">
+        <h3 class="mt-4 text-purple-orientate">{{title}}</h3>
+    </nb-card-header>
+    <nb-card-body>
+
+        <div class="  d-flex flex-column justify-content-between ">
+            <div *ngIf="data?.length">
+                <nb-list>
+                    <nb-list-item *ngFor="let d of data">
+                        <p>{{d?.title}}</p>
+                    </nb-list-item>
+                </nb-list>
+
+            </div>
+            <div class="d-flex align-items-center justify-content-center pps_title  p-3">
+                <b>{{data?.title}}</b>
+            </div>
+            <div class="d-flex align-items-center justify-content-center pps_desc p-3">
+                <p class="text-justify">{{data?.desc}}</p>
+            </div>
+
+
+        </div>
+
+    </nb-card-body>
+
+</nb-card>

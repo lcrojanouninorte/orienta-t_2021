@@ -1,9 +1,9 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AreasComponent } from './areas/areas.component';
-import { CarrerasComponent } from './carreras/carreras.component';
-import { PerfilOcupacionalComponent } from './perfil-ocupacional.component';
-import { ProfesionComponent } from './profesion/profesion.component';
+import { OcupacionComponent } from './ocupacion/ocupacion.component';
+import { OcupacionesComponent } from './ocupaciones/ocupaciones.component';
+ import { PerfilOcupacionalComponent } from './perfil-ocupacional.component';
 
 
 const routes: Routes = [
@@ -12,18 +12,20 @@ const routes: Routes = [
     component: PerfilOcupacionalComponent,
     children: [
       {
-        path: 'areas',
+        path: 'areas/:uuid',
         component: AreasComponent,
         pathMatch: 'full'
       },
       {
-        path: 'carreras',
-        component: CarrerasComponent,
+        path: 'ocupaciones/:pps_code/:onet_title',
+        component: OcupacionesComponent,
         pathMatch: 'full'
+
       },
       {
-        path: 'profesion/:cod/:area',
-        component: ProfesionComponent,
+        path: 'ocupacion/:title',
+        component: OcupacionComponent,
+        pathMatch: 'full'
       },
     ]
   },

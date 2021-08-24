@@ -1,13 +1,9 @@
-<div>
-
-    <nb-actions size="medium">
-        <nb-action *ngFor="let option of options">
-            <nb-icon class="click" *ngIf="option.value != value; else active" (click)="setValue(option.value)" pack="orienta-t-icons" [icon]="option.label"></nb-icon>
-            <ng-template #active>
-                <nb-icon class="click" pack="orienta-t-icons" [icon]="option.label+ '-ol'"></nb-icon>
-                <!--<p>Selected value: {{value}}</p>-->
-            </ng-template>
-        </nb-action>
-    </nb-actions>
-
-</div>
+<nb-actions fullWidth size="medium">
+    <nb-action *ngFor="let option of options">
+        <nb-icon class="click" *ngIf="option.value != value; else active" (click)="setValue(option.value)" pack="orienta-t-icons" [icon]="option.label"></nb-icon>
+        <ng-template #active>
+            <nb-icon class="click" pack="orienta-t-icons" [icon]="option.label+ '-ol'"></nb-icon>
+            <!--<p>Selected value: {{value}}</p>-->
+        </ng-template>
+    </nb-action>
+</nb-actions>

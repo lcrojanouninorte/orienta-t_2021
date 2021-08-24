@@ -2,7 +2,6 @@ import { ModuleWithProviders, NgModule, Optional, SkipSelf } from '@angular/core
 import { CommonModule } from '@angular/common';
 import {
   NbAuthModule,
-  NbDummyAuthStrategy,
   NbPasswordAuthStrategy,
   NbOAuth2AuthStrategy,
   NbOAuth2ClientAuthMethod,
@@ -89,7 +88,7 @@ export const NB_CORE_PROVIDERS = [
         defaultMessages: ['Ingresando...'],
         authorize: {
           endpoint: 'authorize',
-          redirectUri: '/encuesta',
+          redirectUri: 'encuesta/instrucciones',
           responseType: NbOAuth2ResponseType.CODE,
           scope: '*',
           params: {
