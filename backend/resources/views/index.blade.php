@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="utf-8">
-    <title>Onu Mujeres - Encuesta</title>
+    <title>Orienta-t</title>
 
     <base href="/">
 
@@ -11,7 +11,7 @@
     <link rel="icon" type="image/png" href="favicon.png">
     <link rel="icon" type="image/x-icon" href="favicon.ico">
     <link rel="stylesheet" href="styles.f63f6e8432cc0aa914fe.css">
-<link rel="stylesheet" href="styles.f63f6e8432cc0aa914fe.css"></head>
+<link rel="stylesheet" href="styles.css"></head>
 
 <body>
     <ngx-app>Cargando...</ngx-app>
@@ -25,7 +25,7 @@
                 transform: rotate(0)
             }
         }
-        
+
         @-moz-keyframes spin {
             0% {
                 -moz-transform: rotate(360deg)
@@ -34,7 +34,7 @@
                 -moz-transform: rotate(0)
             }
         }
-        
+
         @keyframes spin {
             0% {
                 transform: rotate(360deg)
@@ -43,7 +43,7 @@
                 transform: rotate(0)
             }
         }
-        
+
         .spinner {
             position: fixed;
             top: 0;
@@ -51,11 +51,10 @@
             width: 100%;
             height: 100%;
             z-index: 1003;
-            background: rgb(247, 252, 253);
-            background: linear-gradient(322deg, rgb(254, 214, 255) 0%, rgb(255, 247, 253) 37%, rgba(255, 255, 255, 1) 100%);
+            background: #3553ff21;
             overflow: hidden
         }
-        
+
         .spinner div:first-child {
             display: block;
             position: relative;
@@ -65,37 +64,37 @@
             height: 150px;
             margin: -75px 0 0 -75px;
             border-radius: 50%;
-            box-shadow: 0 3px 3px 0 rgb(45, 75, 77);
+            box-shadow: 0 3px 3px 0 rgb(53, 82, 255);
             transform: translate3d(0, 0, 0);
             animation: spin 1s linear infinite
         }
-        
+
         .spinner div:first-child:after,
         .spinner div:first-child:before {
             content: '';
             position: absolute;
             border-radius: 50%
         }
-        
+
         .spinner div:first-child:before {
             top: 5px;
             left: 5px;
             right: 5px;
             bottom: 5px;
-            box-shadow: 0 3px 3px 0 rgb(111, 186, 211);
+            box-shadow: 0 3px 3px 0 rgb(255, 67, 67);
             -webkit-animation: spin 3s linear infinite;
             animation: spin 2s linear infinite
         }
-        
+
         .spinner div:first-child:after {
             top: 15px;
             left: 15px;
             right: 15px;
             bottom: 15px;
-            box-shadow: 0 3px 3px 0 rgb(79, 190, 117);
+            box-shadow: 0 3px 3px 0 rgb(142, 107, 254);
             animation: spin 1.5s linear infinite
         }
-        
+
         .spinner div:first-child img {
             width: 50px;
             position: absolute;
@@ -115,6 +114,6 @@
         <div class="blob blob-5"></div>
     </div>
 
-<script src="runtime.21d1736db6cc291f49fc.js" defer></script><script src="polyfills-es5.4aed76372f4fcfa37be6.js" nomodule defer></script><script src="polyfills.1adea9ade67fbccfafad.js" defer></script><script src="scripts.29721bd96f7a25cdd473.js" defer></script><script src="main.9ef4358ea6e8d0d195ab.js" defer></script></body>
+<script src="runtime-es2015.js" type="module"></script><script src="runtime-es5.js" nomodule defer></script><script src="polyfills-es5.js" nomodule defer></script><script src="polyfills-es2015.js" type="module"></script><script src="scripts.js" defer></script><script src="vendor-es2015.js" type="module"></script><script src="vendor-es5.js" nomodule defer></script><script src="main-es2015.js" type="module"></script><script src="main-es5.js" nomodule defer></script></body>
 
 </html>
