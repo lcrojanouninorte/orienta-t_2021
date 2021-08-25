@@ -282,9 +282,8 @@
         <table cellspacing="0" cellpadding="0" width="600" class="w320">
           <tr>
             <td style="padding: 25px 0 25px">
-              <strong>Onu Mujeres</strong><br />
-              Uninorte <br />
-              Km5 <br /><br />
+              <strong>Orienta-T</strong><br />
+
             </td>
           </tr>
         </table>

@@ -85,25 +85,28 @@ class SurveyController extends Controller
 
         $user = Auth::user();
         //Create Surveyed Profile:
-        if($user->survey){
-            if($user->survey->isFinished){
-                return response()->json(
-                    [
-                        "type"=> 2,
-                        "msg"=>"Usted ya finalizó esta encuesta, Gracias por participar."
-                    ]
-                    ,200);
+        if($user){
 
-            }else{
-                return response()->json(
-                    [
-                        "type"=> 3,
-                        "msg"=> "Encuesta pendiente por terminar",
-                        "survey" => $user->survey
-                    ]
-                    ,200);
+            if($user->survey){
+                if($user->survey->isFinished){
+                    return response()->json(
+                        [
+                            "type"=> 2,
+                            "msg"=>"Usted ya finalizó esta encuesta, Gracias por participar."
+                        ]
+                        ,200);
+
+                }else{
+                    return response()->json(
+                        [
+                            "type"=> 3,
+                            "msg"=> "Encuesta pendiente por terminar",
+                            "survey" => $user->survey
+                        ]
+                        ,200);
+                }
+                return response()->json($user->survey,500);
             }
-            return response()->json($user->survey,500);
         }
 
         //User do not have survey
@@ -119,6 +122,10 @@ class SurveyController extends Controller
             if($survey->save()){
                 $surveyed->survey_id = $survey->id;
                 $surveyed->save();
+
+
+
+
                 return response()->json(
                     [
                         "type"=> 4,
@@ -142,6 +149,69 @@ class SurveyController extends Controller
             throw $e;
             return response()->json($e->getErrors(),500);
         }
+    }
+
+    public function formatAnswers($section){
+
+        foreach ($section->questions as $key => $question) {
+                $answer_arr = array();
+                $answer  = isset($question->answers[0])? $question->answers[0]:array();
+
+                switch ($question->type) {
+                    case 'SC':
+                        foreach ($question->options as $key => $option) {
+                            $values = isset( $answer->value)? json_decode( $answer->value,  true) : array($question->label."_".$option->subcode=>null);
+                            $answer_arr[$question->label."_".$option->subcode] = $values[$question->label."_".$option->subcode] ;
+                        }
+                        break;
+                    case 'M':
+
+                        foreach ($question->options as $key => $option) {
+                            $values = isset( $answer->value)? json_decode( $answer->value, true) : array($option->subcode=>false);
+
+                            $answer_arr[$question->label."_".$option->subcode] = $values[$option->subcode]?true:false;
+                        }
+                      //  if(isset($values["otro"])){
+                            $answer_arr[$question->label."_OTRO"] =  isset($values["otro"])? $values["otro"] : " ";
+                      //  }
+
+                        break;
+                    case 'U':
+
+
+
+                        $values = isset( $answer->value)? json_decode( $answer->value, true) : array(""=>"1");
+
+                        $answer_arr[$question->label] =  array_flip($values)["1"] ;
+                       // if(isset($values["otro"])){
+                            $answer_arr[$question->label."_OTRO"] =  isset($values["otro"])? $values["otro"] : " ";
+                       // }
+                        break;
+                    case 'D':
+
+                      if(  isset( $answer->value)) {
+                        $da = $answer->value ;
+                      }else{
+                        $da =     "";
+                      }
+                             $answer_arr[$question->label] =  $da ;
+
+
+                        break;
+                    case 'INS':
+
+
+                        break;
+                    default:
+                        $answer_arr[$question->label] = isset(  $answer->value)?$answer->value : "";
+                        break;
+                }
+
+                $question->answer = $answer_arr ;
+
+            }
+
+        return $section;
     }
 
     /**
@@ -208,11 +278,11 @@ class SurveyController extends Controller
 
                             $checked = 0;
                             foreach ($question->options as $key => $option) {
-                                if( $request->input($label."_".$option->subcode) !=   null  ){
+                                if( $request->input($label."_".$option->subcode) !=   "null" && $request->input($label."_".$option->subcode) !=   null && $request->input($label."_".$option->subcode) !=   ""  ){
                                     $done++;
                                     $json_value[$label."_".$option->subcode] = $request->input($label."_".$option->subcode);
                                 }else{
-                                    $json_value[$label."_".$option->subcode] = "";
+                                    $json_value[$label."_".$option->subcode] = "null";
                                 }
 
                             }

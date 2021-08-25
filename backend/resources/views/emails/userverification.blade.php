@@ -245,7 +245,7 @@
         <table cellspacing="0" cellpadding="0" width="600" class="w320">
           <tr>
             <td class="header-lg">
-              Bienvenido a la plataforma -  Onu Mujeres!
+                Plataforma de Orientación Ocupacional - Orienta-T
             </td>
           </tr>
           <tr>
@@ -286,7 +286,7 @@
         <table cellspacing="0" cellpadding="0" width="600" class="w320">
           <tr>
             <td style="padding: 25px 0 25px">
-              <strong>Onu Mujeres  </strong><br />
+              <strong>Orienta-T  </strong><br />
                 <br />
                 <br /><br />
             </td>

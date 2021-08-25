@@ -84,9 +84,9 @@ export class HowToComponent implements OnInit {
         next: (event => {
             if ( event.type === HttpEventType.Response) {
               if(event.body.type == 4 || event.body.type  == 3){
-                this._surveyService.showToast('top rigth', 'success', 'Bienvenido a la Encuesta');
+                this._surveyService.showToast('top rigth', 'info', 'Bienvenido a la Encuesta');
                 this.survey = event.body.survey;
-                this._router.navigate(["encuesta/", this.survey.uuid]);
+                this._router.navigate(["encuesta/1", this.survey.uuid]);
 
               }else{
                 //0: no esta en base de datos

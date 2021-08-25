@@ -192,11 +192,11 @@ export class TestComponent implements OnInit {
       this._surveyService.addOrUpdateSurvey(formData).subscribe({
         next: (event) => {
           if (event.type === HttpEventType.Response) {
-            this._surveyService.showToast(
+           /* this._surveyService.showToast(
               "top rigth",
               "info",
               "Información guardada correctamente"
-            );
+            );*/
             this.loading = false;
             this.survey_id = event.body.id;
 
@@ -242,11 +242,11 @@ export class TestComponent implements OnInit {
       this._surveyService.addOrUpdateSurvey(formData).subscribe({
         next: (event) => {
           if (event.type === HttpEventType.Response) {
-            this._surveyService.showToast(
+            /*this._surveyService.showToast(
               "top rigth",
               "info",
               "Pregunta guardada correctamente"
-            );
+            );*/
             this.loading = false;
             this.survey_id = event.body.id;
           }
@@ -290,6 +290,7 @@ export class TestComponent implements OnInit {
     this.uuid = this._Activatedroute.snapshot.paramMap.get("uuid");
     this.section_id = this._Activatedroute.snapshot.paramMap.get("section_id");
     this.getSession(this.uuid, this.section_id);
+
   }
 
   updateProgress(total_questions_answered){

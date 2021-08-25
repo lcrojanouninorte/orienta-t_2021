@@ -128,7 +128,7 @@ class SectionsController extends Controller
                 switch ($question->type) {
                     case 'SC':
                         foreach ($question->options as $key => $option) {
-                            $values = isset( $answer->value)? json_decode( $answer->value,  true) : array($option->subcode=>null);
+                            $values = isset( $answer->value)? json_decode( $answer->value,  true) : array($question->label."_".$option->subcode=>null);
                             $answer_arr[$question->label."_".$option->subcode] = $values[$question->label."_".$option->subcode] ;
                         }
                         break;

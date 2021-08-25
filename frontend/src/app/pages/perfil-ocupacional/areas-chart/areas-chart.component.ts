@@ -22,6 +22,7 @@ export class AreasChartComponent implements  OnDestroy  {
   loading: boolean;
   ppsRanking: PpsRank[];
   intervalUpdate: NodeJS.Timeout;
+  dataG: { labels: string[]; datasets: ({ label: string; backgroundColor: string; borderWidth: number; data: number[]; } | { label: string; backgroundColor: string; data: number[]; borderWidth?: undefined; })[]; };
 
   constructor(private theme: NbThemeService,private _Activatedroute: ActivatedRoute,
     private _surveyService: SurveyService,) {
@@ -44,73 +45,93 @@ export class AreasChartComponent implements  OnDestroy  {
     });
   }
   loadChartData(){
-
+    let i = 0;
     this.ppsRanking.forEach(ppsRank=>{
-      this.labels.push(ppsRank.pps.title);
-      this.data_chart.push(ppsRank.total);
-    })
-    this.buildChart(this.data_chart,this.labels)
-  }
-
-  buildChart(data_chart,labels){
-    this.themeSubscription = this.theme.getJsTheme().subscribe(config => {
-      const colors: any = config.variables;
-      const chartjs: any = config.variables.chartjs;
-      this.chart = new Chart('canvas', {
-        type: 'bar',
-        labels:labels,
-        datasets: [
-          {
-            data: data_chart,
-            borderColor: '#3cba9f',
-            backgroundColor: "#0000FF"}],
-          options :{
-            responsive: true,
-            maintainAspectRatio: false,
-            elements: {
-              rectangle: {
-                borderWidth: 2,
-              },
-            },
-            scales: {
-              xAxes: [
-                {
-                  gridLines: {
-                    display: true,
-                    color: chartjs.axisLineColor,
-                  },
-                  ticks: {
-                    fontColor: chartjs.textColor,
-                  },
-                },
-              ],
-              yAxes: [
-                {
-                  gridLines: {
-                    display: false,
-                    color: chartjs.axisLineColor,
-                  },
-                  ticks: {
-                    fontColor: chartjs.textColor,
-                  },
-                },
-              ],
-            },
-            legend: {
-              position: 'right',
-              labels: {
-                fontColor: chartjs.textColor,
-              },
-            },
-          }
-      });
-
+      this.labels[i] = ppsRank.pps.title;
+      this.data_chart[i] = ppsRank.total;
+      i = i + 1;
     });
+    this.buildChart(this.labels, this.data_chart);
+  }
+
+  buildChart(labels, data_chart){
+   // this.themeSubscription = this.theme.getJsTheme().subscribe(config => {
+   //   const colors: any = config.variables;
+   //   const chartjs: any = config.variables.chartjs;
+
+   this.dataG = {
+    labels: labels,
+
+    datasets: [{
+        label: 'Perfiles Ocupacionales',
+        backgroundColor: "#8E6BFE",
+        borderWidth: 1,
+
+        data: data_chart,
+      },
+    ],
+  };
+    this.options = {
+
+        responsive: true,
+        maintainAspectRatio: false,
+        elements: {
+          rectangle: {
+            borderWidth: 2,
+            borderColor: "#000000",
+          },
+        },
+        scales: {
+          xAxes: [
+            {
+              gridLines: {
+                display: false,
+                color: "#ffffff",
+              },
+              ticks: {
+                fontColor: "#ffffff",
+              },
+            },
+          ],
+          yAxes: [
+            {
+              gridLines: {
+                display: false,
+                color: "#ffffff",
+              },
+              ticks: {
+                fontColor: "#fffff",
+              },
+            },
+          ],
+        },
+        legend: {
+          position: 'top',
+          labels: {
+            fontColor: "#000000",
+            font: {
+              family: "Helvetica Neue",
+              size: 16
+          }
+          },
+        },
+      };
+
+
+
+
+      this.chart.update();
+      //});
 
   }
+  private random() {
+    return Math.round(Math.random() * 100);
+  }
+
   ngOnDestroy(): void {
-    this.themeSubscription.unsubscribe();
-    clearInterval(this.intervalUpdate);  }
+   // this.themeSubscription.unsubscribe();
+  //  clearInterval(this.intervalUpdate);
+}
 
 
 }

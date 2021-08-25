@@ -4,11 +4,11 @@
 
     <base href="/">
 
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=0.5">
     <link rel="icon" type="image/png" href="favicon.png">
     <link rel="icon" type="image/x-icon" href="favicon.ico">
-    <link rel="stylesheet" href="styles.f63f6e8432cc0aa914fe.css">
-<style>@charset "UTF-8";@import url(https://fonts.googleapis.com/css2?family=Poppins:wght@400;*,:after,:before{box-sizing:border-box;}html{font-family:sans-serif;-webkit-tap-highlight-color:rgba(0,0,0,0);}body{font-family:-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Arial,Noto Sans,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol,Noto Color Emoji;font-size:1rem;font-weight:400;line-height:1.5;color:#212529;text-align:left;background-color:#fff;}img{vertical-align:middle;}img{page-break-inside:avoid;}@page {size:a3;}body{min-width:992px!important;}</style><link rel="stylesheet" href="styles.bb6df5836a06209ea1d3.css" media="print" onload="this.media='all'"><noscript><link rel="stylesheet" href="styles.bb6df5836a06209ea1d3.css"></noscript></head>
+
+<style>@charset "UTF-8";@import url(https://fonts.googleapis.com/css2?family=Poppins:wght@400;*,:after,:before{box-sizing:border-box;}html{font-family:sans-serif;-webkit-tap-highlight-color:rgba(0,0,0,0);}body{font-family:-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Arial,Noto Sans,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol,Noto Color Emoji;font-size:1rem;font-weight:400;line-height:1.5;color:#212529;text-align:left;background-color:#fff;}img{vertical-align:middle;}img{page-break-inside:avoid;}@page {size:a3;}</style><link rel="stylesheet" href="styles.bb6df5836a06209ea1d3.css" media="print" onload="this.media='all'"><noscript><link rel="stylesheet" href="styles.bb6df5836a06209ea1d3.css"></noscript></head>
 
 <body>
     <ngx-app>Cargando...</ngx-app>
@@ -102,7 +102,7 @@
     </style>
     <div id="nb-global-spinner" class="spinner">
         <div class="blob blob-0">
-            <img style="" src="./favicon.png" alt="Logo Onu Mujeres">
+            <img src="./favicon.png" alt="Logo Orienta-T">
         </div>
         <div class="blob blob-1"></div>
         <div class="blob blob-2"></div>
@@ -111,7 +111,7 @@
         <div class="blob blob-5"></div>
     </div>
 
-<script src="runtime-es2015.5129149950edaa1729d8.js" type="module"></script><script src="runtime-es5.5129149950edaa1729d8.js" nomodule defer></script><script src="polyfills-es5.96fc9f54468deeb96473.js" nomodule defer></script><script src="polyfills-es2015.64b85dfe269e2fbd9328.js" type="module"></script><script src="scripts.746d35be0c28c821fa1c.js" defer></script><script src="main-es2015.bd3e6909b693e32ac9d1.js" type="module"></script><script src="main-es5.bd3e6909b693e32ac9d1.js" nomodule defer></script>
+<script src="runtime-es2015.bc7d98d17f7165bd2ac6.js" type="module"></script><script src="runtime-es5.bc7d98d17f7165bd2ac6.js" nomodule defer></script><script src="polyfills-es5.96fc9f54468deeb96473.js" nomodule defer></script><script src="polyfills-es2015.64b85dfe269e2fbd9328.js" type="module"></script><script src="scripts.746d35be0c28c821fa1c.js" defer></script><script src="main-es2015.afed3b4545f777551f35.js" type="module"></script><script src="main-es5.afed3b4545f777551f35.js" nomodule defer></script>
 
 
 </body></html>
