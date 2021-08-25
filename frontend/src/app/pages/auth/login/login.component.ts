@@ -31,7 +31,8 @@ constructor( service: NbAuthService,
   this._guestGuard.isAuthenticated()
       .subscribe(authenticated => {
         if (authenticated) {
-          this.location.back();
+          this.router.navigate(['encuesta/instrucciones']);
+
 
           return false;
         } else {
