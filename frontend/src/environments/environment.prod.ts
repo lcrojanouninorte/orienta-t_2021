@@ -6,13 +6,13 @@
 export const environment = {
   production: true,
   baseUrl: {
-    frontend: 'https://onu-mujeres.manajar.co',
-    backend:  'https://onu-mujeres.manajar.co',
-    api: 'https://onu-mujeres.manajar.co/api/',
+    frontend: 'https://orienta-t.manajar.co',
+    backend:  'https://orienta-t.manajar.co',
+    api: 'https://orienta-t.manajar.co/api/',
   },
   oauth2: {
-    token: 'https://onu-mujeres.manajar.co/oauth/token',
-    base: 'https://onu-mujeres.manajar.co/api/oauth/',
+    token: 'https://orienta-t.manajar.co/oauth/token',
+    base: 'https://orienta-t.manajar.co/api/oauth/',
     whitelist: {
       urlContains: 'token/refresh',
     },
