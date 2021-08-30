@@ -4,7 +4,7 @@
 
     <base href="/">
 
-    <meta name="viewport" content="width=device-width, initial-scale=0.5">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="icon" type="image/png" href="favicon.png">
     <link rel="icon" type="image/x-icon" href="favicon.ico">
 
@@ -111,7 +111,7 @@
         <div class="blob blob-5"></div>
     </div>
 
-<script src="runtime-es2015.bc7d98d17f7165bd2ac6.js" type="module"></script><script src="runtime-es5.bc7d98d17f7165bd2ac6.js" nomodule defer></script><script src="polyfills-es5.96fc9f54468deeb96473.js" nomodule defer></script><script src="polyfills-es2015.64b85dfe269e2fbd9328.js" type="module"></script><script src="scripts.746d35be0c28c821fa1c.js" defer></script><script src="main-es2015.afed3b4545f777551f35.js" type="module"></script><script src="main-es5.afed3b4545f777551f35.js" nomodule defer></script>
+<script src="runtime-es2015.67a638216e626bb502fa.js" type="module"></script><script src="runtime-es5.67a638216e626bb502fa.js" nomodule defer></script><script src="polyfills-es5.96fc9f54468deeb96473.js" nomodule defer></script><script src="polyfills-es2015.64b85dfe269e2fbd9328.js" type="module"></script><script src="scripts.746d35be0c28c821fa1c.js" defer></script><script src="main-es2015.afed3b4545f777551f35.js" type="module"></script><script src="main-es5.afed3b4545f777551f35.js" nomodule defer></script>
 
 
 </body></html>

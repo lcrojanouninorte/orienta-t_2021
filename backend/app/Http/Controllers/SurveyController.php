@@ -161,6 +161,7 @@ class SurveyController extends Controller
                     case 'SC':
                         foreach ($question->options as $key => $option) {
                             $values = isset( $answer->value)? json_decode( $answer->value,  true) : array($question->label."_".$option->subcode=>null);
+
                             $answer_arr[$question->label."_".$option->subcode] = $values[$question->label."_".$option->subcode] ;
                         }
                         break;
@@ -280,6 +281,7 @@ class SurveyController extends Controller
                             foreach ($question->options as $key => $option) {
                                 if( $request->input($label."_".$option->subcode) !=   "null" && $request->input($label."_".$option->subcode) !=   null && $request->input($label."_".$option->subcode) !=   ""  ){
                                     $done++;
+
                                     $json_value[$label."_".$option->subcode] = $request->input($label."_".$option->subcode);
                                 }else{
                                     $json_value[$label."_".$option->subcode] = "null";
