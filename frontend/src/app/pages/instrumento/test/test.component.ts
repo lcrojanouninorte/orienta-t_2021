@@ -151,7 +151,7 @@ export class TestComponent implements OnInit {
           }
         });
         this.loading = false;
-        this.updateProgress(this.total_questions_answered);
+        this.updateProgress(this.total_questions_answered, true);
 
         this.scrollToTop();
 
@@ -293,15 +293,17 @@ export class TestComponent implements OnInit {
 
   }
 
-  updateProgress(total_questions_answered){
+  updateProgress(total_questions_answered, $event){
+    if($event){
+      if(this.total_questions > 0){
 
-    if(this.total_questions > 0){
-
-      this.total_questions_answered = total_questions_answered;
-      this.progress = Math.ceil((this.total_questions_answered / this.total_questions)*100);
-    }else{
-      this.progress =  0;
+        this.total_questions_answered = total_questions_answered;
+        this.progress = Math.ceil((this.total_questions_answered / this.total_questions)*100);
+      }else{
+        this.progress =  0;
+      }
     }
+
   }
 
   //HELPERS

@@ -151,7 +151,7 @@
                                         </div>
                                         <div class="pt-2" *ngSwitchCase="'SC'">
 
-                                            <ngx-scale-card [question]="question" [form]="form" (onChange)="onSubmitUpdate(form)" (isDone)="updateProgress(total_questions_answered+1)"></ngx-scale-card>
+                                            <ngx-scale-card [question]="question" [form]="form" (onChange)="onSubmitUpdate(form)" (isDone)="updateProgress(total_questions_answered+1, $event)"></ngx-scale-card>
                                         </div>
                                         <nb-card class="mt-3" *ngSwitchCase="'INS'" accent="primary" status="info">
                                             <nb-card-header>

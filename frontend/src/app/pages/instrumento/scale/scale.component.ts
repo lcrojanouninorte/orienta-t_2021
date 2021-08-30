@@ -13,10 +13,10 @@ export class ScaleComponent implements OnInit {
   @Input() value:string;
 
   options = [
-    { state:false, value: '1', label: 'love' },
-    { state:false, value: '2', label: 'like' },
-    { state:false, value: '3', label: 'not-sure' },
-    { state:false, value: '4', label: 'not-like' },
+    { state:false, value: '4', label: 'love' },
+    { state:false, value: '3', label: 'like' },
+    { state:false, value: '2', label: 'not-sure' },
+    { state:false, value: '1', label: 'not-like' },
   ];
   constructor() { }
 

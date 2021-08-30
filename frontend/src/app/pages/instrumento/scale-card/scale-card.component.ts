@@ -29,16 +29,14 @@ export class ScaleCardComponent implements OnInit {
       this.question.answer[this.question.label+"_"+option.subcode] = $event;
       //Eval if this questions have all options answered.
       this.checkIfQuestionIsdone();
-      if(this.done == 4 ){
-        if(this.question.answers.length>0){
-            this.question.checked = true;
-            this.question.answers[0].checked = true;
-            this.isDone.emit(true);
-        }else{
+      if(this.done == 4  &&  this.question.answers.length == 0){
+
           this.question.checked = true;
           this.question.answers[0] = {"checked" : true, "survey_id":"", "value":"" };
-          this.isDone.emit(true);
-        }
+          this.isDone.emit(true)
+      }else{
+          this.question.checked = true;
+          this.question.answers[0].checked = true;
       }
       this.onChange.emit(true);
     }
