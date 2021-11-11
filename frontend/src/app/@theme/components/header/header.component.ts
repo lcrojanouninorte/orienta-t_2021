@@ -168,7 +168,7 @@ export class HeaderComponent implements OnInit, OnDestroy,  AfterViewInit {
       haveAccess => {
         if (haveAccess) {
           if (!this.userPictureOnly ) {
-           // this.compactSidebar();
+            //this.compactSidebar();
           }
         }
       },
@@ -225,8 +225,8 @@ export class HeaderComponent implements OnInit, OnDestroy,  AfterViewInit {
   }
   compactSidebar(): boolean {
 
-   // this.sidebarService.collapse( 'menu-sidebar');
-   // this.layoutService.changeLayoutSize();
+    this.sidebarService.collapse( 'menu-sidebar');
+    this.layoutService.changeLayoutSize();
 
     return false;
   }

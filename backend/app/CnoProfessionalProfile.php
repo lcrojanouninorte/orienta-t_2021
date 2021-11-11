@@ -7,6 +7,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class CnoProfessionalProfile extends Model
 {
+    protected $fillable = [
+        "id",	"code",	"title",	"desc",	"icon"
+    ];
+
     use HasFactory;
     public function occupations()
     {

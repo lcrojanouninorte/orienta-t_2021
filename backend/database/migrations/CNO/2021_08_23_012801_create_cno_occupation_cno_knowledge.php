@@ -15,11 +15,13 @@ class CreateCnoKnowledgeCnoOccupation extends Migration
     {
         Schema::create('cno_occupation_cno_knowledge', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->unsignedBigInteger('cno_occupation_id');
+            $table->string('group');
+
+            $table->string('occupation_code');
             $table->unsignedBigInteger('cno_knowledge_id');
 
 
-            $table->foreign('cno_occupation_id')
+            $table->foreign('occupation_code')
                 ->references('id')
                 ->on('cno_occupations')
                 ->onDelete('cascade');

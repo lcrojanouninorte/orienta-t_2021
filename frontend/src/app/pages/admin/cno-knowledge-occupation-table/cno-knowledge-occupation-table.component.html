@@ -1,0 +1,50 @@
+<div class="row">
+    <div class="col">
+        <nb-card class=" shadow-sm" size="medium">
+            <nb-card-header>
+                Formulario de actualización Base de datos
+            </nb-card-header>
+            <nb-card-body>
+                <div>
+                    <h3 class="label">1. seleccione un archivo que contenga los datos a actualizar.</h3>
+                    <h3 class="label">Descargar Tabla Actual: </h3>
+                    <ngx-dropzone [multiple]="false" accept=".csv, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel" (change)="onSelect($event)">
+                        <ngx-dropzone-label>
+                            <nb-icon icon='cloud-upload'></nb-icon> Agrega una archivo</ngx-dropzone-label>
+                        <ngx-dropzone-preview *ngFor="let f of files" [removable]="true" (removed)="onRemove(f)">
+                            <ngx-dropzone-label>{{ f.name }} </ngx-dropzone-label>
+                        </ngx-dropzone-preview>
+
+                    </ngx-dropzone>
+                </div>
+            </nb-card-body>
+            <nb-card-footer>
+                <button (click)="onSubmit()" nbButton status="primary">Actualizar</button>
+            </nb-card-footer>
+        </nb-card>
+    </div>
+    <div class="col">
+        <nb-card class=" shadow-sm" size="medium">
+            <nb-card-header>
+                Registro de actualizaciones Base de datos
+            </nb-card-header>
+            <nb-card-body>
+                <div>
+                    Ultima actualziación: Usuario
+                </div>
+
+            </nb-card-body>
+        </nb-card>
+    </div>
+
+</div>
+<div class="row">
+    <div class="col-sm-12 col-md-3" *ngFor="let table of tables">
+        <nb-card class=" shadow-sm" (click)="open(table.model_name)">
+            <nb-card-body>
+                <span> <nb-icon icon="file-text-outline"></nb-icon> {{table.name}} </span>
+            </nb-card-body>
+        </nb-card>
+    </div>
+
+</div>

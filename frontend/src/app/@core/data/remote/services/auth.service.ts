@@ -55,35 +55,35 @@ export class AuthService implements OnDestroy {
              return this.updateUser(res);
            }),
        ); */
-}
-
-getCurrentUser(): Observable < User > {
-    // return this.user$;
-    return this._userDetailsSource.asObservable();
-}
-updateUser(): Observable < User > {
-    return this._http.get('auth/user').pipe(
-        map(userObject => {
-            const user = userObject ? new User().deserialize(userObject) : null;
-            // update _user behaviour subject
-            this._userDetailsData = new User().deserialize(user);
-            this._userDetailsSource.next(this._userDetailsData);
-            // this._userDetailsSource.next(user);
-            return user;
-        }),
-    );
-}
-logout() {
-    this._authService.logout('NbPasswordAuthStrategy').pipe();
-    
-      this._userDetailsSource.next(null);
-    return  this._authService.logout('NbOAuth2AuthStrategy');
-}
-
-ngOnDestroy() {
-    if (this._tokenChangeSubscription) {
-        this._tokenChangeSubscription.unsubscribe();
-        this.alive = false;
     }
-}
+
+    getCurrentUser(): Observable < User > {
+        // return this.user$;
+        return this._userDetailsSource.asObservable();
+    }
+    updateUser(): Observable < User > {
+        return this._http.get('auth/user').pipe(
+            map(userObject => {
+                const user = userObject ? new User().deserialize(userObject) : null;
+                // update _user behaviour subject
+                this._userDetailsData = new User().deserialize(user);
+                this._userDetailsSource.next(this._userDetailsData);
+                // this._userDetailsSource.next(user);
+                return user;
+            }),
+        );
+    }
+    logout() {
+        this._authService.logout('NbPasswordAuthStrategy').pipe();
+
+          this._userDetailsSource.next(null);
+        return  this._authService.logout('NbOAuth2AuthStrategy');
+    }
+
+    ngOnDestroy() {
+        if (this._tokenChangeSubscription) {
+            this._tokenChangeSubscription.unsubscribe();
+            this.alive = false;
+        }
+    }
   }

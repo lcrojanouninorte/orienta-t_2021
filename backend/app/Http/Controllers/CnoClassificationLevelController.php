@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\ClassificationLevel;
+use App\CnoClassificationLevel;
 use Illuminate\Http\Request;
 
 class CnoClassificationLevelController extends Controller
@@ -15,6 +15,9 @@ class CnoClassificationLevelController extends Controller
     public function index()
     {
         //
+         $ClassificationLevel = CnoClassificationLevel::get();
+         return response()->success( $ClassificationLevel);
+
     }
 
     /**

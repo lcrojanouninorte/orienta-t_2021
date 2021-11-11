@@ -1,7 +1,12 @@
 <nb-card class="level-card col-sm-12 col-md-8 offset-md-2 ">
 
     <nb-card-body>
-        <h3 class="h5 text-purple-orientate"> {{level.desc}}</h3>
+        <p class="text-purple-orientate h5 "> {{level.title}}</p>
+        <p class="text-purple-orientate "> {{(readMore) ? level.desc : level.desc | slice:0:150}} <span *ngIf="!readMore">...</span>
+            <a href="javascript:;" *ngIf="!readMore" (click)="readMore=true">[Leer Más]</a>
+
+            <a href="javascript:;" *ngIf="readMore" (click)="readMore=false">[Leer Menos]</a>
+        </p>
 
         <nb-list>
             <nb-list-item routerLink="/perfil/ocupacion/{{occupation.title}}" class="d-flex justify-content-between" *ngFor="let occupation of level.occupations; let i = index">

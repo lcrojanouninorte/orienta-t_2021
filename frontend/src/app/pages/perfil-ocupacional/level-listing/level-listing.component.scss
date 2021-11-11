@@ -1,6 +1,10 @@
 @import '../../../@theme/styles/themes';
 @import '~@nebular/theme/styles/global/breakpoints';
 @include nb-install-component() {
+    .limitTextHeight {
+        height: 20px;
+        overflow: hidden;
+    }
     .num {
         border-radius: 50%;
         font-weight: bold;

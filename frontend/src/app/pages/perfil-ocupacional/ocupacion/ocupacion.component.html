@@ -22,7 +22,14 @@
                     <ngx-ocupation-info-card title="Oferta Académica" [data]="occupation?.onet?.outputs"></ngx-ocupation-info-card>
 
                 </ng-template>
+                <ng-template *ngIf="occupation?.qualifications.length>0" swiperSlide>
+                    <ngx-ocupation-info-card title="Cualificación" [data]="occupation?.qualifications"></ngx-ocupation-info-card>
 
+                </ng-template>
+                <ng-template *ngIf="occupation?.related.length>0" swiperSlide>
+                    <ngx-ocupation-info-card title="Afines" [data]="occupation?.related"></ngx-ocupation-info-card>
+
+                </ng-template>
 
             </swiper>
 

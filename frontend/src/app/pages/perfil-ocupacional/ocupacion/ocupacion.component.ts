@@ -27,7 +27,7 @@ export class OcupacionComponent implements OnInit {
     breakpoints:{
        640:{
             slidesPerView: 3,
-            slidesPerColumn: 2,
+            slidesPerColumn: 3,
 
            }
     }
@@ -45,11 +45,7 @@ export class OcupacionComponent implements OnInit {
 
   ) {
 
-    this.title = this._Activatedroute.snapshot.paramMap.get("title");
-     if(this.title == null){
-      //Mostar error
-    }
-    this.getOccupationByTitle(this.title);
+
    }
 
     getOccupationByTitle(title: string) {
@@ -70,6 +66,17 @@ export class OcupacionComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this._Activatedroute.params.subscribe(
+      params => {
+        this.title = this._Activatedroute.snapshot.paramMap.get("title");
+        if(this.title == null){
+         //Mostar error
+        }
+          this.getOccupationByTitle(this.title);
+      }
+  );
+
+
   }
     /**
    *

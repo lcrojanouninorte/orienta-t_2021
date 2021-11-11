@@ -34,13 +34,13 @@
                                         <h6 class="text-info"><b>{{question.pre_title}}</b></h6>
 
                                     </div>
-                                    <!-- <div class="question-text row">
+                                    <div class="question-text row">
 
-                                          <span class="text-danger" *ngIf="question.required">*</span>
-                                          <div *ngIf="question.type !== 'INS'">
-                                              <b><span> {{ question.label }} </span> {{ question.text }}</b>
-                                          </div>
-                                      </div>-->
+                                        <span class="text-danger" *ngIf="question.required">*</span>
+                                        <div *ngIf="question.type !== 'INS' && question.type !== 'SC'">
+                                            <b><span> {{ question.label }} </span> {{ question.text }}</b>
+                                        </div>
+                                    </div>
                                     <div>
                                         <span *ngIf="question.type!=='INS'" class="caption"> {{ question.desc }} </span>
                                     </div>

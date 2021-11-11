@@ -18,7 +18,7 @@ class CreateOccupationsTable extends Migration
             $table->unsignedBigInteger('cno_performance_area_id')->nullable();
             $table->unsignedBigInteger('cno_classification_level_id')->nullable();
             $table->unsignedBigInteger('cno_occupational_field_id')->nullable();
-            $table->string('code');
+            $table->string('occupation_code');
             $table->string('title');
             $table->longText('desc');
             $table->string('icon');

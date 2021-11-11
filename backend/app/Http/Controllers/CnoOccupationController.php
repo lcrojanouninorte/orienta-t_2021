@@ -12,6 +12,9 @@ use App\CnoProfessionalProfile;
 use App\CnoClassificationLevel;
 use Illuminate\Http\Request;
 
+
+use  App\Imports\CnoKnowledgeImport;
+
 class CnoOccupationController extends Controller
 {
     /**
@@ -22,6 +25,48 @@ class CnoOccupationController extends Controller
     public function index()
     {
         //
+        $occupations = CnoOccupation::with("knowledges")->get();
+        return response()->success( $occupations);
+    }
+
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function knowledges()
+    {
+        //
+
+        $occupations = CnoOccupation::with("knowledges")->get() ;
+        $occupation_knowledges = array();
+        foreach ($occupations as $key => $occupation) {
+            foreach ( $occupation->knowledges as $key => $knowledge) {
+                $occupation_knowledges[] = array("Ocupación"=> $occupation->title,
+                                                  "Conocimiento" => $knowledge->title);
+            }
+        }
+        return response()->success(  $occupation_knowledges);
+    }
+
+
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function skills()
+    {
+        //
+        $occupations = CnoOccupation::with("skills")->get() ;
+        $occupation_skills = array();
+        foreach ($occupations as $key => $occupation) {
+            foreach ( $occupation->skills as $key => $skill) {
+                $occupation_skills[] = array("Ocupación"=> $occupation->title,
+                                                  "Habilidad" => $skill->title);
+            }
+        }
+        return response()->success(  $occupation_skills);
     }
 
     /**
@@ -61,6 +106,10 @@ class CnoOccupationController extends Controller
         $occupation = CnoOccupation::where("title", $occupation_title)
             ->with("skills")
             ->with("knowledges")
+            ->with("qualifications")
+            ->with("related")
+
+            ->with("knowledges")
             ->with(
                 array("onet.outputs"=> function($query) use ($occupation) {
                   $query->where('cno_classification_level_id',   $occupation->cno_classification_level_id);
@@ -85,6 +134,8 @@ class CnoOccupationController extends Controller
         //Get Onet Id
         $onet = CnoOnet::where("title", $onet_title)->first();
         //Get Pps Id
+
+        //getGroup
 
         $pps = CnoProfessionalProfile::where("code", $pps_code)->first();
 
@@ -132,4 +183,9 @@ class CnoOccupationController extends Controller
     {
         //
     }
+
+
+
+
+
 }

@@ -1,21 +1,34 @@
 <div class="row">
-
-    <div class="card-col col-sm-12 col-md-6">
-        <nb-card accent="info" class="row-card" size="tiny">
+    <div class="card-col col-sm-12 col-md-4">
+        <nb-card accent="info" class="row-card" size="large">
+            <div class="icon-container">
+                <nb-icon class="icon status-danger" icon="cube-outline"></nb-icon>
+            </div>
+            <div class="details">
+                <div class="title h5">{{countObj(roles['General'])}}</div>
+                <div class="status paragraph-2">General/Estudiante</div>
+            </div>
+            <nb-actions *ngIf="_accessChecker.isGranted('Register Admin', 'all') | async" class="actions" size="small">
+                <nb-action (click)="openUserDialog()" nbTooltip="Añadir Usuario" nbTooltipStatus="primary" icon="plus-outline"></nb-action>
+            </nb-actions>
+        </nb-card>
+    </div>
+    <div class="card-col col-sm-12 col-md-4">
+        <nb-card accent="info" class="row-card">
             <div class="icon-container">
                 <nb-icon class="icon status-info" icon="smiling-face-outline"></nb-icon>
             </div>
             <div class="details">
                 <div class="title h5">{{countObj(roles['Staff'])}}</div>
-                <div class="status paragraph-2">Estudiantes </div>
+                <div class="status paragraph-2">Staff </div>
             </div>
             <nb-actions *ngIf="_accessChecker.isGranted('Register Staff', 'all') | async" class="actions" size="small">
                 <nb-action (click)="openUserDialog()" nbTooltip="Añadir Usuario" nbTooltipStatus="primary" icon="plus-outline"></nb-action>
             </nb-actions>
         </nb-card>
     </div>
-    <div class="card-col col-sm-12 col-md-6">
-        <nb-card accent="info" class="row-card" size="tiny">
+    <div class="card-col col-sm-12 col-md-4">
+        <nb-card accent="info" class="row-card">
             <div class="icon-container">
                 <nb-icon class="icon status-danger" icon="cube-outline"></nb-icon>
             </div>
@@ -29,13 +42,33 @@
         </nb-card>
     </div>
 
+
 </div>
 
 <div class="card-row row">
+    <div class="card-col col-sm-12 col-md-4">
+        <nb-card accent="info" size="large">
+            <nb-card-header>General/Estudiante</nb-card-header>
+            <nb-list>
+                <nb-list-item matRipple class="contact" *ngFor="let user of roles['General']">
+                    <nb-user [picture]="user?.profile?.avatar" [name]="user?.email" [title]="user?.general?.first_name" size="medium"></nb-user>
+                    <div *ngIf="_accessChecker.isGranted('Register Admin', 'all') | async" class="icon-container  d-flex justify-content-end align-items-stretch flex-fill">
+                        <a size="small" ghost nbButton [routerLink]="[user.id]">
+                            <nb-icon status="info" class="icon" icon="edit" pack="eva"></nb-icon>
+                        </a>
+                        <!-- <a size="small" ghost nbButton (click)="deleteUser(user.id)">
+                          <nb-icon status="danger" class="icon" icon="trash" pack="eva"></nb-icon>
+                      </a>-->
+                    </div>
+                </nb-list-item>
+            </nb-list>
 
-    <div class="card-col col-sm-12 col-md-6">
-        <nb-card accent="info" size="small">
-            <nb-card-header>Encuestadores</nb-card-header>
+        </nb-card>
+    </div>
+
+    <div class="card-col col-sm-12 col-md-4">
+        <nb-card accent="info" size="large">
+            <nb-card-header>Staff</nb-card-header>
             <nb-list>
                 <nb-list-item matRipple class="contact" *ngFor="let user of roles['Staff']">
                     <nb-user [picture]="user?.profile?.avatar" [name]="user?.email" [title]="user?.general?.first_name" size="medium"></nb-user>
@@ -51,8 +84,8 @@
             </nb-list>
         </nb-card>
     </div>
-    <div class="card-col col-sm-12 col-md-6">
-        <nb-card accent="info" size="small">
+    <div class="card-col col-sm-12 col-md-4">
+        <nb-card accent="info" size="large">
             <nb-card-header>Administradores</nb-card-header>
             <nb-list>
                 <nb-list-item matRipple class="contact" *ngFor="let user of roles['Admin']">

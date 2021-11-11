@@ -8,7 +8,11 @@ use Illuminate\Database\Eloquent\Model;
 class CnoOccupation extends Model
 {
     use HasFactory;
-
+    protected $fillable = [
+        'group', 'occupation_code','id',
+        'cno_classification_level_id', 'cno_occupational_field_id', 'occupation_code',
+        'title', 'desc', 'icon', 'cno_onet_id', 'cno_professional_profile_id'
+     ];
     /**
      * Get the user that owns the CnoOccupation
      *
@@ -22,11 +26,15 @@ class CnoOccupation extends Model
     */
     public function skills()
     {
-        return $this->belongsToMany(CnoSkill::class);
+        return $this->belongsToMany(CnoSkill::class,'cno_occupation_cno_skill', 'occupation_code','cno_skill_id',"occupation_code" )->withPivot( 'group');
     }
+    protected $primaryKey = 'id';
+
     public function knowledges()
     {
-        return $this->belongsToMany(CnoKnowledge::class);
+
+
+        return $this->belongsToMany(CnoKnowledge::class,'cno_knowledge_cno_occupation','occupation_code' , 'cno_knowledge_id','occupation_code' )->withPivot( 'group'); ;
     }
 
 
@@ -59,6 +67,25 @@ class CnoOccupation extends Model
     }
 
 
+    /**
+     * Get the user associated with the CnoOccupation
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     */
+    public function qualifications()
+    {
+        return $this->belongsToMany(CnoQualification::class,'cno_occupation_cno_qualification','occupation_code' , 'cno_qualification_id','occupation_code' )->withPivot( 'group');
+    }
+
+    /**
+     * Get the user associated with the CnoOccupation
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     */
+    public function related()
+    {
+        return $this->belongsToMany(CnoRelated::class,'cno_occupation_cno_related','occupation_code' , 'cno_related_id','occupation_code' )->withPivot( 'group');
+    }
 
 
 }

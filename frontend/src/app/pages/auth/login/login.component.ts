@@ -31,8 +31,11 @@ constructor( service: NbAuthService,
   this._guestGuard.isAuthenticated()
       .subscribe(authenticated => {
         if (authenticated) {
-          this.router.navigate(['encuesta/instrucciones']);
+          if(this.router.url !== 'encuesta/instrucciones' ){
+            this.router.navigate(['encuesta/instrucciones']);
+            //Todo redirect by role
 
+          }
 
           return false;
         } else {

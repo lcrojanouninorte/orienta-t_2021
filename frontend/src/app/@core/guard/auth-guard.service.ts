@@ -12,6 +12,7 @@ import { tap } from 'rxjs/operators';
       private _authService: NbAuthService,
       ) {}
 
+      //TODO: check user role
     canActivate() {
       return this._authService.isAuthenticatedOrRefresh()
         .pipe(

@@ -9,8 +9,8 @@
     line-height: 1.45;
     font-feature-settings: "ss02";
     nb-menu .menu-title {
-        font-size: 1.2em !important;
-        text-align: left !important;
+        //  font-size: 1.1em !important;
+        // text-align: left !important;
     }
     /* modal animation */
     nb-dialog-container {
@@ -41,5 +41,51 @@
             height: 50px;
             font-weight: 700;
         }
+    }
+    #wdr-toolbar-wrapper #wdr-toolbar,
+    #wdr-toolbar-wrapper #wdr-toolbar a,
+    #wdr-toolbar-wrapper #wdr-toolbar div,
+    #wdr-toolbar-wrapper #wdr-toolbar input,
+    #wdr-toolbar-wrapper #wdr-toolbar li,
+    #wdr-toolbar-wrapper #wdr-toolbar p,
+    #wdr-toolbar-wrapper #wdr-toolbar select,
+    #wdr-toolbar-wrapper #wdr-toolbar span,
+    #wdr-toolbar-wrapper #wdr-toolbar table,
+    #wdr-toolbar-wrapper #wdr-toolbar table td,
+    #wdr-toolbar-wrapper #wdr-toolbar table th,
+    #wdr-toolbar-wrapper #wdr-toolbar table tr,
+    #wdr-toolbar-wrapper #wdr-toolbar textarea,
+    #wdr-toolbar-wrapper #wdr-toolbar ul {
+        font-family: inherit;
+    }
+    #wdr-pivot-view .wdr-ui,
+    #wdr-pivot-view .wdr-ui a,
+    #wdr-pivot-view .wdr-ui div,
+    #wdr-pivot-view .wdr-ui input,
+    #wdr-pivot-view .wdr-ui li,
+    #wdr-pivot-view .wdr-ui p,
+    #wdr-pivot-view .wdr-ui select,
+    #wdr-pivot-view .wdr-ui span,
+    #wdr-pivot-view .wdr-ui table,
+    #wdr-pivot-view .wdr-ui table td,
+    #wdr-pivot-view .wdr-ui table th,
+    #wdr-pivot-view .wdr-ui table tr,
+    #wdr-pivot-view .wdr-ui textarea,
+    #wdr-pivot-view .wdr-ui ul,
+    #wdr-toolbar-wrapper .wdr-toolbar-ui,
+    #wdr-toolbar-wrapper .wdr-toolbar-ui a,
+    #wdr-toolbar-wrapper .wdr-toolbar-ui div,
+    #wdr-toolbar-wrapper .wdr-toolbar-ui input,
+    #wdr-toolbar-wrapper .wdr-toolbar-ui li,
+    #wdr-toolbar-wrapper .wdr-toolbar-ui p,
+    #wdr-toolbar-wrapper .wdr-toolbar-ui select,
+    #wdr-toolbar-wrapper .wdr-toolbar-ui span,
+    #wdr-toolbar-wrapper .wdr-toolbar-ui table,
+    #wdr-toolbar-wrapper .wdr-toolbar-ui table td,
+    #wdr-toolbar-wrapper .wdr-toolbar-ui table th,
+    #wdr-toolbar-wrapper .wdr-toolbar-ui table tr,
+    #wdr-toolbar-wrapper .wdr-toolbar-ui textarea,
+    #wdr-toolbar-wrapper .wdr-toolbar-ui ul {
+        font-family: inherit;
     }
 }

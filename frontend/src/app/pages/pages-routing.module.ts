@@ -2,6 +2,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { NgModule } from '@angular/core';
 
 import { PagesComponent } from './pages.component';
+import { AuthGuardService } from '@core/guard/auth-guard.service';
 
 const routes: Routes = [{
   path: '',
@@ -9,23 +10,25 @@ const routes: Routes = [{
   children: [
 
     {
-      path: 'dashboard',
-      loadChildren: () => import('./dashboard/dashboard.module')
-      .then(m => m.DashboardModule),data: { preload: false, delay: 1000 }
-    },
-    {
       path: 'roles',
       loadChildren: () => import('./roles/roles.module')
-        .then(m => m.RolesModule),data: { preload: false, delay: 16000 }
+        .then(m => m.RolesModule),data: { preload: false, delay: 16000 },
+        canActivate: [AuthGuardService]
     },
     {
       path: 'users',
       loadChildren: () => import('./users/users.module')
-        .then(m => m.UsersModule), data: { preload: false, delay: 16000 }
+        .then(m => m.UsersModule), data: { preload: false, delay: 16000 },
+        canActivate: [AuthGuardService]
+    },
+    {
+      path: 'not-found',
+      loadChildren: () => import('./misc/not-found/not-found.component')
+
     },
     {
       path: '',
-      redirectTo: 'dashboard',
+      redirectTo: 'not-found',
       pathMatch: 'full',
     },
   ],

@@ -1,4 +1,4 @@
-<nb-layout windowMode>
+<!--<nb-layout windowMode>
     <nb-layout-header fixed>
         <div class="container">
             <ngx-header color="purple" without_sidebar_btn="true"></ngx-header>
@@ -12,12 +12,12 @@
 
     </nb-sidebar>
 -->
-    <nb-layout-column>
-        <router-outlet></router-outlet>
 
-    </nb-layout-column>
-    <!--
+<!--
 <nb-layout-footer fixed>
 <ngx-footer></ngx-footer>
-</nb-layout-footer>-->
-</nb-layout>
+</nb-layout-footer>
+</nb-layout>-->
+<ngx-one-column-layout [color]="'purple'">
+    <router-outlet></router-outlet>
+</ngx-one-column-layout>

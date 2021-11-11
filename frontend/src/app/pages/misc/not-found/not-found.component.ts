@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { NbMenuService } from '@nebular/theme';
 
 @Component({
@@ -8,13 +9,13 @@ import { NbMenuService } from '@nebular/theme';
 })
 export class NotFoundComponent implements OnInit {
 
-  constructor(private menuService: NbMenuService) {
+  constructor(private router: Router) {
   }
   ngOnInit(): void {
-    throw new Error("Method not implemented.");
+
   }
 
   goToHome() {
-    this.menuService.navigateHome();
-  }
+    this.router.navigate(["/"])
+   }
 }

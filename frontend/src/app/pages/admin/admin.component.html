@@ -1,0 +1,31 @@
+<!--<nb-layout windowMode>
+    <nb-layout-header fixed class="shadow-sm">
+        <div class="container">
+            <ngx-header [without_sidebar_btn]="false" color="blue"></ngx-header>
+        </div>
+    </nb-layout-header>
+    <nb-layout-header subheader>
+        <nb-actions>
+            <nb-action icon="home-outline"></nb-action>
+            <nb-action icon="search-outline"></nb-action>
+            <nb-action icon="edit-outline"></nb-action>
+        </nb-actions>
+    </nb-layout-header>
+
+    <nb-sidebar *ngIf="true" state="collapsed" class="menu-sidebar" tag="menu-sidebar" responsive start>
+        <nb-menu [items]="menu"></nb-menu>
+    </nb-sidebar>
+
+    <nb-layout-column>
+        <router-outlet></router-outlet>
+    </nb-layout-column>
+
+<nb-layout-footer fixed>
+<ngx-footer></ngx-footer>
+</nb-layout-footer>
+</nb-layout>
+-->
+
+<ngx-one-column-layout [color]="'red'">
+    <router-outlet></router-outlet>
+</ngx-one-column-layout>

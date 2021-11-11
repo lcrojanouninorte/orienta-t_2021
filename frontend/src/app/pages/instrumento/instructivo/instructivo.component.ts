@@ -6,6 +6,7 @@ import { MENU_ITEMS } from '@modules/pages-menu';
 import { AnimationItem } from 'lottie-web';
 import { AnimationOptions } from 'ngx-lottie';
 import { Location } from '@angular/common';
+import { NbAccessChecker } from '@nebular/security';
 
 @Component({
   selector: 'ngx-instructivo',
@@ -17,6 +18,7 @@ export class InstructivoComponent implements OnInit {
   constructor(    public _lottieSrv: LottieService,
     private _authService: AuthService,
     private location: Location,
+    public _accessChecker: NbAccessChecker,
 
     ) {
       this._authService.getCurrentUser()

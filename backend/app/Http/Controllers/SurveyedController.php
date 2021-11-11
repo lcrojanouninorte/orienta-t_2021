@@ -15,6 +15,25 @@ class SurveyedController extends Controller
     public function index()
     {
         //
+          //
+          $surveyed = Surveyed::get();
+          return response()->success( $surveyed);
+
+    }
+
+
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function surveyedWithFirstArea()
+    {
+        //
+          //
+          $surveyed = Surveyed::get();
+          return response()->success( $surveyed);
+
     }
 
     /**

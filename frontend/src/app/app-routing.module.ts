@@ -13,28 +13,34 @@ export const routes: Routes = [
     //  canActivate: [AuthGuardService] ,
   },
   {
+    path: 'admin',
+    loadChildren: () => import('./pages/admin/admin.module')
+      .then(m => m.AdminModule), data: { preload: true, delay: 4000 },
+      canActivate: [AuthGuardService] ,
+  },
+  {
     path: 'perfil',
     loadChildren: () => import('./pages/perfil-ocupacional/perfil-ocupacional.module')
       .then(m => m.PerfilOcupacionalModule), data: { preload: true, delay: 2000 },
-     // canActivate: [AuthGuardService] ,
+
   },
   {
     path: 'encuesta',
     loadChildren: () => import('./pages/instrumento/instrumento.module')
       .then(m => m.InstrumentoModule), data: { preload: true, delay: 3000 },
-     // canActivate: [AuthGuardService] ,
+      canActivate: [AuthGuardService] ,
   },
   {
     path: 'pages',
     loadChildren: () => import('./pages/pages.module')
       .then(m => m.PagesModule), data: { preload: true, delay: 5000 },
-     // canActivate: [AuthGuardService] ,
+       canActivate: [AuthGuardService] ,
   },
   {
     path: 'encuesta2',
     loadChildren: () => import('./pages/onu-mujeres/onu-mujeres.module')
-      .then(m => m.OnuMujeresModule), data: { preload: true, delay: 6000 },
-     // canActivate: [AuthGuardService] ,
+      .then(m => m.OnuMujeresModule), data: { preload: true, delay: 12000 },
+       canActivate: [AuthGuardService] ,
   },
   {
     path: 'config',
@@ -46,6 +52,12 @@ export const routes: Routes = [
     path: 'auth',
     loadChildren: () => import('./pages/auth/auth.module')
       .then(m => m.AuthModule), data: { preload: true, delay: 1000 },
+    //  canActivate: [GuestGuardService] ,
+  },
+  {
+    path: 'error',
+    loadChildren: () => import('./pages/misc/misc.module')
+      .then(m => m.MiscModule), data: { preload: true, delay: 1000 },
     //  canActivate: [GuestGuardService] ,
   },
   { path: '**', redirectTo: 'error' }

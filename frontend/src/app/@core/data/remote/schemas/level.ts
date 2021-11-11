@@ -5,6 +5,7 @@ export class Level implements Deserializable {
   id?: number;
   code?: string;
   desc?: string;
+  title?: string;
   icon?: string;
   occupations: Occupation;
 

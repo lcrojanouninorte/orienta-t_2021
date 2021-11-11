@@ -14,17 +14,9 @@ import { Location } from '@angular/common';
   styleUrls: ['./instrumento.component.scss']
 })
 export class InstrumentoComponent implements OnInit {
-  menu = MENU_ITEMS;
 
-  constructor( location: Location,
-    public _lottieSrv: LottieService,
-    private ngZone: NgZone,
 
-    public  router: Router,
-    private accessChecker: NbAccessChecker,
-    private menuService: MenuService,
-    private route: ActivatedRoute,
-    private ls: LayoutService) {
+  constructor(  ) {
 
 
     }

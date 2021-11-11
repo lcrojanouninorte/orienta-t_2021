@@ -16,4 +16,15 @@
             padding: 0;
         }
     }
+    nb-list-item {
+        border: 0;
+        padding: 10px;
+        margin: 0;
+        p {
+            margin: 0;
+        }
+    }
+    .link {
+        text-decoration: none;
+    }
 }

@@ -15,12 +15,14 @@ class CreateCnoOccupationCnoSkillTable extends Migration
     {
         Schema::create('cno_occupation_cno_skill', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->unsignedBigInteger('cno_occupation_id');
+            $table->string('group');
+
+            $table->string('occupation_code');
             $table->unsignedBigInteger('cno_skill_id');
 
 
-            $table->foreign('cno_occupation_id')
-                ->references('id')
+            $table->foreign('occupation_code')
+                ->references('occupation_code')
                 ->on('cno_occupations')
                 ->onDelete('cascade');
             $table->foreign('cno_skill_id')

@@ -10,7 +10,7 @@ import { Occupation } from '@core/data/remote/schemas/occupation';
 export class LevelListingComponent implements OnInit {
 
   @Input() level: Level;
-
+  readMore = false;
   constructor() { }
 
   ngOnInit(): void {

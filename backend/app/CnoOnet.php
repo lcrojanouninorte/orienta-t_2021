@@ -8,11 +8,14 @@ use Illuminate\Database\Eloquent\Model;
 class CnoOnet extends Model
 {
     use HasFactory;
-
+    protected $fillable = [
+        'id', 'title','desc'
+    ];
     public function outputs()
     {
         return $this->belongsToMany(CnoOutput::class)
         ->withPivot('cno_classification_level_id', 'cno_onet_id');
+
 
     }
 

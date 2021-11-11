@@ -29,6 +29,7 @@
                     </p>
                 </div>
             </div>
+
             <div class="row cta mt-5 ">
                 <div class="col-sm-12 col-md-6 mb-3 text-left">
                     <button fullWidth (click)="back()" nbButton shape="round" status="primary">
@@ -42,7 +43,17 @@
 
             </div>
 
+            <div class="row ">
 
+                <div class="col-sm-12   mb-3">
+                    <a *ngIf="this.user?.survey_uuid" fullWidth href=" /#/perfil/areas/{{user?.survey_uuid}}" nbButton shape="round" outline status="primary">
+      ver resultados <nb-icon icon="arrow-forward-outline"></nb-icon> </a>
+                </div>
+                <div *ngIf="_accessChecker.isGranted('Register General User', 'all') | async" class="col-sm-12   mb-3">
+                    <button fullWidth routerLink="/admin/encuestados" nbButton shape="round" outline status="primary">
+          ADMINISTRACIÓN <nb-icon icon="arrow-forward-outline"></nb-icon> </button>
+                </div>
+            </div>
 
         </div>
 

@@ -15,6 +15,32 @@ class CnoOnetController extends Controller
     public function index()
     {
         //
+          //
+          $onets = CnoOnet::get();
+          return response()->success( $onets);
+
+    }
+
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function outputs()
+    {
+        //
+        $onets = CnoOnet::with("outputs")->get() ;
+
+        $outputs_onets = array();
+        foreach ($onets as $key => $onet) {
+            foreach ( $onet->outputs as $key => $output) {
+                $outputs_onets[] = array(
+                    "nivel" =>  $output->pivot->cno_classification_level_id,
+                    "onet"=> $onet->title,
+                    "Salida" => $output->title);
+            }
+        }
+        return response()->success(  $outputs_onets);
     }
 
     /**

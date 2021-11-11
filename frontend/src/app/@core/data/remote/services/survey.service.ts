@@ -245,6 +245,26 @@ export class SurveyService extends  Commons {
     }
 
 //HELPERS
+      setTableData(tableRoute: string, data:any) {
+        return this._http.postFormData<Survey>(tableRoute, data, {
+          reportProgress: true,
+          observe: 'events'
+        }).pipe(
+          tap(_ => this.log(`create Survey `)),
+
+        );
+      }
+
+
+      getTableData(tableRoute: string) {
+        return  this._http.get<any[]>(tableRoute).pipe(
+          tap(_ => this.log('Fetched tableRoute')),
+          catchError(this.handleError<any[]>('tableRoute', [])),
+        //  map(tableRows => tableRows.map(tableRow => new Population().deserialize(population))),
+        );
+      }
+
+
 eval_conditions(section, form: FormGroup, value, questions) {
 
   section.questions.map((question: Question) => {

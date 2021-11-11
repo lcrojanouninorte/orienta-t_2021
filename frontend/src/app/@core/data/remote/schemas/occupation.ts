@@ -7,6 +7,8 @@ export class Occupation implements Deserializable {
   icon?: string;
   knowledges?:any[];
   skills?:any[];
+  qualifications?:any[];
+  related?:any[];
   outputs?:any[];
   onet?:any[];
 

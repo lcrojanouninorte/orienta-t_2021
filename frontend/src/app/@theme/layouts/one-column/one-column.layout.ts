@@ -1,4 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { MenuService } from '@core/utils/menu.service';
+import { MENU_ITEMS } from '@modules/pages-menu';
+import { NbAccessChecker } from '@nebular/security';
 import { NbSidebarService } from '@nebular/theme';
 
 @Component({
@@ -7,7 +10,7 @@ import { NbSidebarService } from '@nebular/theme';
   template: `
     <nb-layout windowMode>
         <nb-layout-header fixed>
-          <ngx-header></ngx-header>
+          <ngx-header [color]="color" [without_sidebar_btn]="without_sidebar"></ngx-header>
         </nb-layout-header>
 <!--
       <nb-layout-header subheader>
@@ -18,8 +21,10 @@ import { NbSidebarService } from '@nebular/theme';
     </nb-actions>
   </nb-layout-header>
 -->
-     <nb-sidebar  state="collapsed" class="menu-sidebar" tag="menu-sidebar" responsive start>
-        <ng-content select="nb-menu"></ng-content>
+     <nb-sidebar *ngIf="_accessChecker.isGranted('View Side Menu', 'all') | async"  state="compacted"   tag="menu-sidebar"  start>
+        <!--<ng-content select="nb-menu"></ng-content>-->
+        <nb-menu [items]="menu"  ></nb-menu>
+
       </nb-sidebar>
 
       <nb-layout-column>
@@ -35,7 +40,14 @@ import { NbSidebarService } from '@nebular/theme';
 })
 
 export class OneColumnLayoutComponent {
-  constructor() {
-  }
+  @Input() color: string;
+  @Input() without_sidebar: boolean;
 
+  menu = MENU_ITEMS;
+  constructor(
+     public _accessChecker: NbAccessChecker,
+    private menuService: MenuService) {
+    menuService.setMenuItemVisibility(this.menu);
+
+  }
 }
