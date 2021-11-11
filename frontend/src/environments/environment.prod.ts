@@ -5,14 +5,16 @@
  */
 export const environment = {
   production: true,
+  environmentName: 'prod',
+
   baseUrl: {
-    frontend: 'https://orienta-t.co',
-    backend:  'https://orienta-t.co',
-    api: 'https://orienta-t.co/api/',
+    frontend: 'https://www.orienta-t.co',
+    backend:  'https://www.orienta-t.co',
+    api: 'https://www.orienta-t.co/api/',
   },
   oauth2: {
-    token: 'https://orienta-t.co/oauth/token',
-    base: 'https://orienta-t.co/api/oauth/',
+    token: 'https://www.orienta-t.co/oauth/token',
+    base: 'https://www.orienta-t.co/api/oauth/',
     whitelist: {
       urlContains: 'token/refresh',
     },
