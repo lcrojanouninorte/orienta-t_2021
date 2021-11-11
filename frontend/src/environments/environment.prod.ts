@@ -6,9 +6,9 @@
 export const environment = {
   production: true,
   baseUrl: {
-    frontend: 'https://orienta-t.manajar.co',
-    backend:  'https://orienta-t.manajar.co',
-    api: 'https://orienta-t.manajar.co/api/',
+    frontend: 'https://orienta-t.co',
+    backend:  'https://orienta-t.co',
+    api: 'https://orienta-t.co/api/',
   },
   oauth2: {
     token: 'https://orienta-t.co/oauth/token',
