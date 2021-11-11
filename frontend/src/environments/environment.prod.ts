@@ -11,8 +11,8 @@ export const environment = {
     api: 'https://orienta-t.manajar.co/api/',
   },
   oauth2: {
-    token: 'https://orienta-t.manajar.co/oauth/token',
-    base: 'https://orienta-t.manajar.co/api/oauth/',
+    token: 'https://orienta-t.co/oauth/token',
+    base: 'https://orienta-t.co/api/oauth/',
     whitelist: {
       urlContains: 'token/refresh',
     },
