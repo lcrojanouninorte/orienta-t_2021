@@ -21,29 +21,44 @@ export class CnoKnowledgeOccupationTableComponent {
   loading: boolean;
   tableData: [];
   tables=[{
-    "name" :"onets",
+    "name" :"Encuestados",
+    "model_name": "surveyeds"
+  },
+  {
+    "name" :"Onets",
     "model_name": "onets"
   },
   {
-    "name" :"niveles",
+    "name" :"Niveles",
     "model_name": "levels"
   },
   {
-    "name" :"perfiles",
-    "model_name": "perfiles"
-
+    "name" :"Perfil",
+    "model_name": "cno_professional_profiles"
   },
   {
-    "name" :"conocimientos"
+    "name" :"Gran Grupo",
+    "model_name": "cno_performance_areas"
   },
   {
-    "name" :"conocimientos"
-  },{
-    "name" :"conocimientos"
-  },{
-    "name" :"conocimientos"
-  },{
-    "name" :"conocimientos"
+    "name" :"Conocimientos",
+    "model_name" :"cno_knowledge"
+  },
+  {
+    "name" :"Cualificaciones",
+    "model_name" :"cno_qualifications"
+  },
+  {
+    "name" :"Destrezas",
+    "model_name": "cno_skills"
+  },
+  {
+    "name" :"Ocupaciones",
+    "model_name": "ocupations"
+  },
+  {
+    "name" :"Afines",
+    "model_name": "related"
   },
 ]
   options = {
@@ -55,6 +70,7 @@ export class CnoKnowledgeOccupationTableComponent {
     }
 
   }
+  model_count = [];
   firstLoad: boolean = true;
   constructor(private _surveyService: SurveyService,
     private dialogService: NbDialogService
@@ -164,11 +180,16 @@ export class CnoKnowledgeOccupationTableComponent {
   public files: File[] = [];
   public form: FormGroup;
 
+  valid_sheets = [];
+  invalid_sheets = [];
+  selected_sheets = [];
   onSubmit() {
     // Add layer
-    const formData = new FormData();
+    let formData: FormData;
     if (this.files.length > 0) {
+      formData = this._surveyService.toFormData({"selected_sheets" : this.selected_sheets});
       formData.append('file', this.files[0]);
+
     }
     this.loading = true;
     this._surveyService.setTableData("import_excel",formData)
@@ -178,10 +199,11 @@ export class CnoKnowledgeOccupationTableComponent {
           this.progress = Math.round((100 * event.loaded) / event.total);
         }
         if ( event.type === HttpEventType.Response ) {
-          this.form.reset();
-          this._surveyService.showToast('top rigth', 'success', 'Persona Agregada correctamente');
+          //this.form.reset();
+          this._surveyService.showToast('top rigth', 'success', 'Tablas Actualizadas correctamente');
           this.loading = false;
           this.progress = 0;
+          this.model_count = event.body.model_count;
 
         }
       }),
@@ -192,11 +214,57 @@ export class CnoKnowledgeOccupationTableComponent {
       }),
     });
   }
+
+   onPreSubmit() {
+    // Add layer
+    const formData = new FormData();
+    if (this.files.length > 0) {
+      formData.append('file', this.files[0]);
+    }
+    this.loading = true;
+    this._surveyService.setTableData("excel_pre_import",formData)
+    .subscribe({
+      next: (event => {
+        if ( event.type === HttpEventType.UploadProgress ) {
+          this.progress = Math.round((100 * event.loaded) / event.total);
+        }
+        if ( event.type === HttpEventType.Response ) {
+          //this.form.reset();
+          this._surveyService.showToast('top rigth', 'success', 'Tabla Cargada correctamente');
+          this.loading = false;
+          this.progress = 0;
+
+          this.valid_sheets = event.body.valid_sheets;
+          this.invalid_sheets =  event.body.invalid_sheets;
+
+        }
+      }),
+      error: (error => {
+        this._surveyService.showToast('top rigth', 'danger', error.message);
+        this.loading = false;
+        this.progress = 0;
+      }),
+    });
+  }
+
+  addSheetToUpdate(checked: boolean, item){
+    if(checked){
+
+      this.selected_sheets.push(item);
+    }else{
+      this.selected_sheets.splice(this.files.indexOf(item), 1);
+
+    }
+  }
+
  // File selector:
 
   onSelect(event) {
   this.files.push(...event.addedFiles);
+    //Revisar Tipo de excel
+    this.onPreSubmit();
   }
+
   onRemoveFile(event) {
     this.files.splice(this.files.indexOf(event), 1);
   }

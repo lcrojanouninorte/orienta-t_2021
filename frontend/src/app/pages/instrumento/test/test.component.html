@@ -38,7 +38,7 @@
 
                                         <span class="text-danger" *ngIf="question.required">*</span>
                                         <div *ngIf="question.type !== 'INS' && question.type !== 'SC'">
-                                            <b><span> {{ question.label }} </span> {{ question.text }}</b>
+                                            <b><span style="visibility: hidden;"> {{ question.label }} </span> {{ question.text }}</b>
                                         </div>
                                     </div>
                                     <div>
@@ -53,7 +53,7 @@
                                             <textarea [name]="question.label" type="text" nbInput shape="round" fullWidth fieldSize="small" status="danger" [formControl]="form.controls[question.label]"></textarea>
                                         </div>
                                         <div class="pt-2" *ngSwitchCase="'N'">
-                                            <input [name]="question.label" type="number" shape="round" fullWidth fieldSize="small" status="danger" [formControl]="form.controls[question.label]" />
+                                            <input nbInput [name]="question.label" type="number" shape="round" fullWidth fieldSize="small" status="danger" [formControl]="form.controls[question.label]" />
                                         </div>
                                         <div class="pt-2" *ngSwitchCase="'U'">
                                             <nb-radio-group status="danger" [name]="question.label" [formControl]="form.controls[question.label]">
@@ -144,6 +144,7 @@
                                                 <nb-radio class="" value="3"> 3 </nb-radio>
                                                 <nb-radio class="" value="4"> 4 </nb-radio>
                                                 <nb-radio class="" value="5"> 5 </nb-radio>
+                                                <nb-radio class="" value="6"> 6 </nb-radio>
                                             </nb-radio-group>
                                             <div>
                                                 {{ question.end }}
@@ -163,7 +164,28 @@
                                                 </div>
                                             </nb-card-body>
                                         </nb-card>
+
+                                        <div class="pt-2 d-flex flex-row justify-content-between align-items-center" *ngSwitchCase="'DPTO'">
+
+                                            <nb-select placeholder="Seleccione un Departamento" [(selected)]="selectedDpto" (click)="selectedMun = null; selectedInst = null" [name]="question.label" [formControl]="form.controls[question.label]">
+                                                <nb-option *ngFor="let dpto of dptos |  async" [value]="dpto.cod">{{dpto.dpto}}</nb-option>
+                                            </nb-select>
+                                        </div>
+                                        <div class="pt-2 d-flex flex-row justify-content-between align-items-center" *ngSwitchCase="'MUNI'">
+
+                                            <nb-select (click)="selectedInst = null" placeholder="Seleccione un Municipio" [(selected)]="selectedMun" [name]="question.label" [formControl]="form.controls[question.label]">
+                                                <nb-option *ngFor="let mun of _institutionService.getMuns(selectedDpto) |  async" [value]="mun.cod">{{mun.mun}}</nb-option>
+                                            </nb-select>
+                                        </div>
+                                        <div class="pt-2 d-flex flex-row justify-content-between align-items-center" *ngSwitchCase="'INSTI'">
+                                            <nb-select placeholder="Seleccione su institución" [(selected)]="selectedInst" [name]="question.label" [formControl]="form.controls[question.label]">
+                                                <nb-option *ngFor="let inst of _institutionService.getInstitutions(selectedMun  ) |  async" [value]="inst.Nombre">{{inst.Nombre}}</nb-option>
+                                            </nb-select>
+                                        </div>
                                     </div>
+
+
+
                                     <div *ngIf="
                                       form.get(question.label)?.invalid &&
                                       (form.get(question.label)?.dirty ||

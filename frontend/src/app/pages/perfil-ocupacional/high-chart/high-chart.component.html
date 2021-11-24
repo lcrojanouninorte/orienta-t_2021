@@ -1,0 +1,14 @@
+<nb-card class="occupation-info-card">
+    <nb-card-header class="px-5 py-2">
+        <img width="86" src="assets/Orienta-t/Resultados/SVG/{{title}}.svg">
+        <h3 class="mt-4 text-purple-orientate">{{title}}</h3>
+    </nb-card-header>
+    <nb-card-body style="
+margin-bottom: 30px;
+">
+
+        <chart type="pie" [data]="data" [options]="options"></chart>
+
+    </nb-card-body>
+
+</nb-card>

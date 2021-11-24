@@ -5,7 +5,7 @@
     <base href="/">
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="icon" type="image/png" href="favicon.png">
+        <link rel="icon" type="image/png" href="favicon.png">
     <link rel="icon" type="image/x-icon" href="favicon.ico">
 
 <style>@charset "UTF-8";@import url(https://fonts.googleapis.com/css2?family=Poppins:wght@400;*,:after,:before{box-sizing:border-box;}html{font-family:sans-serif;-webkit-tap-highlight-color:rgba(0,0,0,0);}body{font-family:-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Arial,Noto Sans,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol,Noto Color Emoji;font-size:1rem;font-weight:400;line-height:1.5;color:#212529;text-align:left;background-color:#fff;}img{vertical-align:middle;}img{page-break-inside:avoid;}@page {size:a3;}body{min-width:992px!important;}</style><link rel="stylesheet" href="styles.4997c4919c8d01ba302c.css" media="print" onload="this.media='all'"><noscript><link rel="stylesheet" href="styles.4997c4919c8d01ba302c.css"></noscript></head>

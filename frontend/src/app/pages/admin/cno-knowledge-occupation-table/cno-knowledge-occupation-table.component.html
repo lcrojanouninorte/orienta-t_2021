@@ -1,6 +1,6 @@
 <div class="row">
-    <div class="col">
-        <nb-card class=" shadow-sm" size="medium">
+    <div class="col-md-8">
+        <nb-card class=" shadow-sm" size="large" [nbSpinner]="loading" nbSpinnerStatus="danger" nbSpinnerSize="large" [nbSpinnerMessage]="progress">
             <nb-card-header>
                 Formulario de actualización Base de datos
             </nb-card-header>
@@ -11,18 +11,51 @@
                     <ngx-dropzone [multiple]="false" accept=".csv, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel" (change)="onSelect($event)">
                         <ngx-dropzone-label>
                             <nb-icon icon='cloud-upload'></nb-icon> Agrega una archivo</ngx-dropzone-label>
-                        <ngx-dropzone-preview *ngFor="let f of files" [removable]="true" (removed)="onRemove(f)">
+                        <ngx-dropzone-preview *ngFor="let f of files" [removable]="true" (removed)="onRemoveFile(f)">
                             <ngx-dropzone-label>{{ f.name }} </ngx-dropzone-label>
                         </ngx-dropzone-preview>
 
                     </ngx-dropzone>
                 </div>
+                {{progress}}
+                <div *ngIf="valid_sheets.length>0">
+                    <h5>Hojas Detectadas</h5>
+                    <p class="caption">Seleccione las hojas que desea actualizar</p>
+                    <nb-checkbox *ngFor="let valid_sheet of valid_sheets" (checkedChange)="addSheetToUpdate($event,valid_sheet)">{{valid_sheet}}</nb-checkbox>
+                    {{selected_sheets|json}}
+                </div>
+                <div *ngIf="invalid_sheets.length>0">
+                    <h5>Hojas no validas</h5>
+                    <p class="caption">Puede verificar que el nombre de la hoja este escrito correctamente</p>
+                    <nb-checkbox *ngFor="let invalid_sheet of invalid_sheets">{{invalid_sheet}}</nb-checkbox>
+
+                </div>
             </nb-card-body>
             <nb-card-footer>
-                <button (click)="onSubmit()" nbButton status="primary">Actualizar</button>
+                <button [disabled]="valid_sheets.length<=0" (click)="onSubmit()" nbButton status="primary">Actualizar</button>
             </nb-card-footer>
         </nb-card>
     </div>
+    <div class="col-md-4">
+        <nb-card size="large" class="table-list shadow-sm">
+            <nb-card-header>
+                Tablas
+
+            </nb-card-header>
+            <nb-card-body>
+                <nb-list>
+                    <nb-list-item *ngFor="let table of tables" (click)="open(table.model_name)">
+                        <span> <nb-icon icon="file-text-outline"></nb-icon> {{table.name}} - {{model_count[table.name]}} </span>
+
+                    </nb-list-item>
+                </nb-list>
+            </nb-card-body>
+        </nb-card>
+
+
+    </div>
+</div>
+<div class="row">
     <div class="col">
         <nb-card class=" shadow-sm" size="medium">
             <nb-card-header>
@@ -37,14 +70,5 @@
         </nb-card>
     </div>
 
-</div>
-<div class="row">
-    <div class="col-sm-12 col-md-3" *ngFor="let table of tables">
-        <nb-card class=" shadow-sm" (click)="open(table.model_name)">
-            <nb-card-body>
-                <span> <nb-icon icon="file-text-outline"></nb-icon> {{table.name}} </span>
-            </nb-card-body>
-        </nb-card>
-    </div>
 
 </div>

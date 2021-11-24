@@ -11,7 +11,7 @@ class CnoOccupation extends Model
     protected $fillable = [
         'group', 'occupation_code','id',
         'cno_classification_level_id', 'cno_occupational_field_id', 'occupation_code',
-        'title', 'desc', 'icon', 'cno_onet_id', 'cno_professional_profile_id'
+        'title', 'desc', 'icon', 'cno_onet_id', 'cno_professional_profile_id', 'cno_market_id'
      ];
     /**
      * Get the user that owns the CnoOccupation
@@ -54,7 +54,10 @@ class CnoOccupation extends Model
     {
         return $this->belongsTo(CnoOnet::class, "cno_onet_id");
     }
-
+    public function market()
+    {
+        return $this->belongsTo(CnoMarket::class, "cno_market_id");
+    }
 
     /**
      * Get the user associated with the CnoOccupation

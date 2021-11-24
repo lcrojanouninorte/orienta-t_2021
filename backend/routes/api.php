@@ -35,13 +35,21 @@ Route::group(['middleware' => ['api']], function ($api) {
     $api->get('levels', 'CnoClassificationLevelController@index');
     $api->get('surveyeds', 'CnoClassificationLevelController@index');
     $api->get('occupations', 'CnoOccupationController@index');
+
+    $api->get('knowledges', 'CnoKnowledgesController@index');
     $api->get('occupations/knowledges', 'CnoOccupationController@knowledges');
+
+    $api->get('skills', 'CnoSkillsController@index');
     $api->get('occupations/skills', 'CnoOccupationController@skills');
+
     $api->get('onets/outputs', 'CnoOnetController@outputs');
     $api->get('onets', 'CnoOnetController@index');
 
     $api->post('import_excel', 'AdminController@excel_import');
+    $api->post('excel_pre_import', 'AdminController@excel_pre_import');
 
+    $api->post('occupations/mail', 'CnoOccupationController@cno_occupation_mail');
+    
     //survey 2021
     $api->resource('questions', 'QuestionsController');
     $api->resource('surveys', 'SurveyController', ['except'=> ['index']]);

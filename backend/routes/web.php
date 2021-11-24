@@ -20,3 +20,4 @@ Route::get('/unsupported-browser', 'MiscController@unsupported');
 //Route::get('/stations/report/{id}', 'StationController@getReport');
 Route::get('/report/{population_id}/{user_id}', 'AnswerController@download');
 Route::post('knowledges', 'CnoKnowledgesController@store');
+

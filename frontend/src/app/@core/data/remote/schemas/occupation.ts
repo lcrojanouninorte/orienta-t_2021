@@ -11,7 +11,7 @@ export class Occupation implements Deserializable {
   related?:any[];
   outputs?:any[];
   onet?:any[];
-
+  market?:any[];
   deserialize?(input: any): this {
     Object.assign(this, input);
     //this.onet ?  new Onet().deserialize(input.pps)   : [];

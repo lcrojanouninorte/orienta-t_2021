@@ -28,13 +28,13 @@ class CnoRelatedImport implements  OnEachRow, WithHeadingRow
 
         $related = CnoRelated::firstOrCreate([
 
-            'occupation_code' => $row["ocupacion afin"],
-            'title' => $row["nombre"],
+            'occupation_code' => $row["ocupacion_afin"],
+            'title' => $row["nombre_ocupacion_afin"],
         ]);
         //Create add ocupation knowledge
 
         $related->occupations()->attach($related->id,[
-            'group' => $row["gran grupo"],
+            'group' => $row["gran_grupo"],
             'occupation_code' => $row["ocupacion"],
 
         ]);

@@ -1,5 +1,5 @@
 import { HttpEventType } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, NavigationEnd, NavigationStart, Router } from '@angular/router';
 import { Question } from '@core/data/remote/schemas/question';
@@ -7,9 +7,12 @@ import { Section } from '@core/data/remote/schemas/section';
 import { Survey } from '@core/data/remote/schemas/survey';
 import { User } from '@core/data/remote/schemas/users';
 import { SurveyService } from '@core/data/remote/services/survey.service';
+import { InstitutionMockService } from '@core/mock/institution.service';
 import { NbAccessChecker } from '@nebular/security';
 import { NbDateService, NbLayoutScrollService } from '@nebular/theme';
 import { formatDuration, intervalToDuration } from 'date-fns';
+import { Observable, of } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'ngx-test',
@@ -36,6 +39,8 @@ export class TestComponent implements OnInit {
   total_questions = 0;
   total_questions_answered = 0;
   progress = 0;
+  dptos: any;
+
 
   constructor(
     private _Activatedroute: ActivatedRoute,
@@ -44,7 +49,8 @@ export class TestComponent implements OnInit {
     public _accessChecker: NbAccessChecker,
     private _ly: NbLayoutScrollService,
     private _router: Router,
-    protected dateService: NbDateService<Date>
+    protected dateService: NbDateService<Date>,
+    private _institutionService: InstitutionMockService,
 
   ) {
     _router.events.forEach((event) => {
@@ -54,6 +60,8 @@ export class TestComponent implements OnInit {
         this.updateSession();
       }
     });
+    this.dptos = this._institutionService.getDptos();
+
 
     //1. Load a survey by sessions and asnwers for given uuid
     this.form = this._fb.group({});
@@ -65,8 +73,9 @@ export class TestComponent implements OnInit {
       this.getSurvey(this.uuid);
     }
   }
-  ngOnInit() {
 
+
+  ngOnInit() {
   }
 
   getSession(uuid, section_id) {
@@ -156,7 +165,7 @@ export class TestComponent implements OnInit {
         this.scrollToTop();
 
         //Set Default values for date fields and sections
-        if(section_id=="6"){
+       /* if(section_id=="6"){
           let time = intervalToDuration({
             start: new Date(this.section.survey.created_at),
              end: this.dateService.today()
@@ -172,7 +181,7 @@ export class TestComponent implements OnInit {
           }
 
 
-        }
+        }*/
 
        //Optional: eval CONDITIONS
       // this._surveyService.eval_conditions(section, form: FormGroup, value, questions);
@@ -316,4 +325,7 @@ export class TestComponent implements OnInit {
 
     //
   }
+  //Autocomplete
+
+
 }

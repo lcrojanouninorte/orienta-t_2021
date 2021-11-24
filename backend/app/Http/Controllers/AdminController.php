@@ -15,6 +15,7 @@ use App\CnoOccupationCnoRelated;
 use App\CnoRelated;
 use App\CnoQualification;
 use App\CnoPerformanceArea;
+use App\CnoMarket;
 use App\CnoOccupation;
 use Illuminate\Http\Request;
 use Storage;
@@ -83,32 +84,52 @@ class AdminController extends Controller
     }
 
 
-       /**
+     /**
      * excel_import a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
+
+    public function excel_pre_import(Request $request)
+    {
+        $response = [];
+        $valid_sheets = ['Onets','Perfiles','Niveles','Gran Grupo','Conocimiento','Destreza', 'Cualificacion', 'Afines', 'Ocupacion', 'Mercado Laboral'];
+        if($request->hasFile('file') ){
+            //Save as temp file
+
+
+            //Get Sheets Names
+            $sh_name_import = new ExcelUtils();
+            $sh_name_import->import($request->file('file'));
+            $sheets_names = $sh_name_import->getSheetNames();
+            $response["system_sheets"] =$valid_sheets;
+            $response["detected_sheets"] = $sheets_names;
+            $response["invalid_sheets"] = array_diff( $sheets_names,  $valid_sheets);
+            $response["valid_sheets"] = array_diff( $valid_sheets,  $response["invalid_sheets"]);
+        }
+
+        return response()->json($response,200);
+
+    }
+
     public function excel_import(Request $request)
     {
 
 
 
-
         $response = [];
         if($request->hasFile('file') ){
+            $selected_sheets =  explode(",", $request->input("selected_sheets"));
             //Get Sheets Names
-            $sh_name_import = new ExcelUtils();
-            $sh_name_import->import($request->file('file'));
-            $sheets_names = $sh_name_import->getSheetNames();
-            $response["sheets"] = $sheets_names;
+
             //Create Importer for each sheet name
             $import = (new CnoSheetsImport);
             //TODO, dar la posibilidad de seleccionar las hojas a actualizar
             //Teniendo en cuenta las que son obligatorias.
             Schema::disableForeignKeyConstraints();
 
-            foreach ($sheets_names as $key => $sheet_name) {
+            foreach ($selected_sheets as $key => $sheet_name) {
                 switch ($sheet_name) {
                     case 'Onets':
                         CnoOnet::truncate();
@@ -162,20 +183,28 @@ class AdminController extends Controller
                         $import->import($request->file('file'));
 
                         break;
-                    case 'Ocupacion':
-                        //Esta tabla debe ser cargada de ultimo
-                        CnoOccupation::truncate();
-                        $import->onlySheets('Ocupacion');
-                        $import->import($request->file('file'));
+                    case 'Mercado Laboral':
+                    //tipo pivot, se debe guardar los valores unicos, y luego actualiza la pivot
+                    CnoMarket::truncate();
+                    $import->onlySheets('Mercado Laboral');
+                    $import->import($request->file('file'));
 
-                        break;
+                    break;
                     default:
                     //Return Message sheet not updated
 
                         break;
                 }
+            }
+            //Esta tabla se carga de ultimo.
+            if(in_array("Ocupacion",$selected_sheets) ){
+                //Esta tabla debe ser cargada de ultimo
+                CnoOccupation::truncate();
+                $import->onlySheets('Ocupacion');
+                $import->import($request->file('file'));
 
             }
+
             Schema::enableForeignKeyConstraints();
             //Get sumary of each sheet
              //Useing Eloquent
@@ -188,12 +217,13 @@ class AdminController extends Controller
                 "Cualificaciones" => CnoQualification::count(),
                 "Destrezas" => CnoSkill::count(),
                 "Afines" => CnoRelated::count(),
+                "Mercado Laboral" => CnoMarket::count(),
                 "Ocupaciones" => CnoOccupation::count(),
             ];
 
 
             return response()->json($response,200);
-    }
+        }
 
 
          return response()->json($request,500);

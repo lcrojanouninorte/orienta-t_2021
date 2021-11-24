@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\CnoOcupationalFieldRanking;
+use App\Section;
+
 use Illuminate\Http\Request;
 use App\Survey;
 use DB;
@@ -78,8 +80,18 @@ class CnoOcupationalFieldRankingController extends Controller
      */
     public function rank($uuid)
     {
+        // In order to only rank the questions of the orienta-t survey, we should
+        // Get only the answers from Session 1, becouse the other section are for other
+        // type of data
+
+
         // calculate total for specific survey
-        $survey  = Survey::where("uuid", $uuid)->first();
+        $survey  = Survey::where("uuid", $uuid)->with("answers",  function ($query) {
+            return $query->where('answers.question_id',"<=",52);
+            //52 es el numero de preguntas de la session 1.
+            //con el fin de no traer preguntas de otras secciones
+        })->first();
+
         $areas_count = array();
         foreach ($survey->answers as $key => $answer) {
            $options_values = json_decode($answer->value);

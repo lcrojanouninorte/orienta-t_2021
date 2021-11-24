@@ -1,7 +1,10 @@
 import { Component, NgZone, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Occupation } from '@core/data/remote/schemas/occupation';
+import { User } from '@core/data/remote/schemas/users';
+import { AuthService } from '@core/data/remote/services/auth.service';
 import { SurveyService } from '@core/data/remote/services/survey.service';
+import { JsPDFService } from '@core/data/vendors/services/js-pdf.service';
 import { LottieService } from '@core/data/vendors/services/lottie.service';
 import { AnimationItem } from 'lottie-web';
 import { AnimationOptions } from 'ngx-lottie';
@@ -17,17 +20,19 @@ export class OcupacionComponent implements OnInit {
 
     slidesPerView: 1,
     slidesPerColumn: 1,
-    spaceBetween:30,
+    spaceBetween:20,
     keyboard: true,
     mousewheel: true,
     scrollbar: false,
-    navigation: false,
+    navigation: true,
     slidesPerColumnFill: 'row',
-
+    effect: "cards",
     breakpoints:{
        640:{
-            slidesPerView: 3,
-            slidesPerColumn: 3,
+            slidesPerView: 1,
+            slidesPerColumn: 10,
+            navigation: false,
+
 
            }
     }
@@ -36,15 +41,22 @@ export class OcupacionComponent implements OnInit {
   occupation_infos: any[];
   loading: boolean;
   occupation: Occupation;
-
+  user: User;
   constructor(
     private _Activatedroute: ActivatedRoute,
     private _surveyService: SurveyService,
     public _lottieSrv: LottieService,
     private ngZone: NgZone,
-
+    private jspdfService: JsPDFService,
+    private _authService: AuthService,
   ) {
 
+    this._authService.getCurrentUser()
+    .subscribe((user: User) => {
+      if (user) {
+        this.user = user;
+      }
+    });
 
    }
 
@@ -68,7 +80,8 @@ export class OcupacionComponent implements OnInit {
   ngOnInit(): void {
     this._Activatedroute.params.subscribe(
       params => {
-        this.title = this._Activatedroute.snapshot.paramMap.get("title");
+
+        this.title =  this._Activatedroute.snapshot.paramMap.get("title").replace(/\+/g, " ") ;
         if(this.title == null){
          //Mostar error
         }
@@ -76,6 +89,27 @@ export class OcupacionComponent implements OnInit {
       }
   );
 
+
+  }
+
+  generatePdf(){
+    this.jspdfService.downloadPDF("occupation");
+  }
+
+  printComponent(cmpName) {
+    let printContents = document.getElementsByClassName(cmpName)[0].innerHTML;
+    let originalContents = document.body.innerHTML;
+
+    document.body.innerHTML = printContents;
+
+    window.print();
+
+    document.body.innerHTML = originalContents;
+  }
+
+  sendmail(){
+    /send_occupation_mail/
+    this._surveyService.sendOccupationMail(this.title).subscribe(arg => alert(arg));
 
   }
     /**

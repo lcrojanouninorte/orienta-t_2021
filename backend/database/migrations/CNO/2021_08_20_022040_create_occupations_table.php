@@ -24,10 +24,15 @@ class CreateOccupationsTable extends Migration
             $table->string('icon');
             $table->unsignedBigInteger('cno_onet_id')->nullable();
             $table->unsignedBigInteger('cno_professional_profile_id')->nullable();
-
+            $table->unsignedBigInteger('cno_market_id')->nullable();
+            
             $table->foreign('cno_performance_area_id', 'ppa_id_foreign')
                 ->references('id')
                 ->on('cno_performance_areas')
+                ->onDelete('SET NULL');
+                $table->foreign('cno_market_id', 'markets_id_foreign')
+                    ->references('id')
+                    ->on('cno_markets')
                 ->onDelete('SET NULL');
             $table->foreign('cno_professional_profile_id')
                 ->references('id')

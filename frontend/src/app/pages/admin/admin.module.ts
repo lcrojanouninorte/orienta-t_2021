@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { AdminComponent } from './admin.component';
 import { SurveyedsTableComponent } from './surveyeds-table/surveyeds-table.component';
-import { NbMenuModule, NbLayoutModule, NbCardModule, NbSidebarModule, NbButtonModule, NbTabsetModule, NbActionsModule, NbIconModule, NbDialogModule } from '@nebular/theme';
+import { NbMenuModule, NbLayoutModule, NbCardModule, NbSidebarModule, NbButtonModule, NbTabsetModule, NbActionsModule, NbIconModule, NbDialogModule, NbCheckboxModule, NbSpinnerModule, NbListModule } from '@nebular/theme';
 import { ThemeModule } from 'app/@theme/theme.module';
 import { WebdatarocksPivotModule } from 'ng-webdatarocks';
 import { CnoClassificationLevelComponent } from './cno-classification-level/cno-classification-level.component';
@@ -52,7 +52,9 @@ import { FlatPivotTableComponent } from './flat-pivot-table/flat-pivot-table.com
     NgxDropzoneModule,
     NbIconModule,
     NbDialogModule.forChild(),
-
+    NbCheckboxModule,
+    NbSpinnerModule,
+    NbListModule
    ]
 })
 export class AdminModule { }

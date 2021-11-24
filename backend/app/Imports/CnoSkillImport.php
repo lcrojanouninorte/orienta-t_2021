@@ -29,12 +29,12 @@ class CnoSkillImport implements OnEachRow, WithHeadingRow
 
         $skill = CnoSkill::firstOrCreate([
 
-            'title' => $row["nombre"],
+            'title' => $row["nombre_destreza"],
         ]);
         //Create add ocupation knowledge
 
         $skill->occupations()->attach($skill->id,[
-            'group' => $row["gran grupo"],
+            'group' => $row["gran_grupo"],
             'occupation_code' => $row["ocupacion"],
 
         ]);

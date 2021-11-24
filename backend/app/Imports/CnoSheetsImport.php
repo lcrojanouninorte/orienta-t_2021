@@ -19,6 +19,7 @@ class CnoSheetsImport implements WithMultipleSheets
             'Cualificacion' => new CnoQualificationImport(),
             'Afines' => new CnoRelatedImport(),
             'Ocupacion' => new CnoOccupationImport(),
+            'Mercado Laboral' => new CnoMarketsImport(),
         ];
     }
 }

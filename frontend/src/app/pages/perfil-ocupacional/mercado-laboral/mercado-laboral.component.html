@@ -1,0 +1,53 @@
+<nb-card class="occupation-info-card">
+    <nb-card-header class="px-5 py-2 d-flex flex-row justify-content-between">
+        <div>
+            <img width="70" src="assets/Orienta-t/Resultados/SVG/{{title}}.svg">
+            <h3 class="mt-4 text-purple-orientate">{{title}}</h3>
+        </div>
+        <div>
+
+            <label>Salario Promedio </label>
+            <h4> ${{market?.average_salary}}</h4>
+        </div>
+    </nb-card-header>
+    <nb-card-body style="
+  margin-bottom: 30px;
+">
+
+        <div class="d-flex flex-column justify-content-between ">
+
+            <div>
+                <label>Hombres </label>
+                <nb-progress-bar [value]="market?.men" [displayValue]="true" status="basic"> </nb-progress-bar>
+            </div>
+            <div>
+                <label>Mujeres </label>
+                <nb-progress-bar [value]="market?.women" [displayValue]="true" status="basic"> </nb-progress-bar>
+            </div>
+            <div>
+                <label>Urbano </label>
+                <nb-progress-bar [value]="market?.urban" [displayValue]="true" status="basic"> </nb-progress-bar>
+            </div>
+            <div>
+                <label>Rural </label>
+                <nb-progress-bar [value]="market?.rural" [displayValue]="true" status="basic"> </nb-progress-bar>
+            </div>
+            <div>
+                <label>Jovenes (18 a 28 años) </label>
+                <nb-progress-bar [value]="market?.youth" [displayValue]="true" status="basic">
+                </nb-progress-bar>
+            </div>
+            <br>
+            <div>
+                <label>Educación Superior  </label>
+                <nb-progress-bar [value]="market?.higher_education" [displayValue]="true" status="basic"> </nb-progress-bar>
+            </div>
+
+
+
+
+        </div>
+
+    </nb-card-body>
+
+</nb-card>

@@ -24,6 +24,7 @@ class CnoClassificationLevelImport implements OnEachRow, WithHeadingRow
         $row      = $row->toArray();
 
         $onet = CnoClassificationLevel::firstOrCreate([
+
             'title' => $row["nivel"],
             'desc' =>  $row["descripcion"],
         ]);

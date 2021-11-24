@@ -111,6 +111,9 @@ class SurveyController extends Controller
 
         //User do not have survey
         $surveyed =  $user->surveyedProfile();
+
+
+
         DB::beginTransaction();
         try {
             $survey = new Survey();
@@ -121,6 +124,8 @@ class SurveyController extends Controller
             DB::commit();
             if($survey->save()){
                 $surveyed->survey_id = $survey->id;
+                $surveyed->user_id = $user->id;
+
                 $surveyed->save();
 
 
@@ -230,6 +235,7 @@ class SurveyController extends Controller
         ]);
         $user = Auth::user();
         DB::beginTransaction();
+        $section_id =  $request->input('section_id') ;
         try {
             $survey = new Survey();
             //Get all question of a survey if exist, if not, create one
@@ -241,7 +247,8 @@ class SurveyController extends Controller
             }
             DB::commit();
            if($survey->save()){
-                $section = Section::where("id", $request->input('section_id'))->get();
+                $surveyed =  $user->surveyedProfile();
+                $section = Section::where("id", $section_id)->get();
                 $questions = $section[0]->questions;
                 $finished = 0;
                 foreach ( $questions  as $key =>$question) {
@@ -253,9 +260,7 @@ class SurveyController extends Controller
                     $value = strval($request->input($label));
                     switch ($question->type) {
                         case 'D':
-
                             $now = new \DateTime(substr($value,0,20));
-
                             Answer::updateOrCreate(
                                 ['survey_id' => $survey->id, 'question_id' =>  $question->id],
                                 ['value' =>   $now->format('c')  ]);
@@ -272,7 +277,7 @@ class SurveyController extends Controller
                                 ['value' =>   json_encode($json_value)]
                             );
                         break;
-                        case 'SC':
+                        case 'SC': #it is being used
                             //TODO: only store last change, not whole survey
                             $json_value = array();
                             $done = 0;
@@ -310,6 +315,7 @@ class SurveyController extends Controller
                                     $json_value[$label."_".$option->subcode] = $request->input($label."_".$option->subcode);
                                 }else{
                                     $json_value[$label."_".$option->subcode] = "";
+
                                 }
 
                             }
@@ -332,13 +338,67 @@ class SurveyController extends Controller
 
                             break;
                     }
+
+                       //Update Profile /cracterization
+
+                    if(  $section_id == 2 ) {
+
+                        switch ($question->id) {
+                            case "53": #'Nombre Completo':
+
+                                $surveyed->nombre =   $value;
+                                $surveyed->save();
+                                break;
+                            case "54":#'Edad':
+                                $surveyed->edad =   $value;
+                                $surveyed->save();
+                                break;
+                            case  "55":#'Grado':
+                                $surveyed->grado =   $value;
+                                $surveyed->save();
+                                break;
+                            case "56":#'Teléfono':
+                                $surveyed->telefono =   $value;
+                                $surveyed->save();
+                                break;
+                            case "57":#'Dirección':
+                                $surveyed->direccion =   $value;
+                                $surveyed->save();
+                                break;
+                            case 58:#'Estrato':
+                                $surveyed->estrato =   $value;
+                                $surveyed->save();
+                                break;
+                            case 59:#'Departamento':
+                                $surveyed->dpto =   $value;
+                                $surveyed->save();
+                                break;
+                            case 61:#'Municipio':
+                                $surveyed->municipio =   $value;
+                                $surveyed->save();
+                                break;
+                            case 62:#'Institución':
+                                $surveyed->institucion =   $value;
+                                $surveyed->save();
+                                break;
+                            default:
+                                # code...
+                                break;
+                        }
+
+
+                    }
                 }
-                //Check if survey has finalized
-                if( $finished >= 52) {
+                //Check if survey has finalized TODO
+                if( $finished >= 52 && $request->input('section_id') == 1 ) {
                     $survey->isFinished = true;
 
                     $survey->save();
                 }
+
+
+
+
                return response()->json($survey,200);
            }
            return response()->json($survey,500);

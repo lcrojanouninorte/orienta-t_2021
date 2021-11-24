@@ -5,7 +5,7 @@ import { InstrumentoRoutingModule } from './instrumento-routing.module';
 import { InstructivoComponent } from './instructivo/instructivo.component';
 import { InstrumentoComponent } from './instrumento.component';
 import { LottieModule } from 'ngx-lottie';
-import { NbActionsModule, NbBadgeModule, NbButtonModule, NbCardModule, NbCheckboxModule, NbDatepickerModule, NbIconModule, NbInputModule, NbLayoutModule, NbMenuModule, NbProgressBarModule, NbRadioModule, NbSidebarModule, NbSpinnerModule, NbTooltipModule } from '@nebular/theme';
+import { NbActionsModule, NbAutocompleteModule, NbBadgeModule, NbButtonModule, NbCardModule, NbCheckboxModule, NbDatepickerModule, NbIconModule, NbInputModule, NbLayoutModule, NbMenuModule, NbProgressBarModule, NbRadioModule, NbSelectModule, NbSidebarModule, NbSpinnerModule, NbTooltipModule } from '@nebular/theme';
 import { playerFactory } from 'app/app.module';
 import { ThemeModule } from 'app/@theme/theme.module';
 import { HowToComponent } from './how-to/how-to.component';
@@ -45,6 +45,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     }),
     ReactiveFormsModule,
     NbSpinnerModule,
+    NbSelectModule,
+    NbAutocompleteModule,
    ]
 })
 export class InstrumentoModule {

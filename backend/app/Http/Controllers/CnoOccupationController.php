@@ -11,8 +11,8 @@ use App\CnoOnet;
 use App\CnoProfessionalProfile;
 use App\CnoClassificationLevel;
 use Illuminate\Http\Request;
-
-
+use Mail;
+use Auth;
 use  App\Imports\CnoKnowledgeImport;
 
 class CnoOccupationController extends Controller
@@ -108,7 +108,7 @@ class CnoOccupationController extends Controller
             ->with("knowledges")
             ->with("qualifications")
             ->with("related")
-
+            ->with("market")
             ->with("knowledges")
             ->with(
                 array("onet.outputs"=> function($query) use ($occupation) {
@@ -116,6 +116,13 @@ class CnoOccupationController extends Controller
                 }))
             ->first();
         //Get outputs
+        $occupation->market->men =   round($occupation->market->men*100,2);
+        $occupation->market->women = round($occupation->market->women*100,2);
+        $occupation->market->rural = round($occupation->market->rural*100,2);
+        $occupation->market->urban = round($occupation->market->urban*100,2);
+        $occupation->market->youth = round($occupation->market->youth*100,2);
+        $occupation->market->higher_education = round($occupation->market->higher_education*100,2);
+        $occupation->market->average_salary = number_format(    $occupation->market->average_salary,2);
 
         return response()->json($occupation,200);
     }
@@ -185,7 +192,35 @@ class CnoOccupationController extends Controller
     }
 
 
+    public function  cno_occupation_mail(Request $request)
+    {
 
+
+        $user = Auth::user();
+        $cod_ocupacion = $request->input("occupation_title")  ;
+        //Buscar codigo de
+        if($user){
+          $data = array(
+                        'email' =>  $user->email,
+                        'nombre' => $user->name,
+                        'cod_ocupacion' => $cod_ocupacion
+                    );
+            Mail::send('emails.perfil', $data, function ($message) use ($data) {
+
+                $message->from('contacto@orienta-t.co', 'Orienta-t');
+
+                $message->to( $data["email"])->subject('Perfil Ocupacional - Orienta-T'); //Cambiar fecha
+
+            });
+
+        }else{
+            return response()->json("El usuario no esta autenticado",500);
+           // return redirect()->route('login');
+          // Session::flash('alert-error', 'Mensaje No Enviado. Intente nuevamente');
+        }
+        return response()->json("Enviado cocrrectamente",200);
+       // return back()->with('message', 'success|Record updated.');
+    }
 
 
 }

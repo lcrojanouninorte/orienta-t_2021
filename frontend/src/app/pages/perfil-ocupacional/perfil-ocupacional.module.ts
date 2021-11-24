@@ -8,7 +8,7 @@ import { AreasChartComponent } from './areas-chart/areas-chart.component';
 import { AreasComponent } from './areas/areas.component';
 
 import { LottieModule } from 'ngx-lottie';
-import { NbActionsModule, NbButtonModule, NbCardModule, NbIconModule, NbLayoutModule, NbListModule, NbMenuModule, NbPopoverModule, NbSidebarModule, NbUserModule } from '@nebular/theme';
+import { NbActionsModule, NbButtonModule, NbCardModule, NbIconModule, NbLayoutModule, NbListModule, NbMenuModule, NbPopoverModule, NbProgressBarModule, NbSidebarModule, NbUserModule } from '@nebular/theme';
 import { ThemeModule } from 'app/@theme/theme.module';
 import { playerFactory } from 'app/app.module';
 import { SwiperModule } from "swiper/angular";
@@ -17,7 +17,8 @@ import { OcupacionesComponent } from './ocupaciones/ocupaciones.component';
 import { OcupacionComponent } from './ocupacion/ocupacion.component';
 import { LevelListingComponent } from './level-listing/level-listing.component';
 import { OcupationInfoCardComponent } from './ocupation-info-card/ocupation-info-card.component';
-
+import { MercadoLaboralComponent } from './mercado-laboral/mercado-laboral.component';
+import { HighChartComponent } from './high-chart/high-chart.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,9 @@ import { OcupationInfoCardComponent } from './ocupation-info-card/ocupation-info
      OcupacionesComponent,
     OcupacionComponent,
     LevelListingComponent,
-    OcupationInfoCardComponent
+    OcupationInfoCardComponent,
+    MercadoLaboralComponent,
+    HighChartComponent
   ],
   imports: [
     CommonModule,
@@ -46,6 +49,7 @@ import { OcupationInfoCardComponent } from './ocupation-info-card/ocupation-info
     NbUserModule,
     NbPopoverModule,NbListModule,
     LottieModule.forRoot({ player: playerFactory }),
+    NbProgressBarModule
   ]
 })
 export class PerfilOcupacionalModule { }

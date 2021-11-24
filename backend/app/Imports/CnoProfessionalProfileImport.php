@@ -22,7 +22,7 @@ class CnoProfessionalProfileImport implements  OnEachRow, WithHeadingRow
         $row      = $row->toArray();
 
         $knowledge = CnoProfessionalProfile::firstOrCreate([
-            'id' =>  $rowIndex,
+            'id' =>  $row["id"],
             'code' => $row["codigo"],
             'title' =>  $row["titulo"],
             'desc' =>  $row["descripcion"],

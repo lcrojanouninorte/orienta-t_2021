@@ -88,4 +88,26 @@
     #wdr-toolbar-wrapper .wdr-toolbar-ui ul {
         font-family: inherit;
     }
+    /* style sheet for "A4" printing */
+    @media print and (width: 21cm) and (height: 29.7cm) {
+        @page {
+            margin: 3cm;
+        }
+    }
+    /* style sheet for "letter" printing */
+    @media print and (width: 8.5in) and (height: 11in) {
+        @page {
+            margin: 2in;
+        }
+    }
+    @media print {
+        .occupation-info-card {
+            font-size: 1.0em;
+            position: relative;
+            display: block;
+            width: 100%;
+            height: auto;
+            top: 0;
+        }
+    }
 }

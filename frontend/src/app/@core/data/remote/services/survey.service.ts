@@ -49,6 +49,7 @@ export class SurveyService extends  Commons {
 
 
 
+
   constructor(
     private _http: ApiService,
     private _nbService: NbToastrService,
@@ -256,11 +257,18 @@ export class SurveyService extends  Commons {
       }
 
 
-      getTableData(tableRoute: string) {
+      getTableData(tableRoute: string) { // is the table name
         return  this._http.get<any[]>(tableRoute).pipe(
           tap(_ => this.log('Fetched tableRoute')),
           catchError(this.handleError<any[]>('tableRoute', [])),
         //  map(tableRows => tableRows.map(tableRow => new Population().deserialize(population))),
+        );
+      }
+
+      sendOccupationMail(title: string) {
+        return this._http.post<Option>("occupations/mail",{"occupation_title":title}).pipe(
+          tap(_ => this.log(`Send Mail`)),
+          catchError(this.handleError<Question>('Sen Mail')),
         );
       }
 

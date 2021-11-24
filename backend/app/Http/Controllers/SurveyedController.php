@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Surveyed;
+use App\Survey;
+use App\CnoOcupationalFieldRanking;
+
 use Illuminate\Http\Request;
 use DB;
 class SurveyedController extends Controller
@@ -16,8 +19,29 @@ class SurveyedController extends Controller
     {
         //
           //
-          $surveyed = Surveyed::get();
-          return response()->success( $surveyed);
+          $surveyeds = Surveyed::with("survey")->get();
+          //add 3 most rated profile rank of each surveyed
+            foreach ($surveyeds as $key => $surveyed) {
+                # code...
+
+                $survey = $surveyed->survey;
+                if($survey){
+                    $pps = CnoOcupationalFieldRanking::where("survey_id", $survey->id)->with("pps")->orderBy('total', 'DESC')->get();
+
+
+                    if( $pps->count()>0){
+
+
+                            $surveyed->p1 = $pps[0]->pps->title;
+                            $surveyed->p2 = $pps[1]->pps->title;
+                            $surveyed->p3 = $pps[2]->pps->title;
+                            $surveyed->save();
+                        }
+                }
+            }
+
+
+          return response()->success( $surveyeds);
 
     }
 
@@ -32,6 +56,8 @@ class SurveyedController extends Controller
         //
           //
           $surveyed = Surveyed::get();
+          //TODO: get caracterization data from survey answers
+
           return response()->success( $surveyed);
 
     }

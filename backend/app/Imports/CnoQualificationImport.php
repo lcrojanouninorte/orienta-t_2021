@@ -27,14 +27,14 @@ class CnoQualificationImport  implements OnEachRow, WithHeadingRow
 
         $qual = CnoQualification::firstOrCreate([
 
-            'code' => $row["codigo"],
-            'title' => $row["nombre"],
+            'code' => $row["codigo_area_cualificacion"],
+            'title' => $row["area_cualificacion"],
 
         ]);
         //Create add ocupation
 
         $qual->occupations()->attach($qual->id,[
-            'group' => $row["gran grupo"],
+            'group' => $row["gran_grupo"],
             'occupation_code' => $row["ocupacion"],
 
         ]);

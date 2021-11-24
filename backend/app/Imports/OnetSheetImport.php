@@ -22,7 +22,7 @@ class OnetSheetImport implements OnEachRow, WithHeadingRow
         $row      = $row->toArray();
 
         $onet = CnoOnet::firstOrCreate([
-            'id' => $rowIndex,
+            'id' => $row["id"],
             'title' => $row["onet"],
             'desc' =>  $row["descripcion"],
         ]);

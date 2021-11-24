@@ -1,15 +1,27 @@
- .occupation {
-     position: relative;
- }
-
- .ill {
-     position: absolute;
-     bottom: -21%;
-     right: -40%;
- }
-
- .illustration-container {
-     position: relative;
-     width: 100%;
-     height: 100%;
- }
+@import '../../../@theme/styles/themes';
+@import '~@nebular/theme/styles/global/breakpoints';
+@include nb-install-component() {
+    .occupation {
+        position: relative;
+        width: 100%;
+    }
+    .occupation-body .cta {
+        z-index: 10;
+    }
+    .ill {
+        bottom: -21%;
+        right: -40%;
+        position: fixed;
+        z-index: 0;
+    }
+    .illustration-container {
+        position: relative;
+        width: 100%;
+        height: 100%;
+    }
+    @include media-breakpoint-up(sm) {
+        .swiper-container {
+            max-width: 80%;
+        }
+    }
+}

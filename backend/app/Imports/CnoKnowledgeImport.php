@@ -29,12 +29,12 @@ class CnoKnowledgeImport implements OnEachRow, WithHeadingRow
 
 
         $knowledge = CnoKnowledge::firstOrCreate([
-            'title' => $row["nombre"],
+            'title' => $row["nombre_conocimiento"],
         ]);
         //Create add ocupation knowledge
 
         $knowledge->occupations()->attach($knowledge->id,[
-            'group' => $row["gran grupo"],
+            'group' => $row["gran_grupo"],
             'occupation_code' => $row["ocupacion"],
 
         ]);

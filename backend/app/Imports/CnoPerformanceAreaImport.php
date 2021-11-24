@@ -23,7 +23,7 @@ class CnoPerformanceAreaImport implements OnEachRow, WithHeadingRow
         $row      = $row->toArray();
 
         $onet = CnoPerformanceArea::firstOrCreate([
-            'group' => $row["gran grupo"],
+            'group' => $row["gran_grupo"],
             'title' =>  $row["nombre"],
             'desc' =>  $row["descripcion"],
         ]);

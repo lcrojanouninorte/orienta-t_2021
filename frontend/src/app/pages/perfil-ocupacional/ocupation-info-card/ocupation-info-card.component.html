@@ -3,7 +3,9 @@
         <img width="86" src="assets/Orienta-t/Resultados/SVG/{{title}}.svg">
         <h3 class="mt-4 text-purple-orientate">{{title}}</h3>
     </nb-card-header>
-    <nb-card-body>
+    <nb-card-body style="
+    margin-bottom: 30px;
+">
 
         <div class="  d-flex flex-column justify-content-between ">
             <div *ngIf="data?.length">
@@ -42,5 +44,12 @@
         </div>
 
     </nb-card-body>
+    <nb-card-footer *ngIf="showFooter">
+        <div class="d-flex align-items-center justify-content-center pps_desc p-3">
 
+            <a class="link" href="https://hecaa.mineducacion.gov.co/consultaspublicas/programas" target="_blank">
+                <b class="text-purple-orientate"><span><nb-icon icon="link-2-outline"></nb-icon></span> Programas</b>
+            </a>
+        </div>
+    </nb-card-footer>
 </nb-card>

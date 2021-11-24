@@ -65,7 +65,7 @@ export const NB_CORE_PROVIDERS = [
             success: '/auth/login',
             failure: null,
           },
-          defaultErrors: ['Es posible que el usuario ya se encuentre registrado'],
+          defaultErrors: ['Es posible que el usuario ya se encuentre registrado ó la contraseña no es valida'],
           defaultMessages: ['Se ha Registrado Exitosamente, por favor revise su correo para activar su cuenta'],
         },
         logout: {
@@ -139,6 +139,14 @@ export const NB_CORE_PROVIDERS = [
         },
         requireValidToken: false,
         strategy: 'NbPasswordAuthStrategy',
+      },
+      validation: {
+        password: {
+          required: true,
+          minLength: 6,
+          maxLength: 50,
+
+        }
       },
     },
   }).providers,
