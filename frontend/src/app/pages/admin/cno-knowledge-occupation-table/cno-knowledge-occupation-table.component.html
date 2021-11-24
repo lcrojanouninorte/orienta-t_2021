@@ -22,7 +22,7 @@
                     <h5>Hojas Detectadas</h5>
                     <p class="caption">Seleccione las hojas que desea actualizar</p>
                     <nb-checkbox *ngFor="let valid_sheet of valid_sheets" (checkedChange)="addSheetToUpdate($event,valid_sheet)">{{valid_sheet}}</nb-checkbox>
-                    {{selected_sheets|json}}
+
                 </div>
                 <div *ngIf="invalid_sheets.length>0">
                     <h5>Hojas no validas</h5>

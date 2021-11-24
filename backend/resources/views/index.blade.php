@@ -5,10 +5,10 @@
     <base href="/">
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="icon" type="image/png" href="favicon.png">
+    <link rel="icon" type="image/png" href="favicon.png">
     <link rel="icon" type="image/x-icon" href="favicon.ico">
 
-<style>@charset "UTF-8";@import url(https://fonts.googleapis.com/css2?family=Poppins:wght@400;*,:after,:before{box-sizing:border-box;}html{font-family:sans-serif;-webkit-tap-highlight-color:rgba(0,0,0,0);}body{font-family:-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Arial,Noto Sans,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol,Noto Color Emoji;font-size:1rem;font-weight:400;line-height:1.5;color:#212529;text-align:left;background-color:#fff;}img{vertical-align:middle;}img{page-break-inside:avoid;}@page {size:a3;}body{min-width:992px!important;}</style><link rel="stylesheet" href="styles.4997c4919c8d01ba302c.css" media="print" onload="this.media='all'"><noscript><link rel="stylesheet" href="styles.4997c4919c8d01ba302c.css"></noscript></head>
+ <link rel="stylesheet" href="styles.2060b3764056e60045fc.css" media="print" onload="this.media='all'"><noscript><link rel="stylesheet" href="styles.2060b3764056e60045fc.css"></noscript></head>
 
 <body>
     <ngx-app>Cargando...</ngx-app>
@@ -111,7 +111,7 @@
         <div class="blob blob-5"></div>
     </div>
 
-<script src="runtime-es2015.83fc7010d5fbc6b2ceb9.js" type="module"></script><script src="runtime-es5.83fc7010d5fbc6b2ceb9.js" nomodule defer></script><script src="polyfills-es5.96fc9f54468deeb96473.js" nomodule defer></script><script src="polyfills-es2015.64b85dfe269e2fbd9328.js" type="module"></script><script src="scripts.a30a721b6556fc9c30ad.js" defer></script><script src="main-es2015.897fb629a85e41f3042a.js" type="module"></script><script src="main-es5.897fb629a85e41f3042a.js" nomodule defer></script>
+<script src="runtime-es2015.3d7e5976ea71f9a6bb01.js" type="module"></script><script src="runtime-es5.3d7e5976ea71f9a6bb01.js" nomodule defer></script><script src="polyfills-es5.96fc9f54468deeb96473.js" nomodule defer></script><script src="polyfills-es2015.64b85dfe269e2fbd9328.js" type="module"></script><script src="scripts.a30a721b6556fc9c30ad.js" defer></script><script src="main-es2015.a9701c5082c9ac25dc0e.js" type="module"></script><script src="main-es5.a9701c5082c9ac25dc0e.js" nomodule defer></script>
 
 
 </body></html>
