@@ -31,11 +31,11 @@
     </div>
     <div class=" section mt-5 mb-5">
         <!-- Iniciar test -->
-        <div *ngIf="!this.user?.survey_uuid" class="row cta">
+        <div *ngIf="!survey?.uuid" class="row cta">
             <button (click)="start()" class="mx-auto " nbButton shape="round" status="primary">INICIAR TEST</button>
         </div>
-        <div *ngIf="this.user?.survey_uuid" class="row cta">
-            <button routerLink="/encuesta/1/{{this.user?.survey_uuid}}" class="mx-auto " nbButton shape="round" status="primary">RESUMIR TEST</button>
+        <div *ngIf="survey?.uuid" class="row cta">
+            <button routerLink="/encuesta/1/{{survey?.uuid}}" class="mx-auto " nbButton shape="round" status="primary">RESUMIR TEST</button>
         </div>
 
     </div>

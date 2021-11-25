@@ -21,7 +21,6 @@ import {
  import { RoleProvider } from './utils/role.service';
 
 // Services
-import { UserMockService } from './mock/users.service';
 import { MockDataModule } from './mock/mock-data.module';
 
 import { DataModule } from './data/data.module';

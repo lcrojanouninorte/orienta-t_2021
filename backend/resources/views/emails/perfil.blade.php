@@ -10,18 +10,21 @@
 
 
               		<div class="col m12">
-
-						<p>Estimado (a) {{$nombre}} ,
-							En el siguiente link puede descargar los resultados para la ocupación seleccionada:
+                        <h2>Hola <b>{{$nombre}}</b>! ,</h2>
+                          <p>
+							Aquí puedes encontrar la ocupación que seleccionaste,
 						</p>
+                        <h3><a style="font-weight: bold;" class="waves-effect waves-light btn" href="https://orienta-t.co/#/perfil/ocupacion/{{$occupation_title}}">{{$occupation_title}}</a></h3>
 						<br>
 
-                        Link:
-						<h2><a style="font-weight: bold;" class="waves-effect waves-light btn" href="https://orienta-t.co/#/perfil/ocupacion/{{$cod_ocupacion}}">{{$cod_ocupacion}}</a></h2>
+
+                        <p>Las tres áreas más afines a tu perfil son:</p>
+                        <b>{{$survey->surveyed->p1}}, {{$survey->surveyed->p2}} y {{$survey->surveyed->p3}}</b>
+                        <p>Sigue navegando por cada área en este enlace:</p>
+						<h3><a style="font-weight: bold;" class="waves-effect waves-light btn" href="https://orienta-t.co/#/perfil/areas/{{$survey->uuid}}"> Áreas afines </a></h3>
 
 
-
-						<p>Agradecemos su participación.</p>
+						<h3>Agradecemos su participación.</h3>
 
 
 

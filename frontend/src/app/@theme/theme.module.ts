@@ -114,7 +114,7 @@ export class ThemeModule {
           {
             name: 'obsrio',
           },
-          [DEFAULT_THEME, COSMIC_THEME, CORPORATE_THEME, DARK_THEME, MATERIAL_LIGHT_THEME, MATERIAL_DARK_THEME, OBSRIO_THEME ],
+          [DEFAULT_THEME,   OBSRIO_THEME ],
         ).providers,
       ],
     };

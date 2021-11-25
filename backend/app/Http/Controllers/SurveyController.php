@@ -504,7 +504,7 @@ class SurveyController extends Controller
     {
         //
         //$auth_user = Auth::user();
-        $surveys = Survey::with("surveyed")->where('uuid', $id)->first();
+        $surveys = Survey::with("surveyed")->where('uuid', $id)->orWhere('user_id', $id)->first();
 
 
         return response()->json($surveys,200);

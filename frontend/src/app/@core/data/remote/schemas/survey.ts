@@ -8,6 +8,7 @@ export class Survey implements Deserializable {
   surveyed?: Surveyed;
   created_at?:any;
   updated_at?:any;
+  isFinished?:any;
   deserialize?(input: any): this {
     Object.assign(this, input);
     this.surveyed ?  new Surveyed().deserialize(input.surveyed)   : [];

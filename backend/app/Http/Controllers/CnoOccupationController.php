@@ -6,6 +6,7 @@ use App\CnoOccupation;
 use App\CnoKnowledge;
 use App\CnoOnetCnoOutput;
 use App\CnoOutput;
+use App\Survey;
 
 use App\CnoOnet;
 use App\CnoProfessionalProfile;
@@ -197,13 +198,21 @@ class CnoOccupationController extends Controller
 
 
         $user = Auth::user();
-        $cod_ocupacion = $request->input("occupation_title")  ;
+        //Get user Survey
+
+        $survey = Survey::with("surveyed")->where("user_id",  $user->id)->first();
+
+
+        $occupation_title = $request->input("occupation_title")  ;
+
+
         //Buscar codigo de
         if($user){
           $data = array(
                         'email' =>  $user->email,
-                        'nombre' => $user->name,
-                        'cod_ocupacion' => $cod_ocupacion
+                        'nombre' => $survey->surveyed->nombre,
+                        'occupation_title' => $occupation_title,
+                        'survey' => $survey
                     );
             Mail::send('emails.perfil', $data, function ($message) use ($data) {
 

@@ -46,10 +46,14 @@
                         <nb-card-body>
                             <h6>Áreas de desempeño</h6>
 
+                            <nb-actions fullWidth size="medium">
+                                <nb-icon (click)="toggleCard(ppsRank)" src="close-circle-outline">
+                                </nb-icon>
 
+                            </nb-actions>
                             <div>
-                                <a href="#" routerLink="/perfil/ocupaciones/{{ppsRank.pps.code}}/{{onet.title}}" nbPopoverPlacement="right" nbPopoverTrigger="hint" [nbPopover]="templateRef" *ngFor="let onet of ppsRank.pps.onets" class="mt-3 row" fullWidth nbButton shape="round" size="medium"
-                                    nbButton status="info">
+                                <a href="#" routerLink="/perfil/ocupaciones/{{ppsRank.pps.code}}/{{onet.title}}" nbPopoverPlacement="right" nbPopoverTrigger="hint" [nbPopover]="templateRef" *ngFor="let onet of ppsRank.pps.onets" class="mt-3 row" fullWidth nbButton shape="round" size="small"
+                                    status="info">
                                         {{onet.title}}
                                         <ng-template #templateRef>
                                           <div style="width: 300px;" class="onet_popover p-3 text-center">
@@ -63,11 +67,7 @@
 
 
 
-                            <nb-actions fullWidth size="medium">
-                                <nb-icon (click)="toggleCard(ppsRank)" src="close-circle-outline">
-                                </nb-icon>
 
-                            </nb-actions>
                         </nb-card-body>
                     </nb-card>
                 </nb-card-back>

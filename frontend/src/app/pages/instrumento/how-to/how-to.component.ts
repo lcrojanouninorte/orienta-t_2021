@@ -2,6 +2,7 @@ import { HttpEventType } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Survey } from '@core/data/remote/schemas/survey';
 import { User } from '@core/data/remote/schemas/users';
 import { AuthService } from '@core/data/remote/services/auth.service';
 import { SurveyService } from '@core/data/remote/services/survey.service';
@@ -70,7 +71,7 @@ export class HowToComponent implements OnInit {
 
   ngOnInit(): void {
     this.form = this._fb.group({});
-
+    this.getSurvey(this.user.id);
    }
 
   start(){
@@ -84,7 +85,7 @@ export class HowToComponent implements OnInit {
         next: (event => {
             if ( event.type === HttpEventType.Response) {
               if(event.body.type == 4 || event.body.type  == 3){
-                this._surveyService.showToast('top rigth', 'info', 'Bienvenido a la Encuesta');
+                this._surveyService.showToast('top rigth', 'info', 'Bienvenido a Orienta-T');
                 this.survey = event.body.survey;
                 this._router.navigate(["encuesta/1", this.survey.uuid]);
 
@@ -137,5 +138,13 @@ export class HowToComponent implements OnInit {
   continue(){
     // load Survey based on user uuid if exist.
   }
-
+  getSurvey(user_id) {
+    this.loading = true;
+    this._surveyService.getSurvey(user_id).subscribe({
+      next: (survey: Survey) => {
+        this.survey = survey;
+        this.loading = false;
+      },
+    });
+  }
 }

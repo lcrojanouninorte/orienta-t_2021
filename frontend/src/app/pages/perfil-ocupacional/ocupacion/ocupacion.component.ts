@@ -97,14 +97,15 @@ export class OcupacionComponent implements OnInit {
   }
 
   printComponent(cmpName) {
-    let printContents = document.getElementsByClassName(cmpName)[0].innerHTML;
-    let originalContents = document.body.innerHTML;
+   // Open used in new window
+   let data = document.getElementsByClassName(cmpName)[0].innerHTML;
+     var originalContents = document.body.innerHTML;
 
-    document.body.innerHTML = printContents;
+     document.body.innerHTML = data;
 
-    window.print();
+     window.print();
 
-    document.body.innerHTML = originalContents;
+     document.body.innerHTML = originalContents;
   }
 
   sendmail(){

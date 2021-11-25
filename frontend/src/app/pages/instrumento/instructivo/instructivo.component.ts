@@ -7,6 +7,8 @@ import { AnimationItem } from 'lottie-web';
 import { AnimationOptions } from 'ngx-lottie';
 import { Location } from '@angular/common';
 import { NbAccessChecker } from '@nebular/security';
+import { SurveyService } from '@core/data/remote/services/survey.service';
+import { Survey } from '@core/data/remote/schemas/survey';
 
 @Component({
   selector: 'ngx-instructivo',
@@ -15,10 +17,14 @@ import { NbAccessChecker } from '@nebular/security';
 })
 export class InstructivoComponent implements OnInit {
   user: User;
+  loading: boolean;
+  survey : Survey = null;
   constructor(    public _lottieSrv: LottieService,
     private _authService: AuthService,
     private location: Location,
     public _accessChecker: NbAccessChecker,
+    private _surveyService: SurveyService,
+
 
     ) {
       this._authService.getCurrentUser()
@@ -31,6 +37,19 @@ export class InstructivoComponent implements OnInit {
     }
 
   ngOnInit(): void {
+    //check if survey is finished
+    this.getSurvey(this.user.id);
+
+  }
+
+  getSurvey(user_id) {
+    this.loading = true;
+    this._surveyService.getSurvey(user_id).subscribe({
+      next: (survey: Survey) => {
+        this.survey = survey;
+        this.loading = false;
+      },
+    });
   }
   back(){
     this.location.back();

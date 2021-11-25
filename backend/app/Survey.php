@@ -11,7 +11,7 @@ class Survey extends Model
 
     public function surveyed()
     {
-        return $this->belongsTo(Surveyed::class);
+        return $this->hasOne(Surveyed::class);
     }
     public function population()
     {

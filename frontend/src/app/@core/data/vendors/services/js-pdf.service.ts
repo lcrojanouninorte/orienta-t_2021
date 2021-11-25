@@ -12,78 +12,38 @@ export class JsPDFService {
   ) { }
 
 
-   lMargin = 55; // left margin in px
-   rMargin = 55; // right margin in px
-   pdfInMM = 816;  // width of paper in px
+
   public  downloadPDF(div_id): boolean{
     const div = document.getElementById(div_id);
     const options = {
       background: 'white',
-      scale: 3
+      allowTaint:true
     };
 
 
+    var HTML_Width = div.clientWidth;
+    var HTML_Height = div.clientHeight;
+    var top_left_margin = 0;
+    var PDF_Width = HTML_Width;
+    var PDF_Height = HTML_Height;
+    var canvas_image_width = HTML_Width;
+    var canvas_image_height = HTML_Height;
+
+
     html2canvas(div, options).then(canvas => {
-      const doc = new jsPDF('l', 'px', 'letter', true);
-      const pw = doc.internal.pageSize.getWidth();
-      const ph = doc.internal.pageSize.getHeight();
-      for (var i = 0; i <= div.clientHeight/980; i++) {
-        this.header(doc, pw, ph);
 
-        // Titulos
-        doc.setFontSize(22);
-        doc.text('Orienta-T',  pw / 2, 65, {'align': 'center'});
-        doc.setFontSize(10);
-        doc.text(`Fecha: ${new Date().toLocaleString()}`,   pw / 2, 75, {'align': 'center'});
-        doc.setFontSize(12);
+      canvas.getContext('2d');
 
-        // Title and desc
-       // doc.text('CATEGORÍA: '+ layer.category.name, 20, 90, {'align': 'left'});
-        doc.text('TITULO: Perfil Ocupacional' , 20, 100, {'align': 'left'});
-        //const splitTitle = doc.splitTextToSize('DESCRIPCIÓN: ' + layer.desc, pw - 50 );
-        //doc.text(splitTitle, 20, 110);
+			console.log(canvas.height+"  "+canvas.width);
 
-        // Mapa
-        const img = canvas.toDataURL('image/PNG');
-        // Add image Canvas to PDF
-        const bufferX = 20;
-        const bufferY = 140;
-        const imgProps = (doc as any).getImageProperties(img);
-        const imgWidth = doc.internal.pageSize.getWidth() - 2 * bufferX;
-        const imgHeight = (imgProps.height * pw) / imgProps.width;
-        doc.addImage(img, 'PNG', bufferX, bufferY, imgWidth, imgHeight, '','FAST');
+			var imgData = canvas.toDataURL("image/jpeg", 1.0);
+			var pdf = new jsPDF('p', 'pt',  [PDF_Width, PDF_Height]);
+		    pdf.addImage(imgData, 'JPG', top_left_margin, top_left_margin,canvas_image_width,canvas_image_height);
+        pdf.addPage(PDF_Width, PDF_Height);
 
-        // Convenciones
-        var width         = canvas.width;
-        var height        = canvas.clientHeight;
-        this.footer(doc, pw, ph);
-        if (i > 0) {
-          doc.addPage(612, 791); //8.5" x 11" in pts (in*72)
-        }
-          //! now we declare that we're working on that page
-          doc.setPage(i+1);
-          //! now we add content to that page!
-          doc.addImage(canvas, 'PNG', 20, 40, (width*.62), (height*.62));
 
-        if(false){
-          doc.addPage();
-          // Titulos
-          doc.setFontSize(22);
-          doc.text('Observatorio del Río Magdalena',  pw / 2, 65, {'align': 'center'});
-          doc.setFontSize(10);
-          doc.text(`Fecha: ${new Date().toLocaleString()}`,   pw / 2, 75, {'align': 'center'});
-          doc.setFontSize(12);
-          // Title and desc
 
-          /*doc.fromHTML( layer.references, 10,100 ,{
-            'width': 550,
-          });*/
-           this.footer(doc, pw, ph);
-
-        }
-        }
-
-        doc.save(`${new Date().toLocaleString()}_Orienta-T.pdf`) ;
+        pdf.save(`${new Date().toLocaleString()}_Orienta-T.pdf`) ;
       });
 
       return true;

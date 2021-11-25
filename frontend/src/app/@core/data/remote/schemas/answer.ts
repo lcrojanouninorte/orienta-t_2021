@@ -5,10 +5,10 @@ export class Answer implements Deserializable {
   question_id?: string[];
   survey_id: any;
   value: any;
-  checked?: boolean;
+  checked?: any;
   deserialize?(input: any): this {
     Object.assign(this, input);
-    this.checked = input.checked == 1 ? true: false;
+    input.checked = input.checked == 1 || input.checked == "1"   ? true: false;
 
     return this;
   }

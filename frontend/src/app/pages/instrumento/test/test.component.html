@@ -1,16 +1,25 @@
-<div class="col-md-8 offset-md-2">
-    <nb-card class="sticky-top progress m-0 container-fluid">
+<nb-card class="col-md-8 offset-md-2 shadow-sm">
+
+
+
+
+    <nb-card class="sticky-top progress   container-fluid">
         <nb-card-body>
-            <nb-progress-bar [value]="progress" status="primary" [displayValue]="true" status="primary"> </nb-progress-bar>
+            <nb-progress-bar class="row" [value]="progress" status="primary" [displayValue]="true" status="primary"> </nb-progress-bar>
+
         </nb-card-body>
     </nb-card>
+
+
+
+
     <div status="primary" [nbSpinner]="loading" nbSpinnerStatus="info" nbSpinnerSize="large" nbSpinnerMessage="Actualizando">
 
         <div>
-            <div class="p-3">
+            <div class="p-3 ">
                 <div *ngIf="start || (section_id != '1' && !start)" #stepper>
 
-                    <div label="Sección {{ section?.code }}">
+                    <div class="container " label="Sección {{ section?.code }}">
                         <form [formGroup]="form" async>
                             <div *ngIf="section?.visible">
                                 <h4 class="text-blue-orientate">
@@ -167,20 +176,33 @@
 
                                         <div class="pt-2 d-flex flex-row justify-content-between align-items-center" *ngSwitchCase="'DPTO'">
 
-                                            <nb-select placeholder="Seleccione un Departamento" [(selected)]="selectedDpto" (click)="selectedMun = null; selectedInst = null" [name]="question.label" [formControl]="form.controls[question.label]">
+                                            <nb-select fullWidth (selectedChange)="getMuns($event)" placeholder="Seleccione un Departamento" [(selected)]="selectedDpto" (click)="selectedMun = null; selectedInst = null" [name]="question.label" [formControl]="form.controls[question.label]">
                                                 <nb-option *ngFor="let dpto of dptos |  async" [value]="dpto.cod">{{dpto.dpto}}</nb-option>
                                             </nb-select>
                                         </div>
                                         <div class="pt-2 d-flex flex-row justify-content-between align-items-center" *ngSwitchCase="'MUNI'">
 
-                                            <nb-select (click)="selectedInst = null" placeholder="Seleccione un Municipio" [(selected)]="selectedMun" [name]="question.label" [formControl]="form.controls[question.label]">
-                                                <nb-option *ngFor="let mun of _institutionService.getMuns(selectedDpto) |  async" [value]="mun.cod">{{mun.mun}}</nb-option>
+                                            <nb-select fullWidth (selectedChange)="getInstitutions($event)" placeholder="Seleccione un Municipio" [(selected)]="selectedMun" [name]="question.label" [formControl]="form.controls[question.label]">
+                                                <nb-option *ngFor="let mun of muns |  async" [value]="mun.cod">{{mun.mun}}</nb-option>
                                             </nb-select>
                                         </div>
                                         <div class="pt-2 d-flex flex-row justify-content-between align-items-center" *ngSwitchCase="'INSTI'">
-                                            <nb-select placeholder="Seleccione su institución" [(selected)]="selectedInst" [name]="question.label" [formControl]="form.controls[question.label]">
-                                                <nb-option *ngFor="let inst of _institutionService.getInstitutions(selectedMun  ) |  async" [value]="inst.Nombre">{{inst.Nombre}}</nb-option>
+                                            <!-- <nb-select placeholder="Seleccione su institución" [(selected)]="selectedInst" [name]="question.label" [formControl]="form.controls[question.label]">
+                                                <nb-option *ngFor="let inst of institutions |  async" [value]="inst.Nombre">{{inst.Nombre}}</nb-option>
                                             </nb-select>
+-->
+
+
+                                            <input #autoInput fullWidth [(selected)]="selectedInst" nbInput type="text" (input)="onChange()" placeholder="Seleccione su institución" [nbAutocomplete]="auto" [name]="question.label" [formControl]="form.controls[question.label]" />
+
+                                            <nb-autocomplete #auto (selectedChange)="onSelectionChange($event)">
+
+                                                <nb-option *ngFor="let option of filteredOptions$ | async" [value]="option.Nombre">
+                                                    {{ option.Nombre }}
+                                                </nb-option>
+
+                                            </nb-autocomplete>
+
                                         </div>
                                     </div>
 
@@ -234,7 +256,9 @@
         </div>
 
     </div>
-</div>
+
+
+</nb-card>
 
 
 

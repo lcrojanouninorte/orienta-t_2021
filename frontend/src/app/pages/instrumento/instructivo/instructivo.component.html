@@ -39,14 +39,20 @@
                     <button fullWidth routerLink="/encuesta/ejemplo" nbButton shape="round" outline status="primary">
                   CONTINUAR  <nb-icon icon="arrow-forward-outline"></nb-icon> </button>
                 </div>
+                <div class=" row ">
+                    <p class=" text-center">
+
+                        <label class=" caption col" *ngIf="survey?.uuid && survey?.isFinished == 0">*Último ingreso el: {{survey?.updated_at | date}}</label>
+                    </p>
+                </div>
 
 
             </div>
 
-            <div class="row ">
+            <div class="row mb-5">
 
                 <div class="col-sm-12   mb-3">
-                    <a *ngIf="this.user?.survey_uuid" fullWidth href=" /#/perfil/areas/{{user?.survey_uuid}}" nbButton shape="round" outline status="primary">
+                    <a *ngIf="survey?.isFinished>0" fullWidth href=" /#/perfil/areas/{{survey?.uuid}}" nbButton shape="round" outline status="primary">
       ver resultados <nb-icon icon="arrow-forward-outline"></nb-icon> </a>
                 </div>
                 <div *ngIf="_accessChecker.isGranted('Register General User', 'all') | async" class="col-sm-12   mb-3">

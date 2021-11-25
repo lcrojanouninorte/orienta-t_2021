@@ -18,14 +18,14 @@
 
     <div class="form-control-group">
         <!--<label class="label" for="input-name">Full name:</label>-->
-        <input shape="round" nbInput [(ngModel)]="user.name" #name="ngModel" id="input-name" name="name" placeholder="Full name" autofocus fullWidth fieldSize="large" [status]="name.dirty ? (name.invalid  ? 'danger' : 'info') : 'disabled'" [required]="getConfigValue('forms.validation.name.required')"
+        <input shape="round" nbInput [(ngModel)]="user.name" #name="ngModel" id="input-name" name="name" placeholder="Nombre Completo" autofocus fullWidth fieldSize="large" [status]="name.dirty ? (name.invalid  ? 'danger' : 'info') : 'disabled'" [required]="getConfigValue('forms.validation.name.required')"
             [minlength]="getConfigValue('forms.validation.name.minLength')" [maxlength]="getConfigValue('forms.validation.name.maxLength')" [attr.aria-invalid]="name.invalid && name.touched ? true : null">
         <ng-container *ngIf="name.invalid && name.touched">
             <p class="caption status-danger" *ngIf="name.errors?.required">
-                Full name is required!
+                Nombre Completo is requerido!
             </p>
             <p class="caption status-danger" *ngIf="name.errors?.minlength || name.errors?.maxlength">
-                Full name should contains from {{getConfigValue('forms.validation.name.minLength')}} to {{getConfigValue('forms.validation.name.maxLength')}} characters
+                Nombre Completo debe contener desde {{getConfigValue('forms.validation.name.minLength')}} to {{getConfigValue('forms.validation.name.maxLength')}} characters
             </p>
         </ng-container>
     </div>
@@ -60,7 +60,7 @@
 
     <div class="form-control-group">
         <!--<label class="label" for="input-re-password">Repita la contraseña creada:</label>-->
-        <input shape="round" nbInput [(ngModel)]="user.password_confirmation" #rePass="ngModel" type="password" id="input-re-password" name="rePass" placeholder="Confirm Password" fullWidth fieldSize="large" [status]="rePass.dirty ? (rePass.invalid || password.value != rePass.value  ? 'danger' : 'info') : 'disabled'"
+        <input shape="round" nbInput [(ngModel)]="user.password_confirmation" #rePass="ngModel" type="password" id="input-re-password" name="rePass" placeholder="Confirmar Contraseña" fullWidth fieldSize="large" [status]="rePass.dirty ? (rePass.invalid || password.value != rePass.value  ? 'danger' : 'info') : 'disabled'"
             [required]="getConfigValue('forms.validation.password.required')" [attr.aria-invalid]="rePass.invalid && rePass.touched ? true : null">
         <ng-container *ngIf="rePass.invalid && rePass.touched">
             <p class="caption status-danger" *ngIf="rePass.errors?.required">
