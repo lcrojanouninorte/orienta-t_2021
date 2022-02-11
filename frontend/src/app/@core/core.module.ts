@@ -64,8 +64,8 @@ export const NB_CORE_PROVIDERS = [
             success: '/auth/login',
             failure: null,
           },
-          defaultErrors: ['Es posible que el usuario ya se encuentre registrado ó la contraseña no es valida'],
-          defaultMessages: ['Se ha Registrado Exitosamente, por favor revise su correo para activar su cuenta'],
+          defaultErrors: ['Es posible que el usuario ya se encuentre registrado ó la contraseña no es valida. Si el usuario existe, puede intentar recuperar contraseña'],
+          defaultMessages: ['Se ha Registrado Exitosamente, por favor revise su correo para activar su cuenta, recuerde revisar spam.'],
         },
         logout: {
           endpoint: 'token/revoke',

@@ -18,15 +18,15 @@ export const MENU_ITEMS: NbMenuItem[] = [
     data: {'permission': 'Register Admin'},
     children: [
       {
-        title: 'Reportes',
+        title: 'Descargar o Actualizar',
         icon: 'people-outline',
-        link: '/admin/encuestados',
+        link:  '/admin/conocimiento',
 
       },
       {
-        title: 'Variables',
+        title: 'Tabla dinámica',
         icon: 'people-outline',
-        link:  '/admin/conocimiento',
+        link: '/admin/encuestados',
 
       },
     ],

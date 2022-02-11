@@ -1,0 +1,133 @@
+[{
+        cod: "5",
+        dpto: "ANTIOQUIA"
+    },
+    {
+        cod: "8",
+        dpto: "ATLÁNTICO"
+    },
+    {
+        cod: "11",
+        dpto: "BOGOTÁ, D.C."
+    },
+    {
+        cod: "13",
+        dpto: "BOLÍVAR"
+    },
+    {
+        cod: "15",
+        dpto: "BOYACÁ"
+    },
+    {
+        cod: "17",
+        dpto: "CALDAS"
+    },
+    {
+        cod: "18",
+        dpto: "CAQUETÁ"
+    },
+    {
+        cod: "19",
+        dpto: "CAUCA"
+    },
+    {
+        cod: "20",
+        dpto: "CESAR"
+    },
+    {
+        cod: "23",
+        dpto: "CÓRDOBA"
+    },
+    {
+        cod: "25",
+        dpto: "CUNDINAMARCA"
+    },
+    {
+        cod: "27",
+        dpto: "CHOCÓ"
+    },
+    {
+        cod: "41",
+        dpto: "HUILA"
+    },
+    {
+        cod: "44",
+        dpto: "LA GUAJIRA"
+    },
+    {
+        cod: "47",
+        dpto: "MAGDALENA"
+    },
+    {
+        cod: "50",
+        dpto: "META"
+    },
+    {
+        cod: "52",
+        dpto: "NARIÑO"
+    },
+    {
+        cod: "54",
+        dpto: "NORTE DE SANTANDER"
+    },
+    {
+        cod: "63",
+        dpto: "QUINDIO"
+    },
+    {
+        cod: "66",
+        dpto: "RISARALDA"
+    },
+    {
+        cod: "68",
+        dpto: "SANTANDER"
+    },
+    {
+        cod: "70",
+        dpto: "SUCRE"
+    },
+    {
+        cod: "73",
+        dpto: "TOLIMA"
+    },
+    {
+        cod: "76",
+        dpto: "VALLE DEL CAUCA"
+    },
+    {
+        cod: "81",
+        dpto: "ARAUCA"
+    },
+    {
+        cod: "85",
+        dpto: "CASANARE"
+    },
+    {
+        cod: "86",
+        dpto: "PUTUMAYO"
+    },
+    {
+        cod: "88",
+        dpto: "ARCHIPIÉLAGO DE SAN ANDRÉS, PROVIDENCIA Y SANTA CATALINA",
+    },
+    {
+        cod: "91",
+        dpto: "AMAZONAS"
+    },
+    {
+        cod: "94",
+        dpto: "GUAINÍA"
+    },
+    {
+        cod: "95",
+        dpto: "GUAVIARE"
+    },
+    {
+        cod: "97",
+        dpto: "VAUPÉS"
+    },
+    {
+        cod: "99",
+        dpto: "VICHADA"
+    },
+]

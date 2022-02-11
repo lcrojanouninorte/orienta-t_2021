@@ -173,15 +173,15 @@ class AuthController extends Controller
 
             // TODO: open server ports to avoid this.
             // http://orienta-t.lcrojano.com/api/emails/register
-    /*        $response = Http::post('http://orienta-t.lcrojano.com/api/emails/register', [
-                'verificationCode'=>$verificationCode,
-                'password'=> $request->password,
-                'email'=>$user->email,
-                'user' => $user
-            ]);
-            $user->response=$response;
+        /*        $response = Http::post('http://orienta-t.lcrojano.com/api/emails/register', [
+                        'verificationCode'=>$verificationCode,
+                        'password'=> $request->password,
+                        'email'=>$user->email,
+                        'user' => $user
+                    ]);
+                    $user->response=$response;
 
-*/
+        */
             Mail::send('emails.userverification', $data, function ($m) use ($user) {
                 $m->from('noreply@orienta-t.co', 'Orienta-t ');
                 $m->to($user->email)->subject('Confirmación de Registro en Plataforma Orienta-t');

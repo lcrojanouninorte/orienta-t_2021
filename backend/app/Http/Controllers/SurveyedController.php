@@ -20,15 +20,17 @@ class SurveyedController extends Controller
         //
           //
           $surveyeds = Surveyed::with("survey")->get();
+          //Get user email and name
+
+
           //add 3 most rated profile rank of each surveyed
             foreach ($surveyeds as $key => $surveyed) {
                 # code...
 
                 $survey = $surveyed->survey;
+
                 if($survey){
                     $pps = CnoOcupationalFieldRanking::where("survey_id", $survey->id)->with("pps")->orderBy('total', 'DESC')->get();
-
-
                     if( $pps->count()>0){
 
 
@@ -36,8 +38,9 @@ class SurveyedController extends Controller
                             $surveyed->p2 = $pps[1]->pps->title;
                             $surveyed->p3 = $pps[2]->pps->title;
                             $surveyed->save();
-                        }
+                    }
                 }
+                $surveyed->email = $surveyed->user->email;
             }
 
 

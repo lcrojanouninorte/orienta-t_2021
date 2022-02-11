@@ -63,7 +63,7 @@ class UserController extends Controller
         }else{
             $this->validate($request, [
                 'email'      => 'required|email|unique:users',
-                'password'   => 'required|min:8|confirmed',
+                'password'   => 'required|min:6|confirmed',
                 'roles'   => 'required',
                 'base_role'   => 'required',
                 'profile'   => 'required',
@@ -151,8 +151,8 @@ class UserController extends Controller
             ]);*/
          //   $user->response=$response->status();
                 Mail::send('emails.userverification', $data, function ($m) use ($user) {
-                     $m->from('noreply@onuwomen.org', 'Onu Women ');
-                     $m->to($user->email)->subject('Confirmación de Registro en Plataforma Onu Women');
+                     $m->from('noreply@orienta-t.co', 'Orienta-T');
+                     $m->to($user->email)->subject('Confirmación de Registro en Plataforma Orienta-T');
                  });
              }
 
@@ -160,14 +160,16 @@ class UserController extends Controller
          }catch (\Exception $e) {
              DB::rollback();
              throw $e;
-             return response()->json($e->getErrors(),500);
+             return response()->json($e->getErrors()->errors,500);
          } catch (\Throwable $e) {
              DB::rollback();
              throw $e;
-             return response()->json($e->getErrors(),500);
+             return response()->json($e->getErrors()->errors,500);
          }
          DB::rollback();
     }
+
+
 
 
 
@@ -191,8 +193,8 @@ class UserController extends Controller
     }
     public function show_my_roles()
     {
-//        $user = auth()->user();
-//        or
+        //        $user = auth()->user();
+        //        or
         $user = \App\User::find(1);
         $roles = $user->getRoleNames();
 
@@ -236,6 +238,22 @@ class UserController extends Controller
     public function destroy($id)
     {
         //
+        $auth_user = Auth::user();
+        //Limit delete of role if no one have it.
+        $user = User::find($id);
+
+
+        //Delete survey of user if any
+        $user->surveyed ? $user->surveyed->delete():"";
+        $user->survey ? $user->survey->delete():"";
+
+
+        if($user->delete()){
+            return response()->json(["success"=>true], 200);
+        } else {
+            return response()->json(["success"=>false],500);
+        }
+
     }
 
     /**

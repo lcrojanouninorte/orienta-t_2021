@@ -22,7 +22,7 @@ class User extends Authenticatable
 {
 
 
-    use Notifiable, HasApiTokens, SoftDeletes, HasRoles;
+    use Notifiable, HasApiTokens, HasRoles;
 
     protected $guard_name = 'api';
     protected $appends = ['name','roles_names', 'profile'];

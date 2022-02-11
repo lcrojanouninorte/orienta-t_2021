@@ -1,5 +1,20 @@
 <div class="row">
-    <div class="col-md-8">
+    <div class="col-md-12">
+        <nb-card class="table-list shadow-sm">
+            <nb-card-header>
+                Tablas
+
+            </nb-card-header>
+            <nb-card-body>
+                <nb-list>
+                    <nb-list-item *ngFor="let table of tables" (click)="open(table.model_name)">
+                        <span> <nb-icon icon="file-text-outline"></nb-icon> {{table.name}}  {{model_count[table.name]}} </span>
+
+                    </nb-list-item>
+                </nb-list>
+            </nb-card-body>
+        </nb-card>
+
         <nb-card class=" shadow-sm" size="large" [nbSpinner]="loading" nbSpinnerStatus="danger" nbSpinnerSize="large" [nbSpinnerMessage]="progress">
             <nb-card-header>
                 Formulario de actualización Base de datos
@@ -7,7 +22,8 @@
             <nb-card-body>
                 <div>
                     <h3 class="label">1. seleccione un archivo que contenga los datos a actualizar.</h3>
-                    <h3 class="label">Descargar Tabla Actual: </h3>
+                    <h3 class="label"><a href="https://docs.google.com/spreadsheets/d/1IMHiG2IeZNnKkhm42MmNNKjhxQOeKAe_/edit?usp=sharing&ouid=101378456196802479359&rtpof=true&sd=true" target="_blank">Click aquí para ver tabla actual </a> </h3>
+
                     <ngx-dropzone [multiple]="false" accept=".csv, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel" (change)="onSelect($event)">
                         <ngx-dropzone-label>
                             <nb-icon icon='cloud-upload'></nb-icon> Agrega una archivo</ngx-dropzone-label>
@@ -36,25 +52,9 @@
             </nb-card-footer>
         </nb-card>
     </div>
-    <div class="col-md-4">
-        <nb-card size="large" class="table-list shadow-sm">
-            <nb-card-header>
-                Tablas
 
-            </nb-card-header>
-            <nb-card-body>
-                <nb-list>
-                    <nb-list-item *ngFor="let table of tables" (click)="open(table.model_name)">
-                        <span> <nb-icon icon="file-text-outline"></nb-icon> {{table.name}} - {{model_count[table.name]}} </span>
-
-                    </nb-list-item>
-                </nb-list>
-            </nb-card-body>
-        </nb-card>
-
-
-    </div>
 </div>
+<!--
 <div class="row">
     <div class="col">
         <nb-card class=" shadow-sm" size="medium">
@@ -72,3 +72,4 @@
 
 
 </div>
+-->

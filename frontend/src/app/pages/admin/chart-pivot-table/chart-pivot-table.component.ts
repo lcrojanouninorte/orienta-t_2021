@@ -74,9 +74,13 @@ export class ChartPivotTableComponent implements OnInit    {
             },
             "slice": {
               "reportFilters": [
-                  {
+                  /*{
                       "uniqueName": "created_at.Year"
-                  },
+                  },*/
+                  {
+                    "uniqueName": "email",
+                    "sort": "unsorted"
+                },
                   {
                       "uniqueName": "edad",
                       "sort": "unsorted"
@@ -123,6 +127,7 @@ export class ChartPivotTableComponent implements OnInit    {
                   }
               ],
               "flatOrder": [
+                  "email",
                   "nombre",
                   "apellido",
                   "estrato",

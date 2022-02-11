@@ -6,6 +6,7 @@ import { UsersEditComponent } from '../users-edit/users-edit.component';
 import { UserService } from '../../../@core/data/remote/services/users.service';
 import { Role } from 'app/@core/data/remote/schemas/role.model';
 import { Router } from '@angular/router';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'ngx-users-view',
@@ -36,7 +37,46 @@ export class UsersViewComponent implements OnDestroy {
   editUser(id: number) {
     const user = this._router.navigate(['/', { id: id }]);
   }
-  deleteUser(id: number) {
+  deleteUser(user: User, i) {
+    //swal
+    Swal.fire({
+      title: 'Desea borrar al usuario ' + user.email,
+      text: "Esta acción no se podrá revertir.",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Si, Borrar'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this._userService.deleteUser(user.id).subscribe({
+          next: (data: any) => {
+            console.log(data);
+            //Find email in each role
+            if(data["success"] ){
+              Swal.fire(
+                'Borrado!',
+                'El usuario se ha eliminado correcatemente',
+                'success'
+              )
+              window.location.reload();
+
+            }else{
+              this._userService.showToast('top rigth', 'danger', "No fue posible eliminar al usuario");
+
+            }
+          },
+          error: (error => {
+            this._userService.showToast('top rigth', 'danger', error.message);
+
+          }),
+        });
+
+
+      }
+    })
+    //delt
+
 
   }
 
@@ -61,4 +101,8 @@ export class UsersViewComponent implements OnDestroy {
   ngOnDestroy() {
     this.alive = false;
   }
+  trackByMethod(index: number, el: any): number {
+    return el.id;
+  }
+
 }

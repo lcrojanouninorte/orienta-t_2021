@@ -50,15 +50,15 @@
         <nb-card accent="info" size="large">
             <nb-card-header>General/Estudiante</nb-card-header>
             <nb-list>
-                <nb-list-item matRipple class="contact" *ngFor="let user of roles['General']">
+                <nb-list-item matRipple class="contact" *ngFor="let user of roles['General'] ; index as i ; trackBy: trackByMethod ">
                     <nb-user [picture]="user?.profile?.avatar" [name]="user?.email" [title]="user?.general?.first_name" size="medium"></nb-user>
                     <div *ngIf="_accessChecker.isGranted('Register Admin', 'all') | async" class="icon-container  d-flex justify-content-end align-items-stretch flex-fill">
                         <a size="small" ghost nbButton [routerLink]="[user.id]">
                             <nb-icon status="info" class="icon" icon="edit" pack="eva"></nb-icon>
                         </a>
-                        <!-- <a size="small" ghost nbButton (click)="deleteUser(user.id)">
-                          <nb-icon status="danger" class="icon" icon="trash" pack="eva"></nb-icon>
-                      </a>-->
+                        <a size="small" ghost nbButton (click)="deleteUser(user)">
+                            <nb-icon status="basic" class="icon" icon="trash" pack="eva"></nb-icon>
+                        </a>
                     </div>
                 </nb-list-item>
             </nb-list>
@@ -70,15 +70,15 @@
         <nb-card accent="info" size="large">
             <nb-card-header>Staff</nb-card-header>
             <nb-list>
-                <nb-list-item matRipple class="contact" *ngFor="let user of roles['Staff']">
+                <nb-list-item matRipple class="contact" *ngFor="let user of roles['Staff']  ; index as i ; trackBy: trackByMethod">
                     <nb-user [picture]="user?.profile?.avatar" [name]="user?.email" [title]="user?.general?.first_name" size="medium"></nb-user>
                     <div *ngIf="_accessChecker.isGranted('Register Staff', 'all') | async" class="icon-container  d-flex justify-content-end align-items-stretch flex-fill">
                         <a size="small" ghost nbButton [routerLink]="[user.id]">
                             <nb-icon status="info" class="icon" icon="edit" pack="eva"></nb-icon>
                         </a>
-                        <!-- <a size="small" ghost nbButton (click)="deleteUser(user.id)">
-                            <nb-icon status="danger" class="icon" icon="trash" pack="eva"></nb-icon>
-                        </a>-->
+                        <a size="small" ghost nbButton (click)="deleteUser(user)">
+                            <nb-icon status="basic" class="icon" icon="trash" pack="eva"></nb-icon>
+                        </a>
                     </div>
                 </nb-list-item>
             </nb-list>
@@ -88,15 +88,15 @@
         <nb-card accent="info" size="large">
             <nb-card-header>Administradores</nb-card-header>
             <nb-list>
-                <nb-list-item matRipple class="contact" *ngFor="let user of roles['Admin']">
+                <nb-list-item matRipple class="contact" *ngFor="let user of roles['Admin']   ; index as i ; trackBy: trackByMethod">
                     <nb-user [picture]="user?.profile?.avatar" [name]="user?.email" [title]="user?.general?.first_name" size="medium"></nb-user>
                     <div *ngIf="_accessChecker.isGranted('Register Admin', 'all') | async" class="icon-container  d-flex justify-content-end align-items-stretch flex-fill">
                         <a size="small" ghost nbButton [routerLink]="[user.id]">
                             <nb-icon status="info" class="icon" icon="edit" pack="eva"></nb-icon>
                         </a>
-                        <!-- <a size="small" ghost nbButton (click)="deleteUser(user.id)">
-                            <nb-icon status="danger" class="icon" icon="trash" pack="eva"></nb-icon>
-                        </a>-->
+                        <a size="small" ghost nbButton (click)="deleteUser(user)">
+                            <nb-icon status="basic" class="icon" icon="trash" pack="eva"></nb-icon>
+                        </a>
                     </div>
                 </nb-list-item>
             </nb-list>

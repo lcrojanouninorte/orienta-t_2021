@@ -14,7 +14,7 @@ const routes = {
   usersByRole: 'users/byrole',
   user: (id: number) => `users/${id}`,
 };
- 
+
 @Injectable()
 export class UserService extends  Commons {
 
@@ -48,6 +48,16 @@ export class UserService extends  Commons {
       map(user => new User().deserialize(user)),
       );
     }
+
+  deleteUser(user_id: number): Observable<User> {
+    const url = routes.user(user_id);
+
+    return this._http.delete<User>(url).pipe(
+      tap(_ => this.log(`deleted User id=${user_id}`)),
+      catchError(this.handleError<User>('deleteUser')),
+      map(user => new User().deserialize(user)),
+    );
+  }
 
   constructor(
     private _http: ApiService,
