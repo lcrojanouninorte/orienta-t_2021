@@ -19,7 +19,8 @@ class SurveyedController extends Controller
     {
         //
           //
-          $surveyeds = Surveyed::with("survey")->get();
+          $surveyeds = Surveyed::with("survey")->get()->makeHidden(['user', 'survey','survey_id']);
+
           //Get user email and name
 
 
@@ -40,7 +41,11 @@ class SurveyedController extends Controller
                             $surveyed->save();
                     }
                 }
+                //Agregar campos faltantes
                 $surveyed->email = $surveyed->user->email;
+                $surveyed->link = "orienta-t.co/#/perfil/areas/" . $survey->uuid;
+                $surveyed->estado_encuesta =  $survey->isFinished ? "Finalizada": "Pendiente";
+
             }
 
 

@@ -1,20 +1,21 @@
 <div class="row">
-    <div class="col-sm-6">
+    <div class="col-sm-12">
         <nb-card class="  shadow-sm">
             <nb-card-header>
                 Tabla Dinámica
             </nb-card-header>
             <nb-card-body style="    padding: 0;
             margin: 0;">
-                <app-wbr-pivot #pivot1 (beforetoolbarcreated)="customizeToolbar($event)" [toolbar]="false" [width]="'100%'" [height]="500" [customizeCell]="onCustomizeCell" (ready)="onPivotReady($event)" (reportcomplete)="onReportComplete()" [global]="{localization:'https://drive.google.com/u/1/uc?id=1NVjvurenDPrYeI1MGfDEE25BLy-IZlnY&export=download'}">
-                    WebDataRocks will appear here
+                <app-wbr-pivot #pivot1 (cellclick)="onCellClick($event)" (beforetoolbarcreated)="customizeToolbar($event)" [toolbar]="true" [width]="'100%'" [height]="500" [customizeCell]="onCustomizeCell" (ready)="onPivotReady($event)" (reportcomplete)="onReportComplete()"
+                    [global]="{localization:'https://drive.google.com/u/1/uc?id=1NVjvurenDPrYeI1MGfDEE25BLy-IZlnY&export=download'}">
+                    will appear here
                 </app-wbr-pivot>
 
             </nb-card-body>
 
         </nb-card>
     </div>
-    <div class="col-sm-6">
+    <div class="col-sm-12">
         <div class="row">
             <div class="col-sm-12">
 
@@ -25,14 +26,32 @@
                     <nb-card-body style="padding: 0;">
                         <div class="chart-container">
 
-                            <div id="highchartsContainer-1" style="width:100%;height:200px;"></div>
+                            <div id="highchartsContainer-1" style="width:100%;height:500px;"></div>
 
                         </div>
 
                     </nb-card-body>
                 </nb-card>
             </div>
-            <div class="col-sm-12">
+            <!--   <div class="col-sm-6">
+
+                <nb-card class=" shadow-sm">
+                    <nb-card-header>
+                        Encuestas
+                    </nb-card-header>
+                    <nb-card-body style="padding: 0;">
+                        <div class="chart-container">
+
+                            <p>Encuestas Realizadas vs pendiente </p>
+
+
+                            <p>Encuestas Realizadas: </p>
+                        </div>
+
+                    </nb-card-body>
+                </nb-card>
+            </div>
+           <div class="col-sm-12">
 
                 <nb-card class=" shadow-sm">
                     <nb-card-body>
@@ -45,8 +64,9 @@
 
                     </nb-card-body>
                 </nb-card>
-            </div>
+            </div>-->
         </div>
+
     </div>
 
 </div>

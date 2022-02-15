@@ -1,10 +1,10 @@
-<nb-card style="width: 600px;" size="large">
+<nb-card class="bd-table" size="large">
     <nb-card-header>
         Tabla: {{tableName}}
     </nb-card-header>
     <nb-card-body>
-        <app-wbr-pivot #pivot1 (beforetoolbarcreated)="customizeToolbar($event)" [toolbar]="true" [width]="'100%'" [height]="500" [customizeCell]="onCustomizeCell" (ready)="onPivotReady($event)" (reportcomplete)="onReportComplete()">
-            WebDataRocks will appear here
+        <app-wbr-pivot #pivot1 (cellclick)="onCellClick($event)" (beforetoolbarcreated)="customizeToolbar($event)" [toolbar]="true" [width]="'100%'" [height]="500" [customizeCell]="onCustomizeCell" (ready)="onPivotReady($event)" (reportcomplete)="onReportComplete()">
+            Tabla
         </app-wbr-pivot>
 
     </nb-card-body>

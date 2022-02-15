@@ -1,0 +1,7 @@
+@import '../../../@theme/styles/themes';
+@include nb-install-component() {
+     ::ng-deep .bd-table {
+        width: 98vw;
+        height: 90vh;
+    }
+}

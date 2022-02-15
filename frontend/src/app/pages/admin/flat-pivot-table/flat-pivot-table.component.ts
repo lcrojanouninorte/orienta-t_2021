@@ -76,14 +76,35 @@ export class FlatPivotTableComponent implements OnInit {
                 "showGrandTotals": "off"
               }
             },
+            "slice": {
 
+              "flatOrder": [
+                  "id",
+                  "email",
+                  "nombre",
+                  "p1",
+                  "p2",
+                  "p3",
+                  "estrato",
+                  "dpto",
+                  "municipio",
+                  "institucion",
+                  "edad",
+                  "grado",
+                  "direccion",
+                  "telefono",
+                  "created_at",
+                  "user_id"
+
+              ]
+            },
 
           "formats": [
               {
                   "name": "",
                   "thousandsSeparator": "",
                   "decimalSeparator": ".",
-                  "decimalPlaces": 2,
+
                   "maxSymbols": 20,
                   "currencySymbol": "",
                   "currencySymbolAlign": "left",
@@ -104,7 +125,14 @@ export class FlatPivotTableComponent implements OnInit {
 
 
   }
-
+  onCellClick(event){
+    if(event.label.includes("/#/perfil/areas/")){
+      window.open(event.label, "_blank");
+    }
+    /*alert("Click on cell - row: " + event.rowIndex +
+        ", column: " + event.columnIndex +
+        ", label: " + event.label);*/
+  };
   customizeToolbar(toolbar) {
     var tabs = toolbar.getTabs(); // get all tabs from the toolbar
     toolbar.getTabs = function() {

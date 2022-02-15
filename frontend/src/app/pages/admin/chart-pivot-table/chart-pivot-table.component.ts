@@ -78,6 +78,14 @@ export class ChartPivotTableComponent implements OnInit    {
                       "uniqueName": "created_at.Year"
                   },*/
                   {
+                    "uniqueName": "p1",
+                    "sort": "unsorted"
+                },
+                {
+                  "uniqueName": "estado_encuesta",
+                  "sort": "unsorted"
+              },
+                  {
                     "uniqueName": "email",
                     "sort": "unsorted"
                 },
@@ -101,13 +109,20 @@ export class ChartPivotTableComponent implements OnInit    {
                       "uniqueName": "municipio",
                       "sort": "unsorted"
                   },
-                  {
-                      "uniqueName": "created_at.Month"
-                  },
+
                   {
                       "uniqueName": "dpto",
                       "sort": "unsorted"
-                  }
+                  },
+
+                  {
+                      "uniqueName": "created_at.Year",
+                      "sort": "unsorted"
+                  },
+                  {
+                    "uniqueName": "created_at.Month",
+                    "sort": "unsorted"
+                }
               ],
               "rows": [
                   {
@@ -129,23 +144,21 @@ export class ChartPivotTableComponent implements OnInit    {
               "flatOrder": [
                   "email",
                   "nombre",
-                  "apellido",
                   "estrato",
                   "dpto",
                   "municipio",
                   "institucion",
-                  "sector",
                   "edad",
                   "grado",
                   "direccion"
               ]
-          },
+            },
           "formats": [
               {
                   "name": "",
                   "thousandsSeparator": " ",
                   "decimalSeparator": ".",
-                  "decimalPlaces": 2,
+
                   "maxSymbols": 20,
                   "currencySymbol": "",
                   "currencySymbolAlign": "left",
@@ -161,8 +174,9 @@ export class ChartPivotTableComponent implements OnInit    {
 
       });
     }else{
-      this.createAreaChart();
-      this.createBarChart();
+      this.createPieChart();
+      //this.createAreaChart();
+     // this.createBarChart();
     }
 
 
@@ -205,6 +219,30 @@ export class ChartPivotTableComponent implements OnInit    {
       }
     );
   }
+  createPieChart() {
+    this.child.webDataRocks.highcharts.getData(
+      {
+        type: "pie"
+      },
+      data => {
+        this.Highcharts.setOptions({
+          plotOptions: {
+            pie: {
+              allowPointSelect: true,
+              cursor: 'pointer',
+              dataLabels: {
+                  enabled: true,
+                  format: '<b>{point.name}</b>: {point.percentage:.1f} %'
+              }
+          }
+          }
+        });
+        this.Highcharts.chart("highchartsContainer-1", data);
+      }
+    );
+  }
+
+
   /* Create a bar chart that shows a preconfigured slice */
   createBarChart() {
     this.child.webDataRocks.highcharts.getData(
@@ -234,5 +272,12 @@ export class ChartPivotTableComponent implements OnInit    {
       }
     );
   }
-
+  onCellClick(event){
+    if(event.label.includes("/#/perfil/areas/")){
+      window.open(event.label, "_blank");
+    }
+    /*alert("Click on cell - row: " + event.rowIndex +
+        ", column: " + event.columnIndex +
+        ", label: " + event.label);*/
+  };
 }
