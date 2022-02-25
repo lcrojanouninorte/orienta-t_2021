@@ -1,0 +1,95 @@
+<div class="container">
+    <h2 class="text-center">Bienvenido al Módulo de Administración</h2>
+    <p class="text-center">
+        En este módulo, podrás encontrar opciones que te permitirán descargar, actualizar o visualizar la información de orienta-T. </p>
+    <p class="text-center">Haga clic sobre la opción que desee realizar.</p>
+
+    <div class="row mt-4">
+        <div class="col-sm-4">
+            <nb-card size="tiny" class="shadow-sm">
+                <nb-card-header class="stats"> Estadísticas </nb-card-header>
+                <nb-card-body>
+                    <p>
+                        Aquí puedes visualizar y navegar por los resultados de la encuesta.
+                    </p>
+                </nb-card-body>
+                <nb-card-footer>
+                    <div class="text-center">
+                        <a fullWidth routerLink="/admin/dashboard" nbButton outline status="primary">Ver Estadísticas</a>
+                    </div>
+                </nb-card-footer>
+            </nb-card>
+        </div>
+        <div routerLink="/admin/encuestados" class="col-sm-4">
+            <nb-card size="tiny" class="shadow-sm">
+                <nb-card-header class="tbdinamic"> Tabla Dinámica</nb-card-header>
+                <nb-card-body>
+                    <p>Esta herramienta te permitirá obtener y cruzar información.</p>
+                </nb-card-body>
+                <nb-card-footer>
+                    <div class="text-center">
+                        <a fullWidth routerLink="/admin/encuestados" nbButton outline status="primary">Tabla Dinámica</a>
+                    </div>
+                </nb-card-footer>
+            </nb-card>
+        </div>
+        <div routerLink="/admin/basedatos" class="col-sm-4">
+            <nb-card size="tiny" class="shadow-sm">
+
+                <nb-card-header class="excel"> Base de Datos </nb-card-header>
+                <nb-card-body>
+                    <p>Aquí puedes descargar ó actualizar la base de datos. Aquí se encuentran los resultados</p>
+                </nb-card-body>
+                <nb-card-footer>
+                    <div class="text-center">
+                        <a fullWidth routerLink="/admin/basedatos" nbButton outline status="primary">Ver Base de Datos</a>
+                    </div>
+                </nb-card-footer>
+            </nb-card>
+        </div>
+    </div>
+    <div class="row">
+        <div routerLink="/encuesta/instrucciones" class="col-sm-4">
+            <nb-card size="tiny" class="shadow-sm">
+                <nb-card-header class="back"> Encuesta </nb-card-header>
+                <nb-card-body>
+                    <p>Vuelve a la encuesta</p>
+                </nb-card-body>
+                <nb-card-footer>
+                    <div class="text-center">
+                        <a fullWidth routerLink="/admin/instrucciones" nbButton outline status="primary">Volver</a>
+                    </div>
+                </nb-card-footer>
+            </nb-card>
+        </div>
+        <div class="col-sm-4">
+            <nb-card size="tiny" class="shadow-sm">
+
+                <nb-card-header class="tuto"> Tutoriales </nb-card-header>
+                <nb-card-body>
+                    <p>Aprende cómo utilizar esta herramienta</p>
+                </nb-card-body>
+                <nb-card-footer>
+                    <div class="text-center">
+                        <a fullWidth routerLink="/admin/tutorial" nbButton outline status="primary">Ver
+              Tutoriales</a>
+                    </div>
+                </nb-card-footer>
+            </nb-card>
+        </div>
+        <div routerLink="/config/users" class="col-sm-4">
+            <nb-card size="tiny" class="shadow-sm">
+
+                <nb-card-header class="users"> Gestión de usuarios </nb-card-header>
+                <nb-card-body>
+                    <p>Aquí podrás actualizar información de los usuarios de Orienta-T</p>
+                </nb-card-body>
+                <nb-card-footer>
+                    <div class="text-center">
+                        <a fullWidth routerLink="/config/users" nbButton outline status="primary">Ver Contenido</a>
+                    </div>
+                </nb-card-footer>
+            </nb-card>
+        </div>
+    </div>
+</div>

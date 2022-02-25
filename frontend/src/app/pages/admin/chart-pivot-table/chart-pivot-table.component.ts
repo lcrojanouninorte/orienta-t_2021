@@ -78,7 +78,7 @@ export class ChartPivotTableComponent implements OnInit    {
                       "uniqueName": "created_at.Year"
                   },*/
                   {
-                    "uniqueName": "p1",
+                    "uniqueName": "perfil_1",
                     "sort": "unsorted"
                 },
                 {
@@ -183,13 +183,13 @@ export class ChartPivotTableComponent implements OnInit    {
   }
 
   customizeToolbar(toolbar) {
-    var tabs = toolbar.getTabs(); // get all tabs from the toolbar
+   /* var tabs = toolbar.getTabs(); // get all tabs from the toolbar
     toolbar.getTabs = function() {
       delete tabs[0]; // delete the first tab
       delete tabs[1]; // delete the first tab
       delete tabs[2]; // delete the first tab
         return tabs;
-    }
+    }*/
   }
   //CHART:
   createAreaChart() {

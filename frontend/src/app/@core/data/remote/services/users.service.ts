@@ -11,12 +11,14 @@ import { NbToastrService } from '@nebular/theme';
 
 const routes = {
   users: 'users',
+  users_role: (rol: string, nextPage: number, pageSize: number) => `users/${rol}/${nextPage}/${pageSize}`,
   usersByRole: 'users/byrole',
   user: (id: number) => `users/${id}`,
 };
 
 @Injectable()
 export class UserService extends  Commons {
+
 
   private time: Date = new Date;
 
@@ -58,6 +60,14 @@ export class UserService extends  Commons {
       map(user => new User().deserialize(user)),
     );
   }
+
+
+  load(pageToLoadNext: number, pageSize: number, rol: string): Observable<User[]> {
+    return  this._http.get<User[]>(routes.users_role(rol,pageSize,pageToLoadNext)).pipe(
+      tap(_ => this.log(`Fetched`)),
+      catchError(this.handleError<User[]>('getUsers', [])),
+     // map(roles => roles.map(role => new Role().deserialize(role))),
+    );  }
 
   constructor(
     private _http: ApiService,

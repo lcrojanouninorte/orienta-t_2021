@@ -1,0 +1,66 @@
+@import '../../../@theme/styles/themes';
+@include nb-install-component() {
+     :host {
+        display: block;
+        max-height: 25rem;
+        overflow-x: hidden;
+        overflow-y: auto;
+    }
+    .card-row {
+        display: flex;
+        margin: 0 -0.5rem;
+    }
+    .card-col {
+        flex: 1 0 calc(33% - 1rem);
+        margin: 0 0.5rem;
+    }
+    nb-card {
+        border-radius: 20px;
+        nb-card-header {
+            border-bottom: 0px solid #edf1f7;
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: right;
+            background-position-x: 96%;
+            background-position-y: 10px;
+            background-size: 10%;
+        }
+        nb-card-body {
+            padding: 0rem 1.5rem;
+        }
+        nb-card-footer {
+            padding: 1rem 1.5rem;
+            border-top: 0px solid #edf1f7;
+        }
+        [nbButton].appearance-outline.status-primary,
+        .appearance-outline.status-primary[nbButtonToggle] {
+            background-color: rgba(53, 82, 255, 0.0);
+        }
+        [nbButton]:hover.appearance-outline.status-primary,
+        .appearance-outline.status-primary[nbButtonToggle] {
+            background-color: rgba(53, 82, 255, 0.1);
+        }
+        [nbButton].full-width,
+        .nb-theme-obsrio .full-width[nbButtonToggle] {
+            width: 70%;
+        }
+    }
+    .stats {
+        background: url(https://cdn-icons-png.flaticon.com/512/202/202373.png);
+    }
+    .tbdinamic {
+        background: url(https://cdn.pixabay.com/photo/2021/11/15/23/29/pivot-6799631_1280.png);
+    }
+    .excel {
+        background: url(data:image/png;base64,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);
+    }
+    .back {
+        background: url(https://i.pinimg.com/736x/8b/13/17/8b1317d04a47f4622eae434af6197aeb.jpg);
+    }
+    .tuto {
+        background: url(https://cdn-icons-png.flaticon.com/512/1754/1754581.png);
+    }
+    .users {
+        background: url(https://w7.pngwing.com/pngs/364/696/png-transparent-user-computer-icons-graphic-tutorial-service-cartoon-area-thumbnail.png     );
+    }
+}

@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { AdminComponent } from './admin.component';
 import { SurveyedsTableComponent } from './surveyeds-table/surveyeds-table.component';
-import { NbMenuModule, NbLayoutModule, NbCardModule, NbSidebarModule, NbButtonModule, NbTabsetModule, NbActionsModule, NbIconModule, NbDialogModule, NbCheckboxModule, NbSpinnerModule, NbListModule } from '@nebular/theme';
+import { NbMenuModule, NbLayoutModule, NbCardModule, NbSidebarModule, NbButtonModule, NbTabsetModule, NbActionsModule, NbIconModule, NbDialogModule, NbCheckboxModule, NbSpinnerModule, NbListModule, NbUserModule, NbTagModule, NbDatepickerModule } from '@nebular/theme';
 import { ThemeModule } from 'app/@theme/theme.module';
 import { WebdatarocksPivotModule } from 'ng-webdatarocks';
 import { CnoClassificationLevelComponent } from './cno-classification-level/cno-classification-level.component';
@@ -18,7 +18,11 @@ import { ChartPivotTableComponent } from './chart-pivot-table/chart-pivot-table.
 import { NgxDropzoneModule } from 'ngx-dropzone';
 import { PanelSummaryComponent } from './panel-summary/panel-summary.component';
 import { FlatPivotTableComponent } from './flat-pivot-table/flat-pivot-table.component';
+import { LandingComponent } from './landing/landing.component';
+import { ChartModule } from 'angular2-chartjs';
 
+import { NgxChartsModule } from '@swimlane/ngx-charts';
+import { TutorialsComponent } from './tutorials/tutorials.component';
 
 
 @NgModule({
@@ -36,6 +40,8 @@ import { FlatPivotTableComponent } from './flat-pivot-table/flat-pivot-table.com
     ChartPivotTableComponent,
     PanelSummaryComponent,
     FlatPivotTableComponent,
+    LandingComponent,
+    TutorialsComponent,
   ],
   imports: [
     CommonModule,
@@ -54,7 +60,9 @@ import { FlatPivotTableComponent } from './flat-pivot-table/flat-pivot-table.com
     NbDialogModule.forChild(),
     NbCheckboxModule,
     NbSpinnerModule,
-    NbListModule
+    NbListModule,
+    ChartModule,
+    NgxChartsModule, NbUserModule, NbDatepickerModule.forRoot(),NbTagModule
    ]
 })
 export class AdminModule { }

@@ -23,8 +23,8 @@ export class CnoKnowledgeOccupationTableComponent {
   tables=[{
     "name" :"Encuestados",
     "model_name": "surveyeds"
-  },/*
-  {
+  },
+ /* {
     "name" :"Onets",
     "model_name": "onets"
   },
@@ -59,7 +59,7 @@ export class CnoKnowledgeOccupationTableComponent {
   {
     "name" :"Afines",
     "model_name": "related"
-  },*/
+  }*/
 ]
   options = {
 

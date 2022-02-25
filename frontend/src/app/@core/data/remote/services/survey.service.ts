@@ -1,7 +1,9 @@
+import { HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { FormGroup, Validators } from '@angular/forms';
 import { Commons } from '@core/utils/commons';
 import { NbToastrService } from '@nebular/theme';
+import { format } from 'date-fns';
 import { Observable } from 'rxjs';
 import { catchError, map, tap } from 'rxjs/operators';
 import { ApiService } from '../api.service';
@@ -257,8 +259,45 @@ export class SurveyService extends  Commons {
       }
 
 
-      getTableData(tableRoute: string) { // is the table name
+      getTableDataPost(tableRoute: string, filters: any) { // is the table name
+        return  this._http.post<any[]>(tableRoute, filters).pipe(
+          tap(_ => this.log('Fetched tableRoute')),
+          catchError(this.handleError<any[]>('tableRoute', [])),
+        //  map(tableRows => tableRows.map(tableRow => new Population().deserialize(population))),
+        );
+      }
+      getTableData(tableRoute: string, filters?:any) { // is the table name
+
+
         return  this._http.get<any[]>(tableRoute).pipe(
+          tap(_ => this.log('Fetched tableRoute')),
+          catchError(this.handleError<any[]>('tableRoute', [])),
+        //  map(tableRows => tableRows.map(tableRow => new Population().deserialize(population))),
+        );
+      }
+      getTableDataParams(tableRoute: string, filters?:any, range?:any) { // is the table name
+        let params =   new HttpParams()
+        if(filters){
+          for (let key in filters) {
+            let value = filters[key].value;
+            if(value !== "*"){
+              params =  params.append(key, value)
+            }
+           }
+        }
+        if(range){
+          for (let key in range) {
+            let value = range[key];
+            if(value !== "*"){
+
+              params =  params.append(key,    format(value, "yyyy-MM-dd"))
+            }
+           }
+
+        }
+        console.log(params.toString());
+
+        return  this._http.get<any[]>(tableRoute, {params}).pipe(
           tap(_ => this.log('Fetched tableRoute')),
           catchError(this.handleError<any[]>('tableRoute', [])),
         //  map(tableRows => tableRows.map(tableRow => new Population().deserialize(population))),

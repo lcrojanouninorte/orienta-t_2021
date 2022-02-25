@@ -17,11 +17,13 @@ class Surveyed extends Model
     }
     public function getDptoAttribute($value)
     {
-        return Deparment::where("code",$value)->first()->text;
+        $dept = Deparment::where("code",$value)->first();
+        return  $dept ? $dept->text : "OTRO";
     }
     public function getMunicipioAttribute($value)
     {
-        return Town::where("code",$value)->first()->text;
+        $town = Town::where("code",$value)->first();
+        return $town ? $town->text : "OTRO";
     }
     public function survey()
     {

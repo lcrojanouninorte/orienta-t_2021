@@ -49,7 +49,7 @@ Route::group(['middleware' => ['api']], function ($api) {
     $api->post('excel_pre_import', 'AdminController@excel_pre_import');
 
     $api->post('occupations/mail', 'CnoOccupationController@cno_occupation_mail');
-    
+
     //survey 2021
     $api->resource('questions', 'QuestionsController');
     $api->resource('surveys', 'SurveyController', ['except'=> ['index']]);
@@ -59,6 +59,10 @@ Route::group(['middleware' => ['api']], function ($api) {
     $api->get('surveys/rank/{uuid}', 'SurveyController@rank');
     $api->get('surveys', 'SurveyController@index');
     $api->resource('surveyeds', 'SurveyedController');
+    //$api->post('surveyeds/stats', 'SurveyedController@stats');
+    $api->get('/orientat/stats', 'SurveyedController@stats');
+    $api->get('/orientat/tutorials', 'SurveyedController@tutorials');
+
 
     $api->post('populations', 'PopulationController@store');
     $api->get('populations', 'PopulationController@index');
@@ -79,6 +83,7 @@ Route::group(['middleware' => ['api']], function ($api) {
     //deben ir ien auth
     $api->get('/users/byrole', 'UserController@getUsersByRoles');
     $api->get('/users/{id}', 'UserController@show');
+    $api->get('/users/{rol}/{next_page}/{page_size}', 'UserController@byRole');
 
 
 

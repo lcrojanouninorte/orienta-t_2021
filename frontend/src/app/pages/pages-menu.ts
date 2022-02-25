@@ -15,25 +15,14 @@ export const MENU_ITEMS: NbMenuItem[] = [
   {
     title: 'Modulo Administrativo',
     icon: 'settings-outline',
+
+    link:  '/admin/opciones',
     data: {'permission': 'Register Admin'},
-    children: [
-      {
-        title: 'Descargar o Actualizar',
-        icon: 'people-outline',
-        link:  '/admin/conocimiento',
 
-      },
-      {
-        title: 'Tabla dinámica',
-        icon: 'people-outline',
-        link: '/admin/encuestados',
-
-      },
-    ],
   },
   {
     title: 'Configuración',
-    icon: 'settings-outline',
+    icon: 'people-outline',
     data: {'permission': 'Register Admin'},
     children: [
       {

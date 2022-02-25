@@ -16,6 +16,7 @@ import Swal from 'sweetalert2';
 
 export class UsersViewComponent implements OnDestroy {
   private alive = true;
+  public users: any = {"General":[], "Admin":[], "Staff":[]};
   public roles: Array<Role> = new Array<Role>();
 
   contacts: any[];
@@ -27,7 +28,7 @@ export class UsersViewComponent implements OnDestroy {
     private _dialogService: NbDialogService,
     private _router: Router) {
 
-      const data = this._userService.getUsersByRole().subscribe(roles => {
+       const data = this._userService.getUsersByRole().subscribe(roles => {
         this.roles = roles;
 
       },
@@ -103,6 +104,68 @@ export class UsersViewComponent implements OnDestroy {
   }
   trackByMethod(index: number, el: any): number {
     return el.id;
+  }
+
+
+
+  placeholders = {"Admin":[], "General":[], "Staff":[]};
+  pageSize = 5;
+
+  pageToLoadNext = 1;
+  pageToLoadNext2 = 1;
+  pageToLoadNext3 = 1;
+
+  loading = false;
+  loading2 = false;
+  loading3 = false;
+
+  loadGeneral() {
+    if (this.loading) { return }
+
+    this.loading = true;
+    this.placeholders["General"] = new Array(this.pageSize);
+    this._userService.load(this.pageToLoadNext, this.pageSize, "General")
+      .subscribe(users_data => {
+        if(users_data.length>0){
+
+          this.placeholders["General"] = [];
+          this.users["General"].push(...users_data);
+          this.loading = false;
+          this.pageToLoadNext++;
+        }
+      });
+  }
+  loadAdmin() {
+    if (this.loading2) { return }
+
+    this.loading2 = true;
+    this.placeholders["Admin"] = new Array(this.pageSize);
+    this._userService.load(this.pageToLoadNext2, this.pageSize, "Admin")
+      .subscribe(users_data => {
+        if(users_data.length>0){
+
+          this.placeholders["Admin"] = [];
+          this.users[ "Admin"].push(...users_data);
+          this.loading2 = false;
+          this.pageToLoadNext2++;
+        }
+      });
+  }
+  loadStaff() {
+    if (this.loading3) { return }
+
+    this.loading3 = true;
+    this.placeholders["Staff"] = new Array(this.pageSize);
+    this._userService.load(this.pageToLoadNext3, this.pageSize, "Staff")
+      .subscribe(users_data => {
+        if(users_data.length>0){
+
+          this.placeholders["Staff"] = [];
+          this.users[ "Staff"].push(...users_data);
+          this.loading3 = false;
+          this.pageToLoadNext3++;
+        }
+      });
   }
 
 }

@@ -74,4 +74,11 @@
             border-left: 1px solid transparent;
         }
     }
+    .infinite-cards {
+        nb-card {
+            &.own-scroll {
+                height: 50vh;
+            }
+        }
+    }
 }

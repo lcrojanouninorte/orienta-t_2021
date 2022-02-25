@@ -46,11 +46,11 @@
 </div>
 
 <div class="card-row row">
-    <div class="card-col col-sm-12 col-md-4">
-        <nb-card accent="info" size="large">
+    <div class="card-col col-sm-12 col-md-4 infinite-cards">
+        <nb-card accent="info" size="medium">
             <nb-card-header>General/Estudiante</nb-card-header>
-            <nb-list>
-                <nb-list-item matRipple class="contact" *ngFor="let user of roles['General'] ; index as i ; trackBy: trackByMethod ">
+            <nb-list nbInfiniteList [threshold]="500" (bottomThreshold)="loadGeneral()">
+                <nb-list-item matRipple class="contact" *ngFor="let user of  users['General'] ; index as i ; trackBy: trackByMethod ">
                     <nb-user [picture]="user?.profile?.avatar" [name]="user?.email" [title]="user?.general?.first_name" size="medium"></nb-user>
                     <div *ngIf="_accessChecker.isGranted('Register Admin', 'all') | async" class="icon-container  d-flex justify-content-end align-items-stretch flex-fill">
                         <a size="small" ghost nbButton [routerLink]="[user.id]">
@@ -61,16 +61,19 @@
                         </a>
                     </div>
                 </nb-list-item>
+                <nb-list-item *ngFor="let _ of placeholders['General']">
+                    -
+                </nb-list-item>
             </nb-list>
 
         </nb-card>
     </div>
 
     <div class="card-col col-sm-12 col-md-4">
-        <nb-card accent="info" size="large">
+        <nb-card accent="info" size="medium">
             <nb-card-header>Staff</nb-card-header>
-            <nb-list>
-                <nb-list-item matRipple class="contact" *ngFor="let user of roles['Staff']  ; index as i ; trackBy: trackByMethod">
+            <nb-list nbInfiniteList [threshold]="500" (bottomThreshold)="loadStaff()">
+                <nb-list-item matRipple class="contact" *ngFor="let user of users['Staff']  ; index as i ; trackBy: trackByMethod">
                     <nb-user [picture]="user?.profile?.avatar" [name]="user?.email" [title]="user?.general?.first_name" size="medium"></nb-user>
                     <div *ngIf="_accessChecker.isGranted('Register Staff', 'all') | async" class="icon-container  d-flex justify-content-end align-items-stretch flex-fill">
                         <a size="small" ghost nbButton [routerLink]="[user.id]">
@@ -81,14 +84,17 @@
                         </a>
                     </div>
                 </nb-list-item>
+                <nb-list-item *ngFor="let _ of placeholders['Staff']">
+                    -
+                </nb-list-item>
             </nb-list>
         </nb-card>
     </div>
     <div class="card-col col-sm-12 col-md-4">
-        <nb-card accent="info" size="large">
+        <nb-card accent="info" size="medium">
             <nb-card-header>Administradores</nb-card-header>
-            <nb-list>
-                <nb-list-item matRipple class="contact" *ngFor="let user of roles['Admin']   ; index as i ; trackBy: trackByMethod">
+            <nb-list nbInfiniteList [threshold]="500" (bottomThreshold)="loadAdmin()">
+                <nb-list-item matRipple class="contact" *ngFor="let user of users['Admin']   ; index as i ; trackBy: trackByMethod">
                     <nb-user [picture]="user?.profile?.avatar" [name]="user?.email" [title]="user?.general?.first_name" size="medium"></nb-user>
                     <div *ngIf="_accessChecker.isGranted('Register Admin', 'all') | async" class="icon-container  d-flex justify-content-end align-items-stretch flex-fill">
                         <a size="small" ghost nbButton [routerLink]="[user.id]">
@@ -98,6 +104,9 @@
                             <nb-icon status="basic" class="icon" icon="trash" pack="eva"></nb-icon>
                         </a>
                     </div>
+                </nb-list-item>
+                <nb-list-item *ngFor="let _ of placeholders['Admin']">
+                    -
                 </nb-list-item>
             </nb-list>
 

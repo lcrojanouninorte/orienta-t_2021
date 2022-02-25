@@ -1,3 +1,4 @@
+import { TutorialsComponent } from './tutorials/tutorials.component';
 import { CnoKnowledgeOccupationTableComponent } from './cno-knowledge-occupation-table/cno-knowledge-occupation-table.component';
 import { CnoClassificationLevelComponent } from './cno-classification-level/cno-classification-level.component';
 import { CnoOccupationsTableComponent } from './cno-occupations-table/cno-occupations-table.component';
@@ -8,6 +9,8 @@ import { RouterModule, Routes } from '@angular/router';
 import { CnoSkillsOccupationTableComponent } from './cno-skills-occupation-table/cno-skills-occupation-table.component';
 import { CnoOnetsOutputsTableComponent } from './cno-onets-outputs-table/cno-onets-outputs-table.component';
 import { CnoOnetsTableComponent } from './cno-onets-table/cno-onets-table.component';
+import { LandingComponent } from './landing/landing.component';
+import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard.component';
 
 
 const routes: Routes = [
@@ -15,6 +18,19 @@ const routes: Routes = [
     path: '',
     component: AdminComponent,
     children: [
+      {
+        path: 'opciones',
+        component: LandingComponent,
+      },
+      {
+        path: 'dashboard',
+        component: AdminDashboardComponent,
+      },
+
+      {
+        path: 'tutorial',
+        component:   TutorialsComponent,
+      },
       {
         path: 'encuestados',
         component: SurveyedsTableComponent,
@@ -29,7 +45,7 @@ const routes: Routes = [
         component: CnoClassificationLevelComponent,
       },
       {
-        path: 'conocimiento',
+        path: 'basedatos',
         component:CnoKnowledgeOccupationTableComponent,
       },
       {

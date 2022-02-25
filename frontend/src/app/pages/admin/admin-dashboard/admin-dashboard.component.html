@@ -1,1 +1,217 @@
-<p>admin-dashboard works!</p>
+<div>
+
+
+    <div class="row">
+        <div class="col-sm-12">
+
+
+            <h1 class="text-left h2">Estadísticas Generales</h1>
+            <p class="text-left">
+                Aquí puedes encontrar estadísticas generales de la plataforma. Puede filtar por Fecha, Escuela, Departamento, Múnicipio, Edad, Grado ó Estrato.</p>
+
+
+        </div>
+    </div>
+    <div class="row mt-2">
+        <div class="col-md-8">
+            <nb-card class="shadow-sm petit">
+                <nb-card-header class="d-flex justify-content-between">
+
+
+
+                    <h1 class="h6 text-blue-orientate">Fechas: {{ range.start | date }} - {{ range.end | date }}</h1>
+
+                    <input placeholder="Seleccione un rango de fechas" [nbDatepicker]="formpicker">
+                </nb-card-header>
+                <nb-card-body class=" " style="padding-top:0px;">
+                    <nb-rangepicker [max]="date" (rangeChange)="onRangeChange($event)" [(range)]="range" #formpicker></nb-rangepicker>
+
+                    <nb-tag-list (tagRemove)="onTagRemove($event)">
+                        <nb-tag *ngFor="let filter of filters_list" [text]="filter.value" [removable]="filters_list.length > 0"></nb-tag>
+                    </nb-tag-list>
+                    <!-- <h2 class="h5 text-left  ">{{filters.institut.value}} </h2>
+                <h3 class="h6 text-left  "> {{filters.profile.value}}</h3>
+                <h4 class="caption text-left  "> {{filters.dpto.value}} | {{filters.mnpo.value}} </h4>-->
+
+                </nb-card-body>
+
+            </nb-card>
+
+        </div>
+
+        <div class="col-md-2">
+            <nb-card class="shadow-sm petit">
+                <nb-card-header>
+                    Encuestas Finalizadas
+                </nb-card-header>
+                <nb-card-body class="row h-100 justify-content-center align-items-center">
+                    <h2 class="h1 col-12 text-center text-blue-orientate">{{stats?.surveys_count?.finished}}</h2>
+
+                </nb-card-body>
+
+            </nb-card>
+
+        </div>
+        <div class="col-md-2">
+            <nb-card class="shadow-sm petit">
+                <nb-card-header>
+                    Encuestas Pendientes
+                </nb-card-header>
+                <nb-card-body class="row h-100 justify-content-center align-items-center">
+                    <h2 class="h1 col-12 text-center text-blue-orientate">{{stats?.surveys_count?.pendings}}</h2>
+                </nb-card-body>
+            </nb-card>
+        </div>
+
+
+    </div>
+    <div class="row ">
+        <div class="col-sm-12">
+
+            <nb-card class=" shadow-sm petit2">
+                <nb-card-header>
+                    Perfiles
+                </nb-card-header>
+                <nb-card-body style="padding: 0;">
+                    <!--  <ngx-charts-bar-horizontal (window:resize)="onResize($event)" [view]="view" [results]="stats?.profile_count.profiles" [gradient]="gradient" [xAxis]="showXAxis" [yAxis]="showYAxis" [legend]="showLegend" [showXAxisLabel]="showXAxisLabel" [showYAxisLabel]="showYAxisLabel"
+                        [xAxisLabel]="['Estudiantes']" [yAxisLabel]="['Perfil']" (select)="onSelect($event)">
+                    </ngx-charts-bar-horizontal>-->
+                    <!--   <ngx-charts-pie-grid [animations]="false" [view]="profile_view" [scheme]="colorScheme" [results]="stats?.profile_count.profiles" (select)="onSelect($event)">
+                    </ngx-charts-pie-grid>-->
+                    <ngx-charts-number-card [scheme]="'nightLights'" [view]="profile_view" [results]="stats?.profile_count.profiles" [cardColor]="'#EEF1FE'" (select)="onSelect($event)">
+                    </ngx-charts-number-card>
+                </nb-card-body>
+            </nb-card>
+
+
+        </div>
+
+
+
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+            <nb-card size="medium" class=" shadow-sm">
+                <nb-card-header>
+                    Instituciones
+                </nb-card-header>
+                <nb-card-body style="padding: 0;">
+                    <ngx-charts-bar-horizontal [scheme]="'aqua'" [view]="institution_view" [results]="stats?.profile_count.institution" [gradient]="gradient" [xAxis]="showXAxis" [yAxis]="showYAxis" [legend]="showLegend" [showXAxisLabel]="showXAxisLabel" [showYAxisLabel]="showYAxisLabel"
+                        [showDataLabel]="true" [xAxisLabel]="['Estudiantes']" (select)="onSelect($event)">
+                    </ngx-charts-bar-horizontal>
+
+                </nb-card-body>
+            </nb-card>
+
+        </div>
+        <div class="col-md-6">
+            <nb-card size="medium" class=" shadow-sm">
+                <nb-card-header>
+                    Estudiantes
+                </nb-card-header>
+                <nb-card-body style="padding: 0;">
+                    <div class="chart-container">
+                        <nb-list>
+                            <nb-list-item class="d-flex justify-content-between" *ngFor="let student of stats?.profile_count?.students ">
+
+
+                                <div>
+
+                                    <nb-user [name]="student?.name" color="#EEF1FE" [title]="student?.perfil_1 +' | '+student?.perfil_2 +' | ' +student?.perfil_3 ">
+                                    </nb-user>
+                                </div>
+                                <div>
+
+                                    <a nbButton shape="round" ghost status="primary" href="{{student?.link}}" target="_blank">
+                                        <nb-icon icon="external-link-outline"></nb-icon>
+                                    </a>
+
+                                </div>
+
+
+                            </nb-list-item>
+                        </nb-list>
+
+
+                    </div>
+
+                </nb-card-body>
+            </nb-card>
+
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-4">
+            <nb-card size="small" class=" shadow-sm">
+                <nb-card-header>
+                    Grado
+                </nb-card-header>
+                <nb-card-body style="padding: 0;">
+                    <ngx-charts-pie-chart legendTitle="Grados" animations="false" legend="true" [scheme]="'vivid'" [view]="pie_view" [results]="stats?.profile_count.grado" (select)="onSelect($event)">
+                    </ngx-charts-pie-chart>
+
+                </nb-card-body>
+            </nb-card>
+
+        </div>
+        <div class="col-md-4">
+            <nb-card size="small" class=" shadow-sm">
+                <nb-card-header>
+                    Estrato
+                </nb-card-header>
+                <nb-card-body style="padding: 0;">
+                    <ngx-charts-pie-chart legendTitle="Estratos" animations="false" legend="true" [scheme]="'natural'" [view]="pie_view" [results]="stats?.profile_count.estrato" (select)="onSelect($event)">
+                    </ngx-charts-pie-chart>
+
+                </nb-card-body>
+            </nb-card>
+
+        </div>
+        <div class="col-md-4">
+            <nb-card size="small" class=" shadow-sm">
+                <nb-card-header>
+                    Edad
+                </nb-card-header>
+                <nb-card-body style="padding: 0;">
+                    <ngx-charts-pie-chart legendTitle="Edades" animations="false" legend="true" [scheme]="'cool'" [view]="pie_view" [results]="stats?.profile_count.edad" (select)="onSelect($event)">
+                    </ngx-charts-pie-chart>
+
+                </nb-card-body>
+            </nb-card>
+
+        </div>
+    </div>
+
+    <div class="row ">
+        <div class="col-md-6">
+            <nb-card class=" shadow-sm">
+                <nb-card-header>
+                    Departamentos
+                </nb-card-header>
+                <nb-card-body style="padding: 0;">
+                    <ngx-charts-bar-horizontal [scheme]="'air'" [view]="institution_view" [results]="stats?.profile_count.dptos" [gradient]="gradient" [xAxis]="showXAxis" [yAxis]="showYAxis" [legend]="showLegend" [showXAxisLabel]="showXAxisLabel" [showYAxisLabel]="showYAxisLabel"
+                        [showDataLabel]="true" [xAxisLabel]="['Estudiantes']" (select)="onSelect($event)">
+                    </ngx-charts-bar-horizontal>
+
+                </nb-card-body>
+            </nb-card>
+
+        </div>
+        <div class="col-md-6">
+            <nb-card class=" shadow-sm">
+                <nb-card-header>
+                    Municipios
+                </nb-card-header>
+                <nb-card-body style="padding: 0;">
+                    <ngx-charts-bar-horizontal [scheme]="'air'" [view]="institution_view" [results]="stats?.profile_count.mnpo" [gradient]="gradient" [xAxis]="showXAxis" [yAxis]="showYAxis" [legend]="showLegend" [showXAxisLabel]="showXAxisLabel" [showYAxisLabel]="showYAxisLabel"
+                        [showDataLabel]="true" [xAxisLabel]="['Estudiantes']" (select)="onSelect($event)">
+                    </ngx-charts-bar-horizontal>
+
+                </nb-card-body>
+            </nb-card>
+
+        </div>
+    </div>
+
+
+</div>

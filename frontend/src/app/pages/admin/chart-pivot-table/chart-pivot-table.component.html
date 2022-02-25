@@ -6,10 +6,40 @@
             </nb-card-header>
             <nb-card-body style="    padding: 0;
             margin: 0;">
-                <app-wbr-pivot #pivot1 (cellclick)="onCellClick($event)" (beforetoolbarcreated)="customizeToolbar($event)" [toolbar]="true" [width]="'100%'" [height]="500" [customizeCell]="onCustomizeCell" (ready)="onPivotReady($event)" (reportcomplete)="onReportComplete()"
-                    [global]="{localization:'https://drive.google.com/u/1/uc?id=1NVjvurenDPrYeI1MGfDEE25BLy-IZlnY&export=download'}">
-                    will appear here
-                </app-wbr-pivot>
+
+                <div class="row" style="background-color: white;">
+                    <div class="col-sm-12 p-3 ">
+                        <p class="text-center">Bienvenido a la herramienta "Tabla dinámica". Aquí podrá cruzar información de interés para obtener más información.</p>
+                        <p class="text-center">Podrás encontrar un tutorial de utilización en este link: <a routerLink="/admin/tutorial">Tutoriales Orienta-T</a></p>
+                    </div>
+                </div>
+                <!--<div class="row m-5" style="background-color: white; ">
+                    <div class="col-md-6 p-5 ">
+                        <p>Paso 1.: Quita la variable actual, arrastrandola hasta el panel superior.</p>
+                        <p>Paso 2.: Elije la característica de interés del panel superior.</p>
+                        <p>Paso 3.: Arrastrarlo en encima de los números que indica la fila.</p>
+                        <p>Paso 4.: Repítelo con las demás variables de interés.</p>
+
+                    </div>
+                    <div class="col-md-6">
+
+                        <div class="text-center" style="background-color: black; height: 300px; width: 400px;">
+
+                        </div>
+                    </div>
+                </div>-->
+                <div class="row">
+
+                    <div class="col-md-12">
+
+                        <app-wbr-pivot #pivot1 (cellclick)="onCellClick($event)" (beforetoolbarcreated)="customizeToolbar($event)" [toolbar]="false" [width]="'100%'" [height]="500" [customizeCell]="onCustomizeCell" (ready)="onPivotReady($event)" (reportcomplete)="onReportComplete()"
+                            [global]="{localization:'https://drive.google.com/u/1/uc?id=1NVjvurenDPrYeI1MGfDEE25BLy-IZlnY&export=download'}">
+                            will appear here
+                        </app-wbr-pivot>
+
+                    </div>
+
+                </div>
 
             </nb-card-body>
 

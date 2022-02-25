@@ -40,6 +40,32 @@ class UserController extends Controller
         return User::paginate(15);
 
     }
+   /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function byRole($rol, $page_size, $next_page)
+    {
+        //
+
+        $limit = $page_size ? $page_size : 10;
+        $page = $next_page && $next_page > 0 ? $next_page : 1;
+        $skip = ($page - 1) * $limit;
+
+
+
+        $users = Role::with('users')->where('name', '=' ,$rol)
+        ->get()->pluck("users","name")
+      ;
+
+
+        $users = $users[$rol]->slice($skip, $limit)->values();
+        return response()->json($users,200);
+
+
+
+    }
 
         /**
      * Store a newly created resource in storage.

@@ -28,10 +28,7 @@ export class HeaderComponent implements OnInit, OnDestroy,  AfterViewInit {
   user: any;
   loading: boolean;
   themes = [
-    {
-      value: 'cosmic',
-      name: 'Cosmic',
-    },
+
     {
       value: 'material-light',
       name: 'Material Light',
@@ -88,7 +85,7 @@ export class HeaderComponent implements OnInit, OnDestroy,  AfterViewInit {
     this.materialTheme$ = this.themeService.onThemeChange()
       .pipe(map(theme => {
         const themeName: string = theme?.name || '';
-        return themeName.startsWith('material');
+        return themeName.startsWith('obsrio');
       }));
 
     // Custum methods:

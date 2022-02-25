@@ -1,0 +1,44 @@
+@import '../../../@theme/styles/themes';
+@include nb-install-component() {
+    nb-card.petit {
+        height: 150px;
+    }
+    nb-card.petit2 {
+        height: 250px;
+    }
+     ::ng-deep ngx-charts-number-card .cell .trimmed-label p {
+        white-space: pre-wrap;
+        font-size: 14px!important;
+    }
+    nb-card {
+        border-radius: 20px;
+        nb-card-header {
+            border-bottom: 0px solid #edf1f7;
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: right;
+            background-position-x: 96%;
+            background-position-y: 10px;
+            background-size: 10%;
+        }
+        nb-card-body {
+            padding: 0rem 1.5rem;
+        }
+        nb-card-footer {
+            padding: 1rem 1.5rem;
+            border-top: 0px solid #edf1f7;
+        }
+        [nbButton].appearance-outline.status-primary,
+        .appearance-outline.status-primary[nbButtonToggle] {
+            background-color: rgba(53, 82, 255, 0.0);
+        }
+        [nbButton]:hover.appearance-outline.status-primary,
+        .appearance-outline.status-primary[nbButtonToggle] {
+            background-color: rgba(53, 82, 255, 0.1);
+        }
+        [nbButton].full-width,
+        .nb-theme-obsrio .full-width[nbButtonToggle] {
+            width: 70%;
+        }
+    }
+}
